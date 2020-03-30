@@ -1,0 +1,24 @@
+#anterior, #proximo{
+	position: absolute;
+	top: 700px;
+}
+
+#anterior{
+	left: 10px;
+}
+#proximo{
+	right: 10px;
+}
+
+#ant, #prox{
+	position: absolute;
+	top: 1150px;
+}
+
+#ant{
+	left: 10px;
+}
+
+#prox{
+	right: 10px;
+}
