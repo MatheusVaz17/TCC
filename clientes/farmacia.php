@@ -1,5 +1,7 @@
 <?php
-include "bd/conexao.php";
+$login = $_COOKIE['login'];
+if (isset($login)) {
+include "../bd/conexao.php";
 ?>
 
 <!DOCTYPE html>
@@ -7,17 +9,16 @@ include "bd/conexao.php";
 <head>
 	<title>Health Farm</title>
 	<meta charset="utf-8">
-	<script type= "text/javascript" src= "jquery-3.4.1.js"></script>
-<script type= "text/javascript" src= "jquery.mask.min.js"></script>
-<link rel="icon" type="image/jpg" href="icon.jpg">
+	<script type= "text/javascript" src= "../jquery-3.4.1.js"></script>
+<script type= "text/javascript" src= "../jquery.mask.min.js"></script>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+<link type="text/css" rel="stylesheet" href="../materialize/css/materialize.min.css"  media="screen,projection"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
-<script src="owl.carousel.min.js"></script>
-<link rel="stylesheet" href="owl.carousel.min.css">
-<link rel="stylesheet" href="owl.theme.default.min.css">
-<link rel="stylesheet" type="text/css" href="estilo_botoes/estilo.css">
+<script type="text/javascript" src="../materialize/js/materialize.min.js"></script>
+<script src="../owl.carousel.min.js"></script>
+<link rel="stylesheet" href="../owl.carousel.min.css">
+<link rel="stylesheet" href="../owl.theme.default.min.css">
+<link rel="stylesheet" type="text/css" href="../estilo_botoes/estilo.css">
 </head>
 <body>
 <!-- Navbar -->
@@ -27,8 +28,7 @@ include "bd/conexao.php";
       <a href="#!" class="brand-logo">Health Farm</a>
       <ul class="right hide-on-med-and-down">
         <li><a href="sass.html"><i class="material-icons left">search</i>Procurar produtos</a></li>
-        <li><a href="clientes/entrar.php"><i class="material-icons right">person_pin</i>Entrar</a></li>
-        <li><a href="registrar.html"><i class="material-icons right">add</i>Adicionar produto</a></li>
+        <li><i class="material-icons right">person_pin</i>Bem vindo(a) <?php echo $login;  ?></li>
       </ul>
     </div>
   </nav>
@@ -38,22 +38,22 @@ include "bd/conexao.php";
   <div class="slider">
     <ul class="slides">
       <li>
-        <img src="img1.png"> <!-- random image -->
+        <img src="../img1.png"> <!-- random image -->
         <div class="caption center-align">
         </div>
       </li>
       <li>
-        <img src="img2.jpg"> <!-- random image -->
+        <img src="../img2.jpg"> <!-- random image -->
         <div class="caption left-align">
         </div>
       </li>
       <li>
-        <img src="img3.jpg"> <!-- random image -->
+        <img src="../img3.jpg"> <!-- random image -->
         <div class="caption right-align">
         </div>
       </li>
       <li>
-        <img src="img4.jpg"> <!-- random image -->
+        <img src="../img4.jpg"> <!-- random image -->
         <div class="caption center-align">
         </div>
       </li>
@@ -76,7 +76,7 @@ $sql = "SELECT * FROM produto WHERE tipo = 'Medicamento' AND disponibilidade ='D
             <div class="col s12 m10">
           <div class="card small hoverable">
             <span class="card-title"><?php echo $dados['nome']; ?></span>
-            <p><img width="130" height="100" src="fotos/<?php echo $dados['foto'] ?>"></p>
+            <p><img width="130" height="100" src="../fotos/<?php echo $dados['foto'] ?>"></p>
             <div class="card-action">
               <p><h6><?php echo "Preço: R$".$dados['valor']; ?></h6></p>
             <p><a style="align-self: flex-end" class="waves-effect waves-light btn"><i class="material-icons left">add_shopping_cart</i>Comprar</a></p>
@@ -125,7 +125,7 @@ $sql1 = "SELECT * FROM produto WHERE tipo = 'Higiene' AND disponibilidade ='Disp
             <div class="col s12 m10">
           <div class="card small hoverable">
             <span class="card-title"><?php echo $dados['nome']; ?></span>
-            <p><img width="130" height="100" src="fotos/<?php echo $dados['foto'] ?>"></p>
+            <p><img width="130" height="100" src="../fotos/<?php echo $dados['foto'] ?>"></p>
             <div class="card-action">
               <p><h6><?php echo "Preço: R$".$dados['valor']; ?></h6></p>
             <p><a style="align-self: flex-end" class="waves-effect waves-light btn"><i class="material-icons left">add_shopping_cart</i>Comprar</a></p>
@@ -199,3 +199,7 @@ $(document).ready(function(){
 
 </body>
 </html>
+<?php
+}else{
+  echo " <javascript> alert('Usuário não cadastrado'); window.location.href='login.php' </javascript> ";
+}
