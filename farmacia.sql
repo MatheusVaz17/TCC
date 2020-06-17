@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 28-Abr-2020 às 20:03
+-- Generation Time: 17-Jun-2020 às 04:02
 -- Versão do servidor: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -23,6 +23,22 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `carrinho`
+--
+
+CREATE TABLE IF NOT EXISTS `carrinho` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `preco` decimal(10,1) NOT NULL,
+  `quantidade` int(4) NOT NULL,
+  `valor` decimal(10,1) NOT NULL,
+  `email` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `produto`
 --
 
@@ -34,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `produto` (
   `disponibilidade` varchar(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `foto` varchar(40) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=45 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 -- --------------------------------------------------------
 
@@ -54,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `cep` varchar(9) COLLATE utf8_unicode_ci NOT NULL,
   `dataNascimento` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
