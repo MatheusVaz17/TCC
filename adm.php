@@ -1,16 +1,5 @@
 <?php
-$login = $_COOKIE['login'];
-session_start();
-if((!isset ($_SESSION['email']) == true) and (!isset ($_SESSION['senha']) == true))
-{
-  unset($_SESSION['email']);
-  unset($_SESSION['senha']);
-  echo"<script> alert('Você precisa estar logado para acessar essa página!');window.location
-        .href='entrar.php';</script>";
-  }
-if (isset($login)) {
-include "../bd/conexao.php";
-$logado = $_SESSION['email'];
+include "bd/conexao.php";
 ?>
 
 <!DOCTYPE html>
@@ -18,16 +7,17 @@ $logado = $_SESSION['email'];
 <head>
 	<title>Health Farm</title>
 	<meta charset="utf-8">
-	<script type= "text/javascript" src= "../jquery-3.4.1.js"></script>
-<script type= "text/javascript" src= "../jquery.mask.min.js"></script>
+	<script type= "text/javascript" src= "jquery-3.4.1.js"></script>
+<script type= "text/javascript" src= "jquery.mask.min.js"></script>
+<link rel="icon" type="image/jpg" href="icon.jpg">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<link type="text/css" rel="stylesheet" href="../materialize/css/materialize.min.css"  media="screen,projection"/>
+<link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<script type="text/javascript" src="../materialize/js/materialize.min.js"></script>
-<script src="../owl.carousel.min.js"></script>
-<link rel="stylesheet" href="../owl.carousel.min.css">
-<link rel="stylesheet" href="../owl.theme.default.min.css">
-<link rel="stylesheet" type="text/css" href="../estilo_botoes/estilo.css">
+<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+<script src="owl.carousel.min.js"></script>
+<link rel="stylesheet" href="owl.carousel.min.css">
+<link rel="stylesheet" href="owl.theme.default.min.css">
+<link rel="stylesheet" type="text/css" href="estilo_botoes/estilo.css">
 </head>
 <body>
 <!-- Navbar -->
@@ -36,9 +26,8 @@ $logado = $_SESSION['email'];
     <div class="nav-wrapper #29b6f6 light-blue lighten-1">
       <a href="#!" class="brand-logo">Health Farm</a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="#"><i class="material-icons left">search</i>Procurar produtos</a></li>
-        <li><a href="carrinho.php"><i class="material-icons left">shopping_cart</i></a></li>
-        <li><i class="material-icons right">person_pin</i>Bem vindo(a) <?php echo $login;  ?></li>
+        <li><a href="sass.html"><i class="material-icons left">search</i>Procurar produtos</a></li>
+        <li><a href="registrar.html"><i class="material-icons right">add</i>Adicionar produto</a></li>
       </ul>
     </div>
   </nav>
@@ -48,22 +37,22 @@ $logado = $_SESSION['email'];
   <div class="slider">
     <ul class="slides">
       <li>
-        <img src="../img1.png"> <!-- random image -->
+        <img src="img1.png"> <!-- random image -->
         <div class="caption center-align">
         </div>
       </li>
       <li>
-        <img src="../img2.jpg"> <!-- random image -->
+        <img src="img2.jpg"> <!-- random image -->
         <div class="caption left-align">
         </div>
       </li>
       <li>
-        <img src="../img3.jpg"> <!-- random image -->
+        <img src="img3.jpg"> <!-- random image -->
         <div class="caption right-align">
         </div>
       </li>
       <li>
-        <img src="../img4.jpg"> <!-- random image -->
+        <img src="img4.jpg"> <!-- random image -->
         <div class="caption center-align">
         </div>
       </li>
@@ -86,10 +75,10 @@ $sql = "SELECT * FROM produto WHERE tipo = 'Medicamento' AND disponibilidade ='D
             <div class="col s12 m10">
           <div class="card small hoverable">
             <span class="card-title"><?php echo $dados['nome']; ?></span>
-            <p><img width="130" height="100" src="../fotos/<?php echo $dados['foto'] ?>"></p>
+            <p><img width="130" height="100" src="fotos/<?php echo $dados['foto'] ?>"></p>
             <div class="card-action">
               <p><h6><?php echo "Preço: R$".$dados['valor']; ?></h6></p>
-            <p><a style="align-self: flex-end" href="<?php echo'addprodutos.php?id='.$dados['id']; ?>" class="waves-effect waves-light btn"><i class="material-icons left">add_shopping_cart</i>Comprar</a></p>
+            <p align="center"><a style="align-self: flex-end" href="produtos/delete.php?id=<?php echo $dados['id'] ?>" class="waves-effect waves-light btn-floating #d32f2f red darken-2"><i class="material-icons left">delete</i></a> <a style="align-self: flex-end" href="editar.php?id=<?php echo $dados['id'] ?>" class="waves-effect waves-light btn-floating #1e88e5 blue darken-1 "><i class="material-icons left">create</i></a></p>
           </div>
           </div>
           </div>
@@ -135,10 +124,10 @@ $sql1 = "SELECT * FROM produto WHERE tipo = 'Higiene' AND disponibilidade ='Disp
             <div class="col s12 m10">
           <div class="card small hoverable">
             <span class="card-title"><?php echo $dados['nome']; ?></span>
-            <p><img width="130" height="100" src="../fotos/<?php echo $dados['foto'] ?>"></p>
+            <p><img width="130" height="100" src="fotos/<?php echo $dados['foto'] ?>"></p>
             <div class="card-action">
               <p><h6><?php echo "Preço: R$".$dados['valor']; ?></h6></p>
-            <p><a style="align-self: flex-end" class="waves-effect waves-light btn"><i class="material-icons left">add_shopping_cart</i>Comprar</a></p>
+            <p align="center"><a style="align-self: flex-end" href="produtos/delete.php?id=<?php echo $dados['id'] ?>" class="waves-effect waves-light btn-floating #d32f2f red darken-2"><i class="material-icons left">delete</i></a> <a style="align-self: flex-end" href="editar.php?id=<?php echo $dados['id'] ?>" class="waves-effect waves-light btn-floating #1e88e5 blue darken-1 "><i class="material-icons left">create</i></a></p>
           </div>
           </div>
           </div>
@@ -167,6 +156,8 @@ if (mysqli_num_rows($resultado1) > 5) {
 <button class="btn waves-effect waves-light #29b6f6 light-blue lighten-1" id="prox"><i class="material-icons">chevron_right</i></button>
 </div>
 <?php } ?>
+
+
 <!-- Jquery's and JS-->
 <script>
 $(document).ready(function(){
@@ -200,7 +191,6 @@ $(document).ready(function(){
     })
 
 
-
 });
 
      
@@ -209,7 +199,3 @@ $(document).ready(function(){
 
 </body>
 </html>
-<?php
-}else{
-  echo " <javascript> alert('Usuário não cadastrado'); window.location.href='login.php' </javascript> ";
-}

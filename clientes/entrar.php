@@ -25,7 +25,7 @@
       <div class="card #29b6f6 light-blue lighten-1">
         <div class="card-content white-text">
           <fieldset style="border-radius: 8px; border-color: #424242">
-          <span class="card-title">Entrar</span>
+          <span class="card-title">Login</span>
           <form class="col s12" method="POST" action="login.php">
           <div class="input-field col s12">
           <p>Email: <input id="usuario" type="text" placeholder="Digite seu email" class="validate" name="email" style="background-color: white" required></p>

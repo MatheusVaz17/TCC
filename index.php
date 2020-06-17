@@ -27,9 +27,11 @@ include "bd/conexao.php";
       <a href="#!" class="brand-logo">Health Farm</a>
       <ul class="right hide-on-med-and-down">
         <li><a href="sass.html"><i class="material-icons left">search</i>Procurar produtos</a></li>
-        <li><a href="clientes/entrar.php"><i class="material-icons right">person_pin</i>Entrar</a></li>
-        <li><a href="registrar.html"><i class="material-icons right">add</i>Adicionar produto</a></li>
+        <li><a href="clientes/entrar.php"><i class="material-icons left">person_pin</i>Entrar</a></li>
+        <li><a href="adm.php"><i class="material-icons left">perm_contact_calendar
+</i>Area administrativa</a></li>
       </ul>
+
     </div>
   </nav>
 </div>
@@ -79,7 +81,7 @@ $sql = "SELECT * FROM produto WHERE tipo = 'Medicamento' AND disponibilidade ='D
             <p><img width="130" height="100" src="fotos/<?php echo $dados['foto'] ?>"></p>
             <div class="card-action">
               <p><h6><?php echo "Preço: R$".$dados['valor']; ?></h6></p>
-            <p><a style="align-self: flex-end" class="waves-effect waves-light btn"><i class="material-icons left">add_shopping_cart</i>Comprar</a></p>
+            <p><a style="align-self: flex-end" href="#modal1" class="waves-effect waves-light btn modal-trigger"><i class="material-icons left">add_shopping_cart</i>Comprar</a></p>
           </div>
           </div>
           </div>
@@ -157,10 +159,25 @@ if (mysqli_num_rows($resultado1) > 5) {
 <button class="btn waves-effect waves-light #29b6f6 light-blue lighten-1" id="prox"><i class="material-icons">chevron_right</i></button>
 </div>
 <?php } ?>
+
+<!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>Comprar produto</h4>
+      <p>Para realizar a compra de produtos você deve estar logado no sistema!</p>
+    </div>
+    <div class="modal-footer">
+      <a href="clientes/entrar.php" class="modal-close waves-effect waves-green btn-flat # c62828 red darken-3" style="color: white">Login</a>
+      <a href="clientes/cadastro.php" class="modal-close waves-effect waves-green btn-flat #1e88e5 blue darken-1" style="color: white">Cadastre-se</a>
+    </div>
+  </div>
+
+
 <!-- Jquery's and JS-->
 <script>
 $(document).ready(function(){
     $('.slider').slider({indicators: false});
+    $('.sidenav').sidenav();
 
     var owl1 = $("#carousel1");
     owl1.owlCarousel({
@@ -189,6 +206,9 @@ $(document).ready(function(){
       owl2.trigger('next.owl.carousel');
     })
 
+$(document).ready(function(){
+    $('.modal').modal();
+  });
 
 
 });
