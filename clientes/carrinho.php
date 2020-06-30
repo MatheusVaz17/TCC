@@ -26,7 +26,7 @@ $logado = $_SESSION['email'];
 <div class="navbar-fixed">
   <nav>
     <div class="nav-wrapper #29b6f6 light-blue lighten-1">
-      <a href="#!" class="brand-logo">Health Farm</a>
+      <a href="#!" class="brand-logo">Farmácia</a>
       <ul class="right hide-on-med-and-down">
         <li><i class="material-icons right">person_pin</i>Bem vindo(a) <?php echo $login;  ?></li>
       </ul>

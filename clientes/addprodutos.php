@@ -15,42 +15,119 @@
 </head>
 <body>
 <?php
+session_start();
+$login = $_COOKIE['login'];
+if((!isset ($_SESSION['email']) == true) and (!isset ($_SESSION['senha']) == true))
+{
+  unset($_SESSION['email']);
+  unset($_SESSION['senha']);
+  echo"<script> alert('Você precisa estar logado para acessar essa página!');window.location
+        .href='entrar.php';</script>";
+  }
 include "../bd/conexao.php";
 $id = $_GET['id'];
+$email = $_SESSION['email'];
+
+$sql1 = "SELECT cep FROM usuarios WHERE email = '$email'";
+$resultado1 = mysqli_query($connect, $sql1);
+    if(mysqli_num_rows($resultado1) > 0){ 
+        while ($dados1 = mysqli_fetch_array($resultado1)){
+
 $sql = "SELECT * FROM produto WHERE id = '$id'";
 $resultado = mysqli_query($connect, $sql);
         if(mysqli_num_rows($resultado) > 0){ 
         while ($dados = mysqli_fetch_array($resultado)){
 ?>
-</body>
-
-<div id="modal1" class="modal">
-    <div class="modal-content">
-      <h4>Adicionar produto ao carrinho</h4>
-      <p>Tem certeza que deseja adicionar esse produto ao carrinho?</p>
+<!-- Navbar -->
+<div class="navbar-fixed">
+  <nav>
+    <div class="nav-wrapper #29b6f6 light-blue lighten-1">
+      <a href="#!" class="brand-logo">Farmácia</a>
+      <ul class="right hide-on-med-and-down">
+        <li><i class="material-icons right">person_pin</i>Bem vindo(a) <?php echo $login;  ?></li>
+      </ul>
     </div>
+  </nav>
+</div>
     <form action="confirmaproduto.php" method="post">
-    	<p align="center"><?php echo $dados['nome']; ?></p>
-        <p align="center"><img width="130" height="100" src="../fotos/<?php echo $dados['foto'] ?>"></p><br>
-        <p><h6 align="center"><?php echo "Preço: R$".$dados['valor']; ?></h6></p>
-        <p align="left">Quantidade: <input type="number" name="quantidade" width="150" min="1" required></p>
+        <div class="row">
+            <div class="col s3">
+    	<p><h5><?php echo $dados['nome']; ?></h5></p><br>
+        <p><h6><b>Informações sobre o produto:</b></h6></p>
+        <p style="font-family: cambria"><?php echo $dados['informacao']; ?></p>
+        <p><h6><a href="#descricao">Ler descrições</a></h6></p>
+            </div>
+            <div class="col s3">
+        <p><img width="400" height="400" src="../fotos/<?php echo $dados['foto'] ?>"></p>
+            </div>
+            <div class="col s5">
+        <p><h6 align="center"><b><h5><div style="font-family: didot"><?php echo "Preço: R$".$dados['valor']; ?></div></h5></b></h6></p>
+        <br>
+        <p><h6 align="center"><b>Quantidade: <input type="number" name="quantidade"  style="max-width: 42%; border-radius: 4px; border-width: 1px; border-color: #29b6f6" min="1" max="10" required></b></h6></p>
         <input type="hidden" name="id" value="<?php echo $id ?>">
-    <div class="modal-footer">
+        <center>
         <a href="farmacia.php" class="modal-close waves-effect waves-green btn-flat red" ><div style="color: white">Cancelar</div></a>
-        <button class="btn green" type="submit"><div style="color: white">Confirmar</div></button>  
+        <button class="btn green" type="submit"><div style="color: white">Confirmar</div></button> 
+        <p align="center"><h6>Preço para o cep: <b> <?php echo $dados1['cep']; ?> </b><i class="material-icons">location_on</i><br></p>
+        <p align="center"><h6>Esse não é seu cep? Mude na pagina de usuário.</h6></p>
+        </center>
+        </div>
         
     </div>
-  </div>
 
+<div id="descricao">
+    <div class="row">
+    <div class="col s3">
+    <p><h5><b>Indicação: </b></h5></p>
+    <p style="font-family: cambria"><?php echo $dados['indicacao']; ?></p>
+    </div>
+
+    <div class="col s3">
+    <p><h5><b>Benefícios: </b></h5></p>
+    <p style="font-family: cambria"><?php echo $dados['beneficio']; ?></p>
+    </div>
+
+    <div class="col s3">
+    <p><h5><b>Modo de uso: </b></h5></p>
+    <p style="font-family: cambria"><?php echo $dados['modo']; ?></p>
+    </div>
+
+    <div class="col s3">
+    <p><h5><b>Recomendações: </b></h5></p>
+    <p style="font-family: cambria"><?php echo $dados['recomendacao']; ?></p>
+    </div>
+    </div>
+</div>
+
+</form>
+
+<!-- Footer -->
+<footer class="page-footer #29b6f6 light-blue lighten-1">
+          <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text">Farmácia</h5>
+                <p class="grey-text text-lighten-4">Aqui você encontra os melhores produtos pelos melhores preços.</p>
+              </div>
+              <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Contato</h5>
+                <ul>
+                  <li><p><h6>Farmacia@farmacia.com</h6></p></li>
+                  <li><p><h6>(55)9 84088361</h6></p></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright">
+            <div class="container">
+            © 2020 Matheus Vaz Flores
+            </div>
+          </div>
+        </footer>
+</body>
 <?php
 }
 }
+}
+}
 ?>
-
-
-<script type="text/javascript">
-	$(document).ready(function(){
-    $('.modal').modal();
-    $('.modal').modal('open');
-  });
-</script>

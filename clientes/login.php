@@ -19,11 +19,16 @@ if (isset($_POST['sub'])) {
 	$verifica = mysqli_query($connect, $sql);
     if (mysqli_num_rows($verifica)>0){
         $array = mysqli_fetch_array($verifica);
-        $nome = $array['nome'];
-        setcookie('login',$nome);
-        $_SESSION['email'] = $email;
-        $_SESSION['senha'] = $senha;
-        header("Location: farmacia.php");
+
+        if ($array['id'] == 0) {
+            header("Location: ../adm.php");
+        }else{
+            $nome = $array['nome'];
+            setcookie('login',$nome);
+            $_SESSION['email'] = $email;
+            $_SESSION['senha'] = $senha;
+            header("Location: farmacia.php");
+        }
       }else{
         unset ($_SESSION['email']);
         unset ($_SESSION['senha']);

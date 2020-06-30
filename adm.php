@@ -1,7 +1,3 @@
-<?php
-include "bd/conexao.php";
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,11 +16,23 @@ include "bd/conexao.php";
 <link rel="stylesheet" type="text/css" href="estilo_botoes/estilo.css">
 </head>
 <body>
+<?php
+session_start();
+if((!isset ($_SESSION['email']) == 'farmacia@farmacia.com') and (!isset ($_SESSION['senha']) == 'administrador00'))
+{
+  unset($_SESSION['email']);
+  unset($_SESSION['senha']);
+  echo"<script> alert('Você precisa estar logado como funcionário para acessar essa página!');window.location
+        .href='entrar.php';</script>";
+}else{ 
+include "bd/conexao.php";
+}
+?>
 <!-- Navbar -->
 <div class="navbar-fixed">
   <nav>
     <div class="nav-wrapper #29b6f6 light-blue lighten-1">
-      <a href="#!" class="brand-logo">Health Farm</a>
+      <a href="#!" class="brand-logo">Farmácia</a>
       <ul class="right hide-on-med-and-down">
         <li><a href="sass.html"><i class="material-icons left">search</i>Procurar produtos</a></li>
         <li><a href="registrar.html"><i class="material-icons right">add</i>Adicionar produto</a></li>
@@ -78,7 +86,7 @@ $sql = "SELECT * FROM produto WHERE tipo = 'Medicamento' AND disponibilidade ='D
             <p><img width="130" height="100" src="fotos/<?php echo $dados['foto'] ?>"></p>
             <div class="card-action">
               <p><h6><?php echo "Preço: R$".$dados['valor']; ?></h6></p>
-            <p align="center"><a style="align-self: flex-end" href="produtos/delete.php?id=<?php echo $dados['id'] ?>" class="waves-effect waves-light btn-floating #d32f2f red darken-2"><i class="material-icons left">delete</i></a> <a style="align-self: flex-end" href="editar.php?id=<?php echo $dados['id'] ?>" class="waves-effect waves-light btn-floating #1e88e5 blue darken-1 "><i class="material-icons left">create</i></a></p>
+            <p align="center"><a style="align-self: flex-end" href="produtos/delete.php?id=<?php echo $dados['id'] ?>" class="waves-effect waves-light btn-floating #d32f2f red darken-2"><i class="material-icons left">delete</i></a> <a style="align-self: flex-end" href="produtos/editar.php?id=<?php echo $dados['id'] ?>" class="waves-effect waves-light btn-floating #1e88e5 blue darken-1 "><i class="material-icons left">create</i></a></p>
           </div>
           </div>
           </div>
@@ -127,7 +135,7 @@ $sql1 = "SELECT * FROM produto WHERE tipo = 'Higiene' AND disponibilidade ='Disp
             <p><img width="130" height="100" src="fotos/<?php echo $dados['foto'] ?>"></p>
             <div class="card-action">
               <p><h6><?php echo "Preço: R$".$dados['valor']; ?></h6></p>
-            <p align="center"><a style="align-self: flex-end" href="produtos/delete.php?id=<?php echo $dados['id'] ?>" class="waves-effect waves-light btn-floating #d32f2f red darken-2"><i class="material-icons left">delete</i></a> <a style="align-self: flex-end" href="editar.php?id=<?php echo $dados['id'] ?>" class="waves-effect waves-light btn-floating #1e88e5 blue darken-1 "><i class="material-icons left">create</i></a></p>
+            <p align="center"><a style="align-self: flex-end" href="produtos/delete.php?id=<?php echo $dados['id'] ?>" class="waves-effect waves-light btn-floating #d32f2f red darken-2"><i class="material-icons left">delete</i></a> <a style="align-self: flex-end" href="produtos/editar.php?id=<?php echo $dados['id'] ?>" class="waves-effect waves-light btn-floating #1e88e5 blue darken-1 "><i class="material-icons left">create</i></a></p>
           </div>
           </div>
           </div>

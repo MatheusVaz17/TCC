@@ -34,7 +34,7 @@ $logado = $_SESSION['email'];
 <div class="navbar-fixed">
   <nav>
     <div class="nav-wrapper #29b6f6 light-blue lighten-1">
-      <a href="#!" class="brand-logo">Health Farm</a>
+      <a href="#!" class="brand-logo">Farmácia</a>
       <ul class="right hide-on-med-and-down">
         <li><a href="#"><i class="material-icons left">search</i>Procurar produtos</a></li>
         <li><a href="carrinho.php"><i class="material-icons left">shopping_cart</i></a></li>
@@ -138,7 +138,7 @@ $sql1 = "SELECT * FROM produto WHERE tipo = 'Higiene' AND disponibilidade ='Disp
             <p><img width="130" height="100" src="../fotos/<?php echo $dados['foto'] ?>"></p>
             <div class="card-action">
               <p><h6><?php echo "Preço: R$".$dados['valor']; ?></h6></p>
-            <p><a style="align-self: flex-end" class="waves-effect waves-light btn"><i class="material-icons left">add_shopping_cart</i>Comprar</a></p>
+            <p><a style="align-self: flex-end" href="<?php echo'addprodutos.php?id='.$dados['id']; ?>" class="waves-effect waves-light btn"><i class="material-icons left">add_shopping_cart</i>Comprar</a></p>
           </div>
           </div>
           </div>

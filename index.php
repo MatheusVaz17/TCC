@@ -28,8 +28,6 @@ include "bd/conexao.php";
       <ul class="right hide-on-med-and-down">
         <li><a href="sass.html"><i class="material-icons left">search</i>Procurar produtos</a></li>
         <li><a href="clientes/entrar.php"><i class="material-icons left">person_pin</i>Entrar</a></li>
-        <li><a href="adm.php"><i class="material-icons left">perm_contact_calendar
-</i>Area administrativa</a></li>
       </ul>
 
     </div>

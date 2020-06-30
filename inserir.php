@@ -20,6 +20,11 @@ if (isset($_POST['action'])) {
 	$nome = $_POST['nome'];
 	$valor = $_POST['valor'];
 	$disponibilidade = $_POST['disponibilidade'];
+  $informacao = $_POST['informacao'];
+  $indicacao = $_POST['indicacao'];
+  $beneficio = $_POST['beneficio'];
+  $modo = $_POST['modo'];
+  $recomendacao = $_POST['recomendacao'];
 
 	$extensao = strtolower(substr($_FILES['arquivo']['name'], -4));
 	$novo_nome = md5(time()).$extensao;
@@ -27,7 +32,7 @@ if (isset($_POST['action'])) {
 
 	move_uploaded_file($_FILES['arquivo']['tmp_name'], $diretorio.$novo_nome);
 
-	$sql = "INSERT INTO produto (tipo, nome, valor, disponibilidade, foto) VALUES ('$tipo','$nome', $valor, '$disponibilidade', '$novo_nome')";
+	$sql = "INSERT INTO produto (tipo, nome, valor, disponibilidade, foto, informacao, indicacao, beneficio, modo, recomendacao) VALUES ('$tipo','$nome', $valor, '$disponibilidade', '$novo_nome', '$informacao', '$indicacao', '$beneficio', '$modo', '$recomendacao')";
 
     if (mysqli_query($connect,$sql)){
     ?>
