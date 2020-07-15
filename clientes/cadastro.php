@@ -11,7 +11,7 @@
 </head>
 <body>
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<nav class="navbar navbar-expand-lg navbar-dark bg-info">
   <a class="navbar-brand" href="#">
     <img src="iconus.png" width="30" height="30" class="d-inline-block align-top" alt="">
     Novo Usuário

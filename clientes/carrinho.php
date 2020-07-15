@@ -8,7 +8,7 @@ $logado = $_SESSION['email'];
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Health Farm</title>
+	<title>Farmácia</title>
 	<meta charset="utf-8">
 	<script type= "text/javascript" src= "../jquery-3.4.1.js"></script>
 <script type= "text/javascript" src= "../jquery.mask.min.js"></script>
@@ -26,16 +26,21 @@ $logado = $_SESSION['email'];
 <div class="navbar-fixed">
   <nav>
     <div class="nav-wrapper #29b6f6 light-blue lighten-1">
-      <a href="#!" class="brand-logo">Farmácia</a>
+      <div class="container">
+      <a class="brand-logo"><img src="../logo.png" align="center"></a>
       <ul class="right hide-on-med-and-down">
         <li><i class="material-icons right">person_pin</i>Bem vindo(a) <?php echo $login;  ?></li>
       </ul>
     </div>
+  </div>
   </nav>
 </div>
+
+<div class="container">
+
 <div class="row">
   <div class="col s12">
-    <h3 class="light">Carrinho de compras</h3>
+    <h3 class="light">Carrinho de compras <i class="material-icons">shopping_cart</i></h3>
     <table class="striped">
       <thead>
         
@@ -62,10 +67,7 @@ $resultado = mysqli_query($connect, $sql);
 			<td><?php echo $dados['preco']; ?></td>
 			<td><?php echo $dados['quantidade']; ?></td>
 			<td><?php echo $dados['valor']; ?></td>
-			<td><a href="confirmar.php?id=<?php echo $dados['id']; ?>" class="btn-floating green"><i class="material-icons">check
-</i></a>
-
-            <a class="waves-effect waves-light btn-floating modal-trigger red" href="#modal1"><i class="material-icons">delete</i></a></td>
+			<td><a class="waves-effect waves-light btn-floating modal-trigger red" href="#modal1"><i class="material-icons">delete</i></a></td>
 		</tr>
 	</tbody>
 
@@ -85,5 +87,65 @@ $resultado = mysqli_query($connect, $sql);
 </table>
 </div>
 </div>
+
+
+<p align="center"><a class="waves-effect waves-light btn red z-depth-3"  href="farmacia.php"> <i class="material-icons left">keyboard_arrow_left
+</i> Voltar</a> <a class="waves-effect waves-light btn green z-depth-3" href="#">Confirmar compra <i class="material-icons right">check</i></a></p>
+
+</div>
+<!-- Footer -->
+<footer class="page-footer #29b6f6 light-blue lighten-1">
+          <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text">Farmácia On-line</h5>
+                <p class="grey-text text-lighten-4">Aqui você encontra os melhores produtos pelos melhores preços.</p>
+              </div>
+              <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Contato</h5>
+                <ul>
+                  <li><p><h6>Farmacia@farmacia.com</h6></p></li>
+                  <li><p><h6>(55)9 84088361</h6></p></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright">
+            <div class="container">
+            © 2020 Matheus Vaz Flores
+            </div>
+          </div>
+        </footer>
+<style type="text/css">
+
+.container {
+  
+margin: 0 auto;
+  
+max-width: 1280px;
+  
+width: 95%;
+
+}
+
+@media only screen and (min-width: 601px) {
+ 
+.container {
+    
+width: 95%;
+  
+}
+
+}
+
+@media only screen and (min-width: 993px) {
+  
+.container {
+    
+width: 95%;
+  
+}
+}
+</style>
 </body>
 </html>

@@ -42,8 +42,8 @@ if (isset($_POST['action'])) {
       <h4>Atualização de produto</h4>
       <p>O produto foi atualizado com sucesso!</p>
     </div>
-    <div class="modal-footer" style="color: white">
-      <a href="../adm.php" class="modal-close waves-effect waves-green btn-flat #4caf50 green">Ok</a>
+    <div class="modal-footer">
+      <a href="../adm/adm.php" style="color: white" class="modal-close waves-effect waves-green btn-flat #4caf50 green">Ok</a>
     </div>
   </div>
     <?php
@@ -55,7 +55,7 @@ if (isset($_POST['action'])) {
       <p>Erro ao atualizar produto!</p>
     </div>
     <div class="modal-footer" style="color: white">
-      <a href="../adm.php" class="modal-close waves-effect waves-green btn-flat #4caf50 green">Ok</a>
+      <a href="../adm/adm.php" class="modal-close waves-effect waves-green btn-flat #4caf50 green">Ok</a>
     </div>
   </div>
 <?php

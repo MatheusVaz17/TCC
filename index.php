@@ -5,7 +5,7 @@ include "bd/conexao.php";
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Health Farm</title>
+	<title>Farmácia</title>
 	<meta charset="utf-8">
 	<script type= "text/javascript" src= "jquery-3.4.1.js"></script>
 <script type= "text/javascript" src= "jquery.mask.min.js"></script>
@@ -24,7 +24,9 @@ include "bd/conexao.php";
 <div class="navbar-fixed">
   <nav>
     <div class="nav-wrapper #29b6f6 light-blue lighten-1">
-      <a href="#!" class="brand-logo">Health Farm</a>
+      <div class="container">
+      <a href="#!" class="brand-logo"><img src="logo.png" align="center"></a>
+      </div>
       <ul class="right hide-on-med-and-down">
         <li><a href="sass.html"><i class="material-icons left">search</i>Procurar produtos</a></li>
         <li><a href="clientes/entrar.php"><i class="material-icons left">person_pin</i>Entrar</a></li>
@@ -60,7 +62,10 @@ include "bd/conexao.php";
     </ul>
   </div>
 
+
 <!--Products-->
+<div class="container">
+
   <h4>Medicamentos:</h4>
   <div class="row">
   <div class="owl-carousel owl-theme owl-loaded" id="carousel1">
@@ -73,10 +78,10 @@ $sql = "SELECT * FROM produto WHERE tipo = 'Medicamento' AND disponibilidade ='D
         while ($dados = mysqli_fetch_array($resultado)){
         ?>
         <div class="owl-item">
-            <div class="col s12 m10">
+            <div class="col s12 m12">
           <div class="card small hoverable">
             <span class="card-title"><?php echo $dados['nome']; ?></span>
-            <p><img width="130" height="100" src="fotos/<?php echo $dados['foto'] ?>"></p>
+            <p><img width="50" height="100" src="fotos/<?php echo $dados['foto'] ?>"></p>
             <div class="card-action">
               <p><h6><?php echo "Preço: R$".$dados['valor']; ?></h6></p>
             <p><a style="align-self: flex-end" href="#modal1" class="waves-effect waves-light btn modal-trigger"><i class="material-icons left">add_shopping_cart</i>Comprar</a></p>
@@ -98,6 +103,7 @@ $sql = "SELECT * FROM produto WHERE tipo = 'Medicamento' AND disponibilidade ='D
 </div>
 </div>
 </div>
+</div>
 
 <?php
 if (mysqli_num_rows($resultado) > 5) {
@@ -108,8 +114,10 @@ if (mysqli_num_rows($resultado) > 5) {
 </div>
 <?php } ?>
 
-
 <br>
+
+
+<div class="container">
 <h4>Higiene: </h4>
 <div class="row">
   <div class="owl-carousel owl-theme owl-loaded" id="carousel2">
@@ -122,13 +130,13 @@ $sql1 = "SELECT * FROM produto WHERE tipo = 'Higiene' AND disponibilidade ='Disp
         while ($dados = mysqli_fetch_array($resultado1)){
         ?>
         <div class="owl-item">
-            <div class="col s12 m10">
+            <div class="col s12 m12">
           <div class="card small hoverable">
             <span class="card-title"><?php echo $dados['nome']; ?></span>
-            <p><img width="130" height="100" src="fotos/<?php echo $dados['foto'] ?>"></p>
+            <p><img width="50" height="100" src="fotos/<?php echo $dados['foto'] ?>"></p>
             <div class="card-action">
               <p><h6><?php echo "Preço: R$".$dados['valor']; ?></h6></p>
-            <p><a style="align-self: flex-end" class="waves-effect waves-light btn"><i class="material-icons left">add_shopping_cart</i>Comprar</a></p>
+            <p><a style="align-self: flex-end" href="#modal1" class="waves-effect waves-light btn modal-trigger"><i class="material-icons left">add_shopping_cart</i>Comprar</a></p>
           </div>
           </div>
           </div>
@@ -149,6 +157,7 @@ $sql1 = "SELECT * FROM produto WHERE tipo = 'Higiene' AND disponibilidade ='Disp
         </div>
         </div>
       </div>
+</div>
 <?php
 if (mysqli_num_rows($resultado1) > 5) {
 ?>
@@ -171,9 +180,43 @@ if (mysqli_num_rows($resultado1) > 5) {
   </div>
 
 
+<style>
+
+.container {
+  
+margin: 0 auto;
+  
+max-width: 1280px;
+  
+width: 95%;
+
+}
+
+@media only screen and (min-width: 601px) {
+ 
+.container {
+    
+width: 95%;
+  
+}
+
+}
+
+@media only screen and (min-width: 993px) {
+  
+.container {
+    
+width: 95%;
+  
+}
+}
+
+</style>
+
 <!-- Jquery's and JS-->
 <script>
 $(document).ready(function(){
+    $('.modal').modal();
     $('.slider').slider({indicators: false});
     $('.sidenav').sidenav();
 
@@ -203,10 +246,6 @@ $(document).ready(function(){
     $('#prox').on('click', function(){
       owl2.trigger('next.owl.carousel');
     })
-
-$(document).ready(function(){
-    $('.modal').modal();
-  });
 
 
 });

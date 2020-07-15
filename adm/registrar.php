@@ -5,33 +5,26 @@
 	<meta charset="utf-8">
 	<script type= "text/javascript" src= "../jquery-3.4.1.js"></script>
 <script type= "text/javascript" src= "../jquery.mask.min.js"></script>
-<link rel="icon" type="image/jpg" href="../icon.jpg">
+<link rel="icon" type="image/jpg" href="icon.jpg">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link type="text/css" rel="stylesheet" href="../materialize/css/materialize.min.css"  media="screen,projection"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <script type="text/javascript" src="../materialize/js/materialize.min.js"></script>
 </head>
 <body>
+
 <?php
 session_start();
 if((!isset ($_SESSION['email']) == 'farmacia@farmacia.com') and (!isset ($_SESSION['senha']) == 'administrador00'))
 {
   unset($_SESSION['email']);
   unset($_SESSION['senha']);
-  echo"<script> alert('Você precisa estar logado como funcionário para acessar essa página!');window.location
+  unset($_SESSION['check']);
+  echo"<script> alert('Você precisa estar logado como administrador para acessar essa página!');window.location
         .href='../clientes/entrar.php';</script>";
-}else{ 
-include "../bd/conexao.php";
-}
-
-$id = $_GET['id'];
-
-$sql = "SELECT * FROM produto WHERE id = '$id'";
-$resultado = mysqli_query($connect, $sql);
-        if(mysqli_num_rows($resultado) > 0){ 
-        while ($dados = mysqli_fetch_array($resultado)){
+  }
 ?>
-<body>
+
 <!-- Navbar -->
 <div class="navbar-fixed">
   <nav>
@@ -49,7 +42,7 @@ $resultado = mysqli_query($connect, $sql);
 <br>
 
 <div class="container">
-  <form action="confirmedit.php?id=<?php echo $id; ?>" method="post" enctype="multipart/form-data">
+  <form action="inserir.php" method="post" enctype="multipart/form-data">
   <div class="row">
     <fieldset style="border-color: #29b6f6; border-radius: 8px"> <legend style="text-align: center"><h6>Adicionar Produto</h6></legend>
   <div class="col s6">
@@ -63,8 +56,8 @@ $resultado = mysqli_query($connect, $sql);
     </select>
     </div>
     </p>
-    <p>Nome: <br> <input value="<?php echo $dados['nome'];  ?>"  type="text" name="nome" style="width: 40%" required></p>
-    <p>Valor: <br> <input value="<?php echo $dados['valor'];  ?>" type="text" name="valor" style="width: 40%" required min="1"></p>
+    <p>Nome: <br> <input type="text" name="nome" style="width: 40%" required></p>
+    <p>Valor: <br> <input type="text" name="valor" style="width: 40%" required min="1"></p>
     <p>Disponibilidade:
     <div style="width: 40%">
     <select name="disponibilidade" required>
@@ -85,19 +78,19 @@ $resultado = mysqli_query($connect, $sql);
 
     <div class="col s6">
     <p><b>Informações sobre o produto:</b></p>
-    <textarea required maxlength="500" name="informacao" style="max-width: 70%"><?php echo $dados['informacao'];  ?></textarea>
+    <textarea required maxlength="500" name="informacao" style="max-width: 70%"></textarea>
 
     <p><b>Indicação:</b></p>
-    <textarea required maxlength="500" name="indicacao" style="max-width: 70%"><?php echo $dados['indicacao'];  ?></textarea>  
+    <textarea required maxlength="500" name="indicacao" style="max-width: 70%"></textarea>  
 
     <p align="left"><b>Benefícios:</b></p>
-    <textarea required maxlength="500" name="beneficio" style="max-width: 70%"><?php echo $dados['beneficio'];  ?></textarea>
+    <textarea required maxlength="500" name="beneficio" style="max-width: 70%"></textarea>
 
     <p align="left"><b>Modo de usar:</b></p>
-    <textarea required maxlength="500" name="modo" style="max-width: 70%"><?php echo $dados['modo'];  ?></textarea>
+    <textarea required maxlength="500" name="modo" style="max-width: 70%"></textarea>
 
     <p align="left"><b>Recomendações gerais:</b></p>
-    <textarea required maxlength="500" name="recomendacao" style="max-width: 70%"><?php echo $dados['recomendacao'];  ?></textarea>  
+    <textarea required maxlength="500" name="recomendacao" style="max-width: 70%"></textarea>  
   </div>
   </fieldset>
   </div>
@@ -167,27 +160,13 @@ width: 80%;
 
 </style>
 
-
-<?php
-}
-}
-?>
-
 <script type="text/javascript">
   $(document).ready(function(){
     $('select').formSelect();
   });
 </script>
 
-<style type="text/css">
-  .bg{
-    background-image: url("../bg.png");
-    background-repeat: no-repeat;
-    background-size: 20%;
-    background-position: 100% 100%;
-  }
 
 </style>
 </body>
 </html>
-</body>

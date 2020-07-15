@@ -1,3 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Farmácia</title>
+	<meta charset="utf-8">
+	<script type= "text/javascript" src= "../jquery-3.4.1.js"></script>
+<script type= "text/javascript" src= "../jquery.mask.min.js"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link type="text/css" rel="stylesheet" href="../materialize/css/materialize.min.css"  media="screen,projection"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<script type="text/javascript" src="../materialize/js/materialize.min.js"></script>
+</head>
+<body>
 <?php
 session_start();
 include "../bd/conexao.php";
@@ -13,16 +26,47 @@ $resultado = mysqli_query($connect, $sql);
         }
     }
 $valorTotal = $quant * $preco;
-$cpf = $_SESSION['cpf'];
+
 
 $sql1 = "INSERT INTO carrinho (`nome`, preco, quantidade, valor, `email`) VALUES ('$nome', $preco, $quant, $valorTotal, '$logado')";
 
 $resultado1 = mysqli_query($connect, $sql1);
 
 if ($resultado1) {
-	echo"<script> alert('Produto adicionado com sucesso ao carrinho'); window.location.href='carrinho.php';</script>";
-}else{
-	echo"<script> alert('Erro ao adicionar produto ao carrinho'); window.location.href='farmacia.php';</script>";
-}
-
 ?>
+<!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>Adicionar produto ao carrinho</h4>
+      <p>Produto adicionado com sucesso!</p>
+    </div>
+    <div class="modal-footer" style="color: white">
+      	<a href="carrinho.php" class="modal-close waves-effect waves-green btn green">Confirmar</a>
+    </div>
+  </div>
+<?php
+}else{
+?>
+<!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>Adicionar produto ao carrinho</h4>
+      <p>Erro ao adicionar produto!</p>
+    </div>
+    <div class="modal-footer" style="color: white">
+      	<a href="farmacia.php" class="modal-close waves-effect waves-green btn green">Confirmar</a>
+    </div>
+  </div>
+<?php
+} 
+?>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+	$('.modal').modal();
+    $('.modal').modal('open');
+  });
+</script>
+</body>
+</html>
+

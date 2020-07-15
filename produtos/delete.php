@@ -43,7 +43,7 @@ $resultado = mysqli_query($connect, $sql);
     </div>
     <div class="modal-footer">
     <div style="color: white">
-    <a href="../adm.php" class="modal-close waves-effect waves-green btn red">Cancelar</a>
+    <a href="../adm/adm.php" class="modal-close waves-effect waves-green btn red">Cancelar</a>
     <a href="confirmdelete.php?id=<?php echo $dados['id'] ?>" class="modal-close waves-effect waves-green btn green">Confirmar</a>
 	</div>
     </div>

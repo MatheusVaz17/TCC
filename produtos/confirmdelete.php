@@ -23,26 +23,26 @@ if ($resultado) {
 ?>
 
 <!-- Modal Structure -->
-  <div id="modal1" class="modal modal-fixed-footer">
+  <div id="modal1" class="modal">
     <div class="modal-content">
       <h4>Deletar produto</h4>
       <p>Produto deletado com sucesso!</p>
     </div>
     <div class="modal-footer" style="color: white">
-      	<a href="../adm.php" class="modal-close waves-effect waves-green btn green">Confirmar</a>
+      	<a href="../adm/adm.php" class="modal-close waves-effect waves-green btn green">Confirmar</a>
     </div>
   </div>
 
 <?php
 }else{
 ?>
-	<div id="modal1" class="modal modal-fixed-footer">
+	<div id="modal1" class="modal">
     <div class="modal-content">
       <h4>Deletar produto</h4>
       <p>Erro ao deletar produto!</p>
     </div>
     <div class="modal-footer" style="color: white">
-      	<a href="../adm.php" class="modal-close waves-effect waves-green btn green">Confirmar</a>
+      	<a href="../adm/adm.php" class="modal-close waves-effect waves-green btn green">Confirmar</a>
     </div>
   </div>
 

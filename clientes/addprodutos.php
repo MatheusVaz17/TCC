@@ -1,6 +1,6 @@
 <html>
 <head>
-	<title>Health Farm</title>
+	<title>Farmácia</title>
 	<meta charset="utf-8">
 	<script type= "text/javascript" src= "../jquery-3.4.1.js"></script>
 <script type= "text/javascript" src= "../jquery.mask.min.js"></script>
@@ -42,13 +42,18 @@ $resultado = mysqli_query($connect, $sql);
 <div class="navbar-fixed">
   <nav>
     <div class="nav-wrapper #29b6f6 light-blue lighten-1">
-      <a href="#!" class="brand-logo">Farmácia</a>
+      <div class="container">
+      <a href="#!" class="brand-logo"><img src="../logo.png" align="center"></a>
       <ul class="right hide-on-med-and-down">
         <li><i class="material-icons right">person_pin</i>Bem vindo(a) <?php echo $login;  ?></li>
       </ul>
     </div>
+  </div>
   </nav>
 </div>
+
+<div class="container" >
+
     <form action="confirmaproduto.php" method="post">
         <div class="row">
             <div class="col s3">
@@ -57,20 +62,21 @@ $resultado = mysqli_query($connect, $sql);
         <p style="font-family: cambria"><?php echo $dados['informacao']; ?></p>
         <p><h6><a href="#descricao">Ler descrições</a></h6></p>
             </div>
-            <div class="col s3">
-        <p><img width="400" height="400" src="../fotos/<?php echo $dados['foto'] ?>"></p>
+            <div class="col s4" style="width: 30%">
+              <div class="zoom" style="cursor: zoom-in;">
+        <p><img width="400" class="materialboxed" height="400" src="../fotos/<?php echo $dados['foto'] ?>"></p>
+              </div>
             </div>
-            <div class="col s5">
-        <p><h6 align="center"><b><h5><div style="font-family: didot"><?php echo "Preço: R$".$dados['valor']; ?></div></h5></b></h6></p>
-        <br>
-        <p><h6 align="center"><b>Quantidade: <input type="number" name="quantidade"  style="max-width: 42%; border-radius: 4px; border-width: 1px; border-color: #29b6f6" min="1" max="10" required></b></h6></p>
+            
+            <div class="col s5 push-m1">
+              <br><br><br>
+        <p><b><h6><div><?php echo "Preço: R$".$dados['valor']; ?></div></h6></b>
+          <h6 ><b>Quantidade: <input value="1" type="number" name="quantidade"  style="max-width: 42%; border-radius: 4px; border-width: 1px; border-color: #29b6f6" min="1" max="10" required></b></h6></p>
         <input type="hidden" name="id" value="<?php echo $id ?>">
-        <center>
         <a href="farmacia.php" class="modal-close waves-effect waves-green btn-flat red" ><div style="color: white">Cancelar</div></a>
         <button class="btn green" type="submit"><div style="color: white">Confirmar</div></button> 
-        <p align="center"><h6>Preço para o cep: <b> <?php echo $dados1['cep']; ?> </b><i class="material-icons">location_on</i><br></p>
-        <p align="center"><h6>Esse não é seu cep? Mude na pagina de usuário.</h6></p>
-        </center>
+        <p><h6>Preço para o cep: <b> <?php echo $dados1['cep']; ?> </b><i class="material-icons">location_on</i><br></p>
+        <p><h6>Esse não é seu cep? Mude na pagina de usuário.</h6></p>
         </div>
         
     </div>
@@ -101,6 +107,59 @@ $resultado = mysqli_query($connect, $sql);
 
 </form>
 
+</div>
+
+<style>
+
+.zoom {
+  overflow: hidden;
+}
+
+.zoom img {
+  max-width: 100%;
+  -moz-transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.zoom:hover img {
+  -moz-transform: scale(1.5);
+  -webkit-transform: scale(1.5);
+  transform: scale(1.5);
+}
+
+
+.container {
+  
+margin: 0 auto;
+  
+max-width: 1280px;
+  
+width: 95%;
+
+}
+
+@media only screen and (min-width: 601px) {
+ 
+.container {
+    
+width: 95%;
+  
+}
+
+}
+
+@media only screen and (min-width: 993px) {
+  
+.container {
+    
+width: 95%;
+  
+}
+}
+
+</style>
+
 <!-- Footer -->
 <footer class="page-footer #29b6f6 light-blue lighten-1">
           <div class="container">
@@ -124,6 +183,12 @@ $resultado = mysqli_query($connect, $sql);
             </div>
           </div>
         </footer>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.materialboxed').materialbox();
+  });
+</script>
 </body>
 <?php
 }
