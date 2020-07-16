@@ -12,14 +12,18 @@
 <body>
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-info">
+  <div class="container">
   <a class="navbar-brand" href="#">
     <img src="iconus.png" width="30" height="30" class="d-inline-block align-top" alt="">
     Novo Usuário
   </a>
+  </div>
 </nav>
 
 
-  <form method="post" action="valida.php">
+  <form method="post" action="valida.php" enctype="multipart/form-data">
+
+  <div class="container">
 
   <div class="col-12 text-center my-5">
 
@@ -74,18 +78,39 @@
       <label for="exampleFormControlSelect1">Data de Nascimento*</label>
       <input type="date" name="data" required>
     </div>
+
+    <div class="col-md-4 mb-3">
+  <div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroupFileAddon01">Foto</span>
   </div>
+  <div class="custom-file">
+    <input type="file" name="foto" required class="custom-file-input" id="foto" aria-describedby="inputGroupFileAddon01">
+    <label class="custom-file-label" for="foto">Arquivo</label>
+  </div>
+</div>
+</div>
+
+  </div>
+
+  
 
 <button type="submit" class="btn btn-primary">Cadastrar</button>
   <a href="../index.php" class="btn btn-danger">Cancelar</button>
   </a>
   
+</div>
+
 </form>
 
 <script type="text/javascript">
   $("#cpf").mask("000.000.000-00");
   $("#celular").mask("(00) 00000-0000");
   $("#cep").mask("00000-000");
+  $(".custom-file-input").on("change", function() {
+  var fileName = $(this).val().split("\\").pop();
+  $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+});
 </script>
 </body>
 </html>

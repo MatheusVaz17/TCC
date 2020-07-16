@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 01-Jul-2020 às 01:21
+-- Generation Time: 16-Jul-2020 às 05:42
 -- Versão do servidor: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `carrinho` (
   `valor` decimal(10,1) NOT NULL,
   `email` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 -- --------------------------------------------------------
 
@@ -44,18 +44,18 @@ CREATE TABLE IF NOT EXISTS `carrinho` (
 
 CREATE TABLE IF NOT EXISTS `produto` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `tipo` varchar(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `nome` varchar(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `tipo` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `nome` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `valor` decimal(10,1) NOT NULL,
-  `disponibilidade` varchar(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `foto` varchar(40) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `informacao` varchar(500) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `indicacao` varchar(500) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `beneficio` varchar(500) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `modo` varchar(500) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `recomendacao` varchar(500) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `disponibilidade` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `foto` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
+  `informacao` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
+  `indicacao` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
+  `beneficio` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
+  `modo` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
+  `recomendacao` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 -- --------------------------------------------------------
 
@@ -74,15 +74,16 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `sexo` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `cep` varchar(9) COLLATE utf8_unicode_ci NOT NULL,
   `dataNascimento` date NOT NULL,
+  `foto` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=10 ;
 
 --
 -- Extraindo dados da tabela `usuarios`
 --
 
-INSERT INTO `usuarios` (`id`, `nome`, `sobrenome`, `email`, `cpf`, `celular`, `senha`, `sexo`, `cep`, `dataNascimento`) VALUES
-(0, 'administrador', 'adm', 'farmacia@farmacia.com', '000.000.000-00', '(00)00000-0000', 'administrador00', 'masculino', '00000-000', '2020-06-30');
+INSERT INTO `usuarios` (`id`, `nome`, `sobrenome`, `email`, `cpf`, `celular`, `senha`, `sexo`, `cep`, `dataNascimento`, `foto`) VALUES
+(0, 'administrador', 'adm', 'farmacia@farmacia.com', '000.000.000-00', '(00)00000-0000', 'administrador00', 'masculino', '00000-000', '2020-06-30', '');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -30,9 +30,19 @@ if (isset($login)) {
 include "../bd/conexao.php";
 $logado = $_SESSION['email'];
 
+
 $sql = "SELECT * FROM carrinho WHERE email = '$logado'";
 $resultado = mysqli_query($connect, $sql);
+
+$sql = "SELECT * FROM usuarios WHERE email = '$logado'";
+$foto = mysqli_query($connect, $sql);
+if(mysqli_num_rows($foto) > 0){ 
+while ($dados = mysqli_fetch_array($foto)) { 
+
+$resultFoto = $dados['foto'];
+
 ?>
+
 
 <!-- Navbar -->
 <div class="navbar-fixed">
@@ -41,16 +51,34 @@ $resultado = mysqli_query($connect, $sql);
       <div class="container">
       <a  class="brand-logo"><img src="../logo.png" align="center"></a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="#"><i class="material-icons left">search</i>Procurar produtos</a></li>
-        <li><a href="carrinho.php"><i class="material-icons left">shopping_cart</i><?php echo mysqli_num_rows($resultado); ?></a></li>
-        <li><i class="material-icons right">person_pin</i>Bem vindo(a) <?php echo $login;  ?></li>
-        <li><a href="../sair.php" class="btn red"><i class="material-icons left">exit_to_app</i>Sair</a></li>
+        <li><a href="#" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="material-icons">menu</i></a></li>
       </ul>
     </div>
   </div>
   </nav>
 </div>
 
+
+<ul id="slide-out" class="sidenav">
+    <li><div class="user-view">
+      <div class="background">
+        <img style="width: 100%" src="background.jpg">
+      </div>
+      <a><img class="circle" src="../fotos/clientes/<?php echo $dados['foto'] ?>"></a>
+      <a><span class="black-text name"><b>Bem vindo(a) <?php echo $login; ?></b></span></a>
+      <a><span class="black-text email"><b><?php echo $logado; ?></span></b></a>
+    </div></li>
+    <li><a href="carrinho.php">Carrinho: <?php echo mysqli_num_rows($resultado); ?> <i class="material-icons left">shopping_cart</i></a></li>
+    <li><a href="#">Suas informações <i class="material-icons left">person_pin</i></a></li>
+    <li><div class="divider"></div></li>
+    <li><a class="subheader">Sessão</a></li>
+    <li><a href="../sair.php"><i class="material-icons left">exit_to_app</i>Sair</a></li>
+  </ul>
+
+<?php
+} 
+}
+?>
 
 <!-- Slider -->
   <div class="slider">
@@ -215,9 +243,18 @@ width: 95%;
 </style>
 <!-- Jquery's and JS-->
 <script>
+function nav(){
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.sidenav');
+    var instances = M.Sidenav.init(elems, options);
+  });
+}
+
+
 $(document).ready(function(){
     $('.slider').slider({indicators: false});
     $('.sidenav').sidenav();
+
 
     var owl1 = $("#carousel1");
     owl1.owlCarousel({
@@ -261,7 +298,7 @@ $(document).ready(function(){
 if ($_SESSION['check'] == false) {
   session_destroy();
 }
-
 }else{
   echo " <javascript> alert('Usuário não cadastrado'); window.location.href='login.php' </javascript> ";
 }
+

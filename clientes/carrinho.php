@@ -93,29 +93,7 @@ $resultado = mysqli_query($connect, $sql);
 </i> Voltar</a> <a class="waves-effect waves-light btn green z-depth-3" href="#">Confirmar compra <i class="material-icons right">check</i></a></p>
 
 </div>
-<!-- Footer -->
-<footer class="page-footer #29b6f6 light-blue lighten-1">
-          <div class="container">
-            <div class="row">
-              <div class="col l6 s12">
-                <h5 class="white-text">Farmácia On-line</h5>
-                <p class="grey-text text-lighten-4">Aqui você encontra os melhores produtos pelos melhores preços.</p>
-              </div>
-              <div class="col l4 offset-l2 s12">
-                <h5 class="white-text">Contato</h5>
-                <ul>
-                  <li><p><h6>Farmacia@farmacia.com</h6></p></li>
-                  <li><p><h6>(55)9 84088361</h6></p></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="footer-copyright">
-            <div class="container">
-            © 2020 Matheus Vaz Flores
-            </div>
-          </div>
-        </footer>
+
 <style type="text/css">
 
 .container {
@@ -146,6 +124,8 @@ width: 95%;
   
 }
 }
+
+
 </style>
 </body>
 </html>
