@@ -25,11 +25,22 @@ if((!isset ($_SESSION['email']) == true) and (!isset ($_SESSION['senha']) == tru
   unset($_SESSION['check']);
   echo"<script> alert('Você precisa estar logado para acessar essa página!');window.location
         .href='entrar.php';</script>";
-  }
-if (isset($login)) {
+}else {
 include "../bd/conexao.php";
 $logado = $_SESSION['email'];
 
+if($_SESSION['check'] == false) {
+?>
+
+<script type="text/javascript">
+
+setTimeout(function() {
+    window.location.href = "../sair.php";
+}, 1800000);
+
+</script>
+<?php
+}
 
 $sql = "SELECT * FROM carrinho WHERE email = '$logado'";
 $resultado = mysqli_query($connect, $sql);
@@ -40,6 +51,7 @@ if(mysqli_num_rows($foto) > 0){
 while ($dados = mysqli_fetch_array($foto)) { 
 
 $resultFoto = $dados['foto'];
+
 
 ?>
 
@@ -61,13 +73,10 @@ $resultFoto = $dados['foto'];
 
 <ul id="slide-out" class="sidenav">
     <li><div class="user-view">
-      <div class="background">
-        <img style="width: 100%" src="background.jpg">
-      </div>
-      <a><img class="circle" src="../fotos/clientes/<?php echo $dados['foto'] ?>"></a>
-      <a><span class="black-text name"><b>Bem vindo(a) <?php echo $login; ?></b></span></a>
-      <a><span class="black-text email"><b><?php echo $logado; ?></span></b></a>
-    </div></li>
+      <a><img style="width: 100%" src="../fotos/clientes/<?php echo $dados['foto'] ?>"></a>
+    </div>
+    <li><a><span class="black-text name"><b><?php echo $login." ".$dados['sobrenome'];?></b></span></a></li>
+    <li><a><span class="black-text email"><b><?php echo $logado; ?></span></b></a></li>
     <li><a href="carrinho.php">Carrinho: <?php echo mysqli_num_rows($resultado); ?> <i class="material-icons left">shopping_cart</i></a></li>
     <li><a href="#">Suas informações <i class="material-icons left">person_pin</i></a></li>
     <li><div class="divider"></div></li>
@@ -294,11 +303,5 @@ $(document).ready(function(){
 </body>
 </html>
 <?php
-
-if ($_SESSION['check'] == false) {
-  session_destroy();
 }
-}else{
-  echo " <javascript> alert('Usuário não cadastrado'); window.location.href='login.php' </javascript> ";
-}
-
+?>

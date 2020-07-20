@@ -27,7 +27,7 @@ $logado = $_SESSION['email'];
   <nav>
     <div class="nav-wrapper #29b6f6 light-blue lighten-1">
       <div class="container">
-      <a class="brand-logo"><img src="../logo.png" align="center"></a>
+      <a class="brand-logo" href="farmacia.php"><img src="../logo.png" align="center"></a>
       <ul class="right hide-on-med-and-down">
         <li><i class="material-icons right">person_pin</i>Bem vindo(a) <?php echo $login;  ?></li>
       </ul>
@@ -59,9 +59,13 @@ $logado = $_SESSION['email'];
 $sql = "SELECT * FROM carrinho WHERE email = '$logado'";
 $resultado = mysqli_query($connect, $sql);
         if(mysqli_num_rows($resultado) > 0){ 
+
+          ?>
+          <p align="center"><a class="waves-effect waves-light btn red z-depth-3"  href="farmacia.php"> <i class="material-icons left">keyboard_arrow_left
+</i> Voltar</a> <a class="waves-effect waves-light btn green z-depth-3" href="#">Confirmar compra <i class="material-icons right">check</i></a></p>
+          <?php
         while ($dados = mysqli_fetch_array($resultado)){
 ?>
-
 		<tr>
 			<td><?php echo $dados['nome']; ?></td>
 			<td><?php echo $dados['preco']; ?></td>
@@ -87,10 +91,6 @@ $resultado = mysqli_query($connect, $sql);
 </table>
 </div>
 </div>
-
-
-<p align="center"><a class="waves-effect waves-light btn red z-depth-3"  href="farmacia.php"> <i class="material-icons left">keyboard_arrow_left
-</i> Voltar</a> <a class="waves-effect waves-light btn green z-depth-3" href="#">Confirmar compra <i class="material-icons right">check</i></a></p>
 
 </div>
 

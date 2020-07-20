@@ -15,7 +15,9 @@
 <div class="navbar-fixed">
   <nav>
     <div class="nav-wrapper #29b6f6 light-blue lighten-1">
-      <a href="../index.php" class="brand-logo">Farmácia</a>
+      <div class="container">
+      <a href="../index.php" class="brand-logo"><img src="../logo.png" align="center"></a>
+      </div>
     </div>
   </nav>
 </div>
@@ -50,6 +52,36 @@
     </div>
   </div>
   <style type="text/css">
+  .container {
+  
+margin: 0 auto;
+  
+max-width: 1280px;
+  
+width: 80%;
+
+}
+
+@media only screen and (min-width: 601px) {
+ 
+.container {
+    
+width: 80%;
+  
+}
+
+}
+
+@media only screen and (min-width: 993px) {
+  
+.container {
+    
+width: 80%;
+  
+}
+}
+
+  
     body{
       background-image: url("bg.jpg");
       background-repeat: no-repeat;

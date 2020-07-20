@@ -76,7 +76,7 @@ $resultado = mysqli_query($connect, $sql);
   <button class="btn waves-effect waves-light" type="submit" name="action">Enviar
     <i class="material-icons right">send</i>
   </button>
-  <a href="adm.php" class="btn red">Cancelar
+  <a href="../adm/adm.php" class="btn red">Cancelar
     <i class="material-icons right">close</i>
   </a>
 </div>

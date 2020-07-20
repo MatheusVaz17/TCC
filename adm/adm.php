@@ -31,6 +31,19 @@ if((!isset ($_SESSION['email']) == 'farmacia@farmacia.com') and (!isset ($_SESSI
 include "../bd/conexao.php";
 $logado = $_SESSION['email'];
 
+if($_SESSION['check'] == false) {
+?>
+
+<script type="text/javascript">
+
+setTimeout(function() {
+    window.location.href = "../sair.php";
+}, 1800000);
+
+</script>
+<?php
+}
+
 ?>
 <!-- Navbar -->
 <div class="navbar-fixed">
@@ -41,8 +54,8 @@ $logado = $_SESSION['email'];
       </div>
       <ul class="right hide-on-med-and-down">
         <li><a href="sass.html"><i class="material-icons left">search</i>Procurar produtos</a></li>
-        <li><a href="registrar.php" class="btn green"><i class="material-icons left">add</i>Adicionar produto</a></li>
-        <li><a href="../sair.php" class="btn red"><i class="material-icons left">exit_to_app</i>Sair</a></li>
+        <li><a href="registrar.php"><i class="material-icons left">add</i>Adicionar produto</a></li>
+        <li><a href="../sair.php"><i class="material-icons left">exit_to_app</i>Sair</a></li>
       </ul>
       </div>
     </div>
@@ -244,12 +257,6 @@ $(document).ready(function(){
 
 
 });
-
-<?php
-if ($_SESSION['check'] == false) {
-  session_destroy();
-}
-?>
      
 </script>
 
