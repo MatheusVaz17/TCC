@@ -25,10 +25,13 @@
  <div class="row">
     <div class="col s12 m6 pull-m3 push-m3">
       <div class="card #29b6f6 light-blue lighten-1">
+        
         <div class="card-content white-text">
-          <fieldset style="border-radius: 8px; border-color: #424242">
+          
+          <form method="POST" action="login.php">
+
           <span class="card-title">Login</span>
-          <form class="col s12" method="POST" action="login.php">
+          
           <div class="input-field col s12">
           <p>Email: <input id="usuario" type="text" placeholder="Digite seu email" class="validate" name="email" style="background-color: white" required></p>
           </div>
@@ -39,18 +42,21 @@
           <span style="color: white">Mantenha-me conectado</span>
           </label></p>
           </div>
-        </div>
-        <div class="card-action">
+          
           <button class="btn waves-effect waves-light" type="submit" name="sub">Entrar
           <i class="material-icons right">send</i>
           </button>
           <a href="cadastro.php" class="btn #e53935 red darken-1">Cadastre-se<i class="material-icons right">add</i></a>
+
+          </form>
         </div>
-      </form>
       </div>
-      </fieldset>
+      
     </div>
   </div>
+
+
+
   <style type="text/css">
   .container {
   
@@ -58,7 +64,7 @@ margin: 0 auto;
   
 max-width: 1280px;
   
-width: 80%;
+width: 95%;
 
 }
 
@@ -66,7 +72,7 @@ width: 80%;
  
 .container {
     
-width: 80%;
+width: 95%;
   
 }
 
@@ -76,7 +82,7 @@ width: 80%;
   
 .container {
     
-width: 80%;
+width: 95%;
   
 }
 }

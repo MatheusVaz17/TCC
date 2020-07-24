@@ -49,30 +49,70 @@ $resultado = mysqli_query($connect, $sql);
 <br>
 
 <div class="container">
+
+<div class="card #e3f2fd blue lighten-5">
+
+  <div class="card-content">
+          <blockquote><span class="card-title"><b>Editar Produto</b></span></blockquote>
+
   <form action="confirmedit.php?id=<?php echo $id; ?>" method="post" enctype="multipart/form-data">
   <div class="row">
-    <fieldset style="border-color: #29b6f6; border-radius: 8px"> <legend style="text-align: center"><h6>Adicionar Produto</h6></legend>
+  
   <div class="col s6">
-    <p>Tipo do produto:
+    <p><b>Tipo do produto:</b>
     <div style="width: 40%"> 
     <select name="tipo" required>
     <option value="Medicamento">Medicamento</option>
     <option value="Higiene">Higiene</option>
     <option value="Dermocosmeticos">Dermocosméticos</option>
-    <option value="Alimentos">Alimentos</option>
+    <option value="Suplementos">Suplementos</option>
     </select>
     </div>
     </p>
-    <p>Nome: <br> <input value="<?php echo $dados['nome'];  ?>"  type="text" name="nome" style="width: 40%" required></p>
-    <p>Valor: <br> <input value="<?php echo $dados['valor'];  ?>" type="text" name="valor" style="width: 40%" required min="1"></p>
-    <p>Disponibilidade:
+    <p><b>Nome: </b><br> <input value="<?php echo $dados['nome'];  ?>"  type="text" name="nome" style="width: 40%" required></p>
+    <p><b>Valor: </b><br> <input value="<?php echo $dados['valor'];  ?>" type="text" name="valor" style="width: 40%" required min="1"></p>
+    <p><b>Disponibilidade: </b>
     <div style="width: 40%">
     <select name="disponibilidade" required>
     <option value="Disponivel">Disponivel</option>
     <option value="Não Disponivel">Não disponível</option>
     </select> </div></p><br>
-    <p>Foto: <input required type="file" name="arquivo"></p>
-    <div>
+    <div class="file-field input-field">
+      <div class="btn green">
+        <span>Foto</span>
+        <input type="file" name="arquivo">
+      </div>
+      <div class="file-path-wrapper">
+        <input class="file-path validate" type="text" style="width: 28%">
+      </div>
+    </div>
+
+  </div>
+  
+
+    <div class="col s6">
+    <p><b>Informações sobre o produto:</b></p>
+    <textarea required maxlength="500" class="materialize-textarea" name="informacao" style="max-width: 70%"><?php echo $dados['informacao'];  ?></textarea>
+
+    <p><b>Indicação:</b></p>
+    <textarea required maxlength="500" class="materialize-textarea" name="indicacao" style="max-width: 70%"><?php echo $dados['indicacao'];  ?></textarea>  
+
+    <p align="left"><b>Benefícios:</b></p>
+    <textarea required maxlength="500" class="materialize-textarea" name="beneficio" style="max-width: 70%"><?php echo $dados['beneficio'];  ?></textarea>
+
+    <p align="left"><b>Modo de usar:</b></p>
+    <textarea required maxlength="500" class="materialize-textarea" name="modo" style="max-width: 70%"><?php echo $dados['modo'];  ?></textarea>
+
+    <p align="left"><b>Recomendações gerais:</b></p>
+    <textarea required maxlength="500" class="materialize-textarea" name="recomendacao" style="max-width: 70%"><?php echo $dados['recomendacao'];  ?></textarea>  
+  </div>
+
+  </div>
+
+</div>
+
+<div class="card-action">
+          <div>
   <button class="btn waves-effect waves-light" type="submit" name="action">Enviar
     <i class="material-icons right">send</i>
   </button>
@@ -80,31 +120,12 @@ $resultado = mysqli_query($connect, $sql);
     <i class="material-icons right">close</i>
   </a>
 </div>
-  </div>
-  
-
-    <div class="col s6">
-    <p><b>Informações sobre o produto:</b></p>
-    <textarea required maxlength="500" name="informacao" style="max-width: 70%"><?php echo $dados['informacao'];  ?></textarea>
-
-    <p><b>Indicação:</b></p>
-    <textarea required maxlength="500" name="indicacao" style="max-width: 70%"><?php echo $dados['indicacao'];  ?></textarea>  
-
-    <p align="left"><b>Benefícios:</b></p>
-    <textarea required maxlength="500" name="beneficio" style="max-width: 70%"><?php echo $dados['beneficio'];  ?></textarea>
-
-    <p align="left"><b>Modo de usar:</b></p>
-    <textarea required maxlength="500" name="modo" style="max-width: 70%"><?php echo $dados['modo'];  ?></textarea>
-
-    <p align="left"><b>Recomendações gerais:</b></p>
-    <textarea required maxlength="500" name="recomendacao" style="max-width: 70%"><?php echo $dados['recomendacao'];  ?></textarea>  
-  </div>
-  </fieldset>
-  </div>
-
 </div>
 
+
 </form>
+</div>
+
 </div>
 </fieldset>
 

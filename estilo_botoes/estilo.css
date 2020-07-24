@@ -22,3 +22,29 @@
 #prox{
 	right: 10px;
 }
+
+#ante, #proxi{
+	position: absolute;
+	top: 1600px;
+}
+
+#ante{
+	left: 10px;
+}
+
+#proxi{
+	right: 10px;
+}
+
+#anter, #proxim{
+	position: absolute;
+	top: 2050px;
+}
+
+#anter{
+	left: 10px;
+}
+
+#proxim{
+	right: 10px;
+}

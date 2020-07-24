@@ -39,11 +39,11 @@ $resultado = mysqli_query($connect, $sql);
         while ($dados = mysqli_fetch_array($resultado)){
 ?>
 <!-- Navbar -->
-<div class="navbar-fixed">
+<div class="navbar">
   <nav>
     <div class="nav-wrapper #29b6f6 light-blue lighten-1">
       <div class="container">
-      <a href="#!" class="brand-logo"><img src="../logo.png" align="center"></a>
+      <a class="brand-logo"><img align="center" src="../logo.png"></a>
       <ul class="right hide-on-med-and-down">
         <li><i class="material-icons right">person_pin</i>Bem vindo(a) <?php echo $login;  ?></li>
       </ul>

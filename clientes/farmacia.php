@@ -63,8 +63,24 @@ $resultFoto = $dados['foto'];
       <div class="container">
       <a  class="brand-logo"><img src="../logo.png" align="center"></a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="#" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="material-icons">menu</i></a></li>
+        <!-- Search
+                <li>    
+                   <div class="center row">
+                      <div class="col s12 " >
+                        <div class="row" id="topbarsearch">
+                          <div class="input-field col s6 s12 white-text">
+                            <i class="white-text material-icons prefix">search</i>
+                            <input type="text" placeholder="Pesquisar" id="autocomplete-input" class="autocomplete white-text" >
+                            </div>
+                          </div>
+                        </div>
+                      </div>          
+                  </li> 
+          -->            
+        <li><a href="carrinho.php" class="#29b6f6 light-blue lighten-1">Carrinho: <?php echo mysqli_num_rows($resultado); ?> <i class="material-icons left">shopping_cart</i></a></li>
+        <li><a href="#" data-target="slide-out" class="sidenav-trigger show-on-large #29b6f6 light-blue lighten-1"><i class="material-icons">menu</i></a></li>
       </ul>
+      </div>
     </div>
   </div>
   </nav>
@@ -75,9 +91,8 @@ $resultFoto = $dados['foto'];
     <li><div class="user-view">
       <a><img style="width: 100%" src="../fotos/clientes/<?php echo $dados['foto'] ?>"></a>
     </div>
-    <li><a><span class="black-text name"><b><?php echo $login." ".$dados['sobrenome'];?></b></span></a></li>
+    <li><a><span class="black-text name"><blockquote><b><?php echo $login." ".$dados['sobrenome'];?></b></blockquote></span></a></li>
     <li><a><span class="black-text email"><b><?php echo $logado; ?></span></b></a></li>
-    <li><a href="carrinho.php">Carrinho: <?php echo mysqli_num_rows($resultado); ?> <i class="material-icons left">shopping_cart</i></a></li>
     <li><a href="#">Suas informações <i class="material-icons left">person_pin</i></a></li>
     <li><div class="divider"></div></li>
     <li><a class="subheader">Sessão</a></li>
@@ -116,6 +131,8 @@ $resultFoto = $dados['foto'];
   </div>
 
 <!--Products-->
+
+<!--Medicamentos-->
 <div class="container">
   <h4>Medicamentos:</h4>
   <div class="row">
@@ -130,12 +147,12 @@ $sql = "SELECT * FROM produto WHERE tipo = 'Medicamento' AND disponibilidade ='D
         ?>
         <div class="owl-item">
             <div class="col s12 m12">
-          <div class="card small hoverable">
-            <span class="card-title"><?php echo $dados['nome']; ?></span>
-            <p><img width="50" height="100" src="../fotos/<?php echo $dados['foto'] ?>"></p>
+          <div class="card small hoverable z-depth-3">
+            <span class="card-title"><h5><blockquote><?php echo $dados['nome']; ?></blockquote></h5></span>
+            <p><img height="120" src="../fotos/<?php echo $dados['foto'] ?>"></p>
             <div class="card-action">
-              <p><h6><?php echo "Preço: R$".$dados['valor']; ?></h6></p>
-            <p><a style="align-self: flex-end" href="<?php echo'addprodutos.php?id='.$dados['id']; ?>" class="waves-effect waves-light btn z-depth-3"><i class="material-icons left">add_shopping_cart</i>Comprar</a></p>
+              <p><h6 align="center"><?php echo "Preço: R$".$dados['valor']; ?></h6></p>
+            <p><a style="right: -10%" href="<?php echo'addprodutos.php?id='.$dados['id']; ?>" class="waves-effect waves-light btn z-depth-4"><i class="material-icons left">add_shopping_cart</i>Comprar</a></p>
           </div>
           </div>
           </div>
@@ -167,6 +184,8 @@ if (mysqli_num_rows($resultado) > 5) {
 
 
 <br>
+
+<!--Higiene-->
 <div class="container">
 <h4>Higiene: </h4>
 <div class="row">
@@ -181,12 +200,12 @@ $sql1 = "SELECT * FROM produto WHERE tipo = 'Higiene' AND disponibilidade ='Disp
         ?>
         <div class="owl-item">
             <div class="col s12 m12">
-          <div class="card small hoverable">
-            <span class="card-title"><?php echo $dados['nome']; ?></span>
-            <p><img width="50" height="100" src="../fotos/<?php echo $dados['foto'] ?>"></p>
+          <div class="card small hoverable z-depth-3">
+            <span class="card-title"><h5><blockquote><?php echo $dados['nome']; ?></blockquote></h5></span>
+            <p><img height="120" src="../fotos/<?php echo $dados['foto'] ?>"></p>
             <div class="card-action">
-              <p><h6><?php echo "Preço: R$".$dados['valor']; ?></h6></p>
-            <p><a style="align-self: flex-end" href="<?php echo'addprodutos.php?id='.$dados['id']; ?>" class="waves-effect waves-light btn z-depth-3"><i class="material-icons left">add_shopping_cart</i>Comprar</a></p>
+              <p><h6 align="center"><?php echo "Preço: R$".$dados['valor']; ?></h6></p>
+            <p><a style="right: -10%" href="<?php echo'addprodutos.php?id='.$dados['id']; ?>" class="waves-effect waves-light btn z-depth-4"><i class="material-icons left">add_shopping_cart</i>Comprar</a></p>
           </div>
           </div>
           </div>
@@ -217,6 +236,140 @@ if (mysqli_num_rows($resultado1) > 5) {
 <button class="btn waves-effect waves-light #29b6f6 light-blue lighten-1" id="prox"><i class="material-icons">chevron_right</i></button>
 </div>
 <?php } ?>
+
+<br>
+
+<!--Dermocosméticos-->
+
+<div class="container">
+<h4>Dermocosméticos: </h4>
+<div class="row">
+  <div class="owl-carousel owl-theme owl-loaded" id="carousel3">
+    <div class="owl-stage-outer">
+      <div class="owl-stage">
+<?php
+$sql1 = "SELECT * FROM produto WHERE tipo = 'Dermocosmeticos' AND disponibilidade ='Disponivel'";
+        $resultado1 = mysqli_query($connect, $sql1);
+        if(mysqli_num_rows($resultado1) > 0){
+        while ($dados = mysqli_fetch_array($resultado1)){
+        ?>
+        <div class="owl-item">
+            <div class="col s12 m12">
+          <div class="card small hoverable z-depth-3">
+            <span class="card-title"><h5><blockquote><?php echo $dados['nome']; ?></blockquote></h5></span>
+            <p><img height="120" src="../fotos/<?php echo $dados['foto'] ?>"></p>
+            <div class="card-action">
+              <p><h6 align="center"><?php echo "Preço: R$".$dados['valor']; ?></h6></p>
+            <p><a style="right: -10%" href="<?php echo'addprodutos.php?id='.$dados['id']; ?>" class="waves-effect waves-light btn z-depth-4"><i class="material-icons left">add_shopping_cart</i>Comprar</a></p>
+          </div>
+          </div>
+          </div>
+        </div>
+
+        <?php
+        }
+      }else{
+        ?>
+        <div class="owl-item">
+            <p>Não há Produtos de Dermocosméticos cadastrados!</p>
+        </div>
+        <?php
+        }
+        ?>
+
+        </div>
+        </div>
+        </div>
+      </div>
+</div>
+<?php
+if (mysqli_num_rows($resultado1) > 5) {
+?>
+<div class="navegacao1">
+<button class="btn waves-effect waves-light #29b6f6 light-blue lighten-1" id="ante"> <i class="material-icons">chevron_left</i></button>
+<button class="btn waves-effect waves-light #29b6f6 light-blue lighten-1" id="proxi"><i class="material-icons">chevron_right</i></button>
+</div>
+<?php } ?>
+
+
+<br>
+
+<!--Suplementos-->
+
+<div class="container">
+<h4>Suplementos: </h4>
+<div class="row">
+  <div class="owl-carousel owl-theme owl-loaded" id="carousel4">
+    <div class="owl-stage-outer">
+      <div class="owl-stage">
+<?php
+$sql1 = "SELECT * FROM produto WHERE tipo = 'Suplementos' AND disponibilidade ='Disponivel'";
+        $resultado1 = mysqli_query($connect, $sql1);
+        if(mysqli_num_rows($resultado1) > 0){
+        while ($dados = mysqli_fetch_array($resultado1)){
+        ?>
+        <div class="owl-item">
+            <div class="col s12 m12">
+          <div class="card small hoverable z-depth-3">
+            <span class="card-title"><h5><blockquote><?php echo $dados['nome']; ?></blockquote></h5></span>
+            <p><img height="120" src="../fotos/<?php echo $dados['foto'] ?>"></p>
+            <div class="card-action">
+              <p><h6 align="center"><?php echo "Preço: R$".$dados['valor']; ?></h6></p>
+            <p><a style="right: -10%" href="<?php echo'addprodutos.php?id='.$dados['id']; ?>" class="waves-effect waves-light btn z-depth-4"><i class="material-icons left">add_shopping_cart</i>Comprar</a></p>
+          </div>
+          </div>
+          </div>
+        </div>
+
+        <?php
+        }
+      }else{
+        ?>
+        <div class="owl-item">
+            <p>Não há Produtos de Suplementos cadastrados!</p>
+        </div>
+        <?php
+        }
+        ?>
+
+        </div>
+        </div>
+        </div>
+      </div>
+</div>
+<?php
+if (mysqli_num_rows($resultado1) > 5) {
+?>
+<div class="navegacao1">
+<button class="btn waves-effect waves-light #29b6f6 light-blue lighten-1" id="anter"> <i class="material-icons">chevron_left</i></button>
+<button class="btn waves-effect waves-light #29b6f6 light-blue lighten-1" id="proxim"><i class="material-icons">chevron_right</i></button>
+</div>
+<?php } ?>
+
+
+<!-- Footer -->
+<footer class="page-footer #29b6f6 light-blue lighten-1">
+          <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text">Farmácia</h5>
+                <p class="grey-text text-lighten-4">Aqui você encontra os melhores produtos pelos melhores preços.</p>
+              </div>
+              <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Contato</h5>
+                <ul>
+                  <li><p><h6>Farmacia@farmacia.com</h6></p></li>
+                  <li><p><h6>(55)9 84088361</h6></p></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright">
+            <div class="container">
+            © 2020 Matheus Vaz Flores
+            </div>
+          </div>
+        </footer>
 
 <style>
 
@@ -262,7 +415,7 @@ function nav(){
 
 $(document).ready(function(){
     $('.slider').slider({indicators: false});
-    $('.sidenav').sidenav();
+    $('.sidenav').sidenav({edge: 'right'});
 
 
     var owl1 = $("#carousel1");
@@ -292,7 +445,33 @@ $(document).ready(function(){
       owl2.trigger('next.owl.carousel');
     })
 
+    var owl3 = $("#carousel3");
 
+    owl3.owlCarousel({
+    items: 5
+  });
+
+    $('#ante').on('click', function(){
+      owl3.trigger('prev.owl.carousel');
+    })
+
+    $('#proxi').on('click', function(){
+      owl3.trigger('next.owl.carousel');
+    })
+
+    var owl4 = $("#carousel4");
+
+    owl4.owlCarousel({
+    items: 5
+  });
+
+    $('#anter').on('click', function(){
+      owl4.trigger('prev.owl.carousel');
+    })
+
+    $('#proxim').on('click', function(){
+      owl4.trigger('next.owl.carousel');
+    })
 
 });
 

@@ -68,9 +68,9 @@ $resultado = mysqli_query($connect, $sql);
 ?>
 		<tr>
 			<td><?php echo $dados['nome']; ?></td>
-			<td><?php echo $dados['preco']; ?></td>
+			<td>R$<?php echo $dados['preco']; ?></td>
 			<td><?php echo $dados['quantidade']; ?></td>
-			<td><?php echo $dados['valor']; ?></td>
+			<td>R$<?php echo $dados['valor']; ?></td>
 			<td><a class="waves-effect waves-light btn-floating modal-trigger red" href="#modal1"><i class="material-icons">delete</i></a></td>
 		</tr>
 	</tbody>
