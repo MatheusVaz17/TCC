@@ -59,7 +59,7 @@ $resultado = mysqli_query($connect, $sql);
   <div class="row">
   
   <div class="col s6">
-    <p><b>Tipo do produto:</b>
+    <p><b>Tipo do produto: *</b>
     <div style="width: 40%"> 
     <select name="tipo" required>
     <option value="Medicamento">Medicamento</option>
@@ -69,42 +69,50 @@ $resultado = mysqli_query($connect, $sql);
     </select>
     </div>
     </p>
-    <p><b>Nome: </b><br> <input value="<?php echo $dados['nome'];  ?>"  type="text" name="nome" style="width: 40%" required></p>
-    <p><b>Valor: </b><br> <input value="<?php echo $dados['valor'];  ?>" type="text" name="valor" style="width: 40%" required min="1"></p>
-    <p><b>Disponibilidade: </b>
-    <div style="width: 40%">
-    <select name="disponibilidade" required>
-    <option value="Disponivel">Disponivel</option>
-    <option value="Não Disponivel">Não disponível</option>
-    </select> </div></p><br>
+    <p><b>Nome: *</b><br> <input value="<?php echo $dados['nome'];  ?>"  type="text" name="nome" style="width: 40%" required></p>
+    <p><b>Valor: *</b><br> <input value="<?php echo $dados['valor'];  ?>" type="text" name="valor" style="width: 40%" required min="1"></p>
+    <p>
+      <b>Disponibilidade: *</b>
+      <br>
+      <br>
+      <label>
+        <input name="disponibilidade" id="si" type="radio" value="Disponivel" checked />
+        <span style="color: black">Disponível</span>
+      </label>
+      <label>
+        <input id="no" name="disponibilidade" type="radio" value="NoDisponivel" />
+        <span style="color: black">Não disponível</span>
+      </label>
+    </p><br><br>
     <div class="file-field input-field">
       <div class="btn green">
-        <span>Foto</span>
-        <input type="file" name="arquivo">
+        <span>Foto *</span>
+        <input required type="file" value="<?php echo $dados['foto'] ?>" name="arquivo">
       </div>
       <div class="file-path-wrapper">
         <input class="file-path validate" type="text" style="width: 28%">
       </div>
     </div>
+    <p id="qtd"><b>Quantidade: *</b><br> <input type="number" name="qtd" value="1" style="width: 40%" required min="1"></p>
 
   </div>
   
 
     <div class="col s6">
-    <p><b>Informações sobre o produto:</b></p>
-    <textarea required maxlength="500" class="materialize-textarea" name="informacao" style="max-width: 70%"><?php echo $dados['informacao'];  ?></textarea>
+    <p><b>Informações sobre o produto: *</b></p>
+    <textarea required maxlength="1500" class="materialize-textarea" name="informacao" style="max-width: 70%"><?php echo $dados['informacao'];  ?></textarea>
 
     <p><b>Indicação:</b></p>
-    <textarea required maxlength="500" class="materialize-textarea" name="indicacao" style="max-width: 70%"><?php echo $dados['indicacao'];  ?></textarea>  
+    <textarea maxlength="1500" class="materialize-textarea" name="indicacao" style="max-width: 70%"><?php echo $dados['indicacao'];  ?></textarea>  
 
     <p align="left"><b>Benefícios:</b></p>
-    <textarea required maxlength="500" class="materialize-textarea" name="beneficio" style="max-width: 70%"><?php echo $dados['beneficio'];  ?></textarea>
+    <textarea  maxlength="1500" class="materialize-textarea" name="beneficio" style="max-width: 70%"><?php echo $dados['beneficio'];  ?></textarea>
 
     <p align="left"><b>Modo de usar:</b></p>
-    <textarea required maxlength="500" class="materialize-textarea" name="modo" style="max-width: 70%"><?php echo $dados['modo'];  ?></textarea>
+    <textarea  maxlength="1500" class="materialize-textarea" name="modo" style="max-width: 70%"><?php echo $dados['modo'];  ?></textarea>
 
     <p align="left"><b>Recomendações gerais:</b></p>
-    <textarea required maxlength="500" class="materialize-textarea" name="recomendacao" style="max-width: 70%"><?php echo $dados['recomendacao'];  ?></textarea>  
+    <textarea  maxlength="1500" class="materialize-textarea" name="recomendacao" style="max-width: 70%"><?php echo $dados['recomendacao'];  ?></textarea>  
   </div>
 
   </div>
@@ -197,6 +205,13 @@ width: 80%;
 <script type="text/javascript">
   $(document).ready(function(){
     $('select').formSelect();
+
+    $("#no").click(function(){
+    $("#qtd").hide();
+  });
+    $("#si").click(function(){
+    $("#qtd").show();
+  });
   });
 </script>
 

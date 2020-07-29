@@ -27,6 +27,20 @@ $resultado = mysqli_query($connect, $sql);
     }
 $valorTotal = $quant * $preco;
 
+$sql2 = "SELECT quantidade FROM produto WHERE id = '$id'";
+$resultado2 = mysqli_query($connect, $sql);
+        if(mysqli_num_rows($resultado2) > 0){ 
+        while($dados2 = mysqli_fetch_array($resultado2)){
+          $quantidadeProduto = $dados2['quantidade'];
+        }
+    }
+
+$quantidadeFinal = $quantidadeProduto - $quant;
+
+$sql3 = "UPDATE produto SET quantidade='$quantidadeFinal' WHERE id = '$id'";
+
+mysqli_query($connect,$sql3);
+
 
 $sql1 = "INSERT INTO carrinho (`nome`, preco, quantidade, valor, `email`) VALUES ('$nome', $preco, $quant, $valorTotal, '$logado')";
 

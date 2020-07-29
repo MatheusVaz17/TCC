@@ -53,7 +53,7 @@ if((!isset ($_SESSION['email']) == 'farmacia@farmacia.com') and (!isset ($_SESSI
 
 
   <div class="col s6">
-    <p><b>Tipo do produto: </b>
+    <p><b>Tipo do produto: *</b>
     <div style="width: 40%"> 
     <select name="tipo" required>
     <option value="Medicamento">Medicamento</option>
@@ -63,41 +63,49 @@ if((!isset ($_SESSION['email']) == 'farmacia@farmacia.com') and (!isset ($_SESSI
     </select>
     </div>
     </p>
-    <p><b>Nome: </b><br> <input type="text" name="nome" style="width: 40%" required></p>
-    <p><b>Valor: </b><br> <input type="text" name="valor" style="width: 40%" required min="1"></p>
-    <p><b>Disponibilidade: </b>
-    <div style="width: 40%">
-    <select name="disponibilidade" required>
-    <option value="Disponivel">Disponivel</option>
-    <option value="Não Disponivel">Não disponível</option>
-    </select> </div></p><br>
+    <p><b>Nome: * </b><br> <input maxlength="11" type="text" name="nome" style="width: 40%" required></p>
+    <p><b>Valor: *</b><br> <input type="text" name="valor" style="width: 40%" required min="1"></p>
+    <p>
+      <b>Disponibilidade: *</b>
+      <br>
+      <br>
+      <label>
+        <input name="disponibilidade" id="si" type="radio" value="Disponivel" checked />
+        <span style="color: black">Disponível</span>
+      </label>
+      <label>
+        <input id="no" name="disponibilidade" type="radio" value="NoDisponivel" />
+        <span style="color: black">Não disponível</span>
+      </label>
+    </p><br>
     <div class="file-field input-field">
       <div class="btn green">
-        <span>Foto</span>
-        <input type="file" name="arquivo">
+        <span>Foto *</span>
+        <input type="file" required name="arquivo">
       </div>
       <div class="file-path-wrapper">
         <input class="file-path validate" type="text" style="width: 28%">
       </div>
     </div>
+    <p id="qtd"><b>Quantidade: *</b><br> <input type="number" name="qtd" value="1" style="width: 40%" required min="1"></p>
   </div>
   
 
     <div class="col s6">
-    <p><b>Informações sobre o produto:</b></p>
-    <textarea required maxlength="500" name="informacao" class="materialize-textarea" style="max-width: 70%"></textarea>
+    <p><b>Informações sobre o produto: *</b></p>
+    <textarea required maxlength="1500" name="informacao" class="materialize-textarea" style="max-width: 70%"></textarea>
 
     <p><b>Indicação:</b></p>
-    <textarea required maxlength="500" class="materialize-textarea" name="indicacao" style="max-width: 70%"></textarea>  
+    <textarea maxlength="1500" class="materialize-textarea" name="indicacao" style="max-width: 70%"></textarea>  
 
     <p align="left"><b>Benefícios:</b></p>
-    <textarea required maxlength="500" class="materialize-textarea" name="beneficio" style="max-width: 70%"></textarea>
+    <textarea  maxlength="1500" class="materialize-textarea" name="beneficio" style="max-width: 70%"></textarea>
 
     <p align="left"><b>Modo de usar:</b></p>
-    <textarea required maxlength="500" class="materialize-textarea" name="modo" style="max-width: 70%"></textarea>
+    <textarea  maxlength="1500" class="materialize-textarea" name="modo" style="max-width: 70%"></textarea>
 
     <p align="left"><b>Recomendações gerais:</b></p>
-    <textarea required maxlength="500" class="materialize-textarea" name="recomendacao" style="max-width: 70%"></textarea>  
+    <textarea  maxlength="1500" class="materialize-textarea" name="recomendacao" style="max-width: 70%"></textarea>  
   </div>
   
   </div>
@@ -185,6 +193,13 @@ width: 80%;
 <script type="text/javascript">
   $(document).ready(function(){
     $('select').formSelect();
+
+    $("#no").click(function(){
+    $("#qtd").hide();
+  });
+    $("#si").click(function(){
+    $("#qtd").show();
+  });
   });
 </script>
 

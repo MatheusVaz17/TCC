@@ -26,6 +26,7 @@ if (isset($_POST['action'])) {
   $beneficio = $_POST['beneficio'];
   $modo = $_POST['modo'];
   $recomendacao = $_POST['recomendacao'];
+  $quantidade = $_POST['qtd'];
 
 	$extensao = strtolower(substr($_FILES['arquivo']['name'], -4));
 	$novo_nome = md5(time()).$extensao;
@@ -33,7 +34,11 @@ if (isset($_POST['action'])) {
 
 	move_uploaded_file($_FILES['arquivo']['tmp_name'], $diretorio.$novo_nome);
 
-	$sql = "UPDATE produto SET tipo='$tipo', nome='$nome', valor=$valor, disponibilidade='$disponibilidade', foto='$novo_nome', informacao = '$informacao', indicacao = '$indicacao', beneficio= '$beneficio', modo= '$modo', recomendacao='$recomendacao' WHERE id = '$id'";
+  if ($disponibilidade == 'NoDisponivel') {
+    $quantidade = 0;
+  }
+
+	$sql = "UPDATE produto SET tipo='$tipo', nome='$nome', valor=$valor, disponibilidade='$disponibilidade', foto='$novo_nome', informacao = '$informacao', indicacao = '$indicacao', beneficio= '$beneficio', modo= '$modo', recomendacao='$recomendacao', quantidade='$quantidade' WHERE id = '$id'";
 
     if (mysqli_query($connect,$sql)){
     ?>

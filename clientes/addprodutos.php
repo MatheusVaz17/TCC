@@ -68,40 +68,78 @@ $resultado = mysqli_query($connect, $sql);
               </div>
             </div>
             
-            <div class="col s5 push-m1">
+            <?php
+            if ($dados['quantidade'] > 0) {
+              ?>
+              <div class="col s5 push-m1">
               <br><br><br>
         <p><b><h6><div><?php echo "Preço: R$".$dados['valor']; ?></div></h6></b>
-          <h6 ><b>Quantidade: <input value="1" type="number" name="quantidade"  style="max-width: 42%; border-radius: 4px; border-width: 1px; border-color: #29b6f6" min="1" max="10" required></b></h6></p>
+          <h6 ><b>Quantidade: <input value="1" type="number" name="quantidade"  style="max-width: 42%; border-radius: 4px; border-width: 1px; border-color: #29b6f6" min="1" max="<?php echo $dados['quantidade'] ?>" required></b></h6></p>
         <input type="hidden" name="id" value="<?php echo $id ?>">
         <a href="farmacia.php" class="modal-close waves-effect waves-green btn-flat red" ><div style="color: white">Cancelar</div></a>
         <button class="btn green" type="submit"><div style="color: white">Confirmar</div></button> 
         <p><h6>Preço para o cep: <b> <?php echo $dados1['cep']; ?> </b><i class="material-icons">location_on</i><br></p>
         <p><h6>Esse não é seu cep? Mude na pagina de usuário.</h6></p>
         </div>
+            <?php
+            }else{
+            ?>
+            <div class="col s5 push-m1">
+              <br><br><br>
+              <p><b><h6>Produto indisponível para compra! <br> Em breve colocaremos no estoque.</h6></b></p>
+              <a href="farmacia.php" class="modal-close waves-effect waves-green btn-flat red" ><div style="color: white">Voltar</div></a>
+            </div>
+            <?php
+            }
+            ?>
         
     </div>
 
 <div id="descricao">
     <div class="row">
+    <?php
+    if ($dados['indicacao'] != null) {
+    ?>
     <div class="col s3">
     <p><h5><b>Indicação: </b></h5></p>
     <p style="font-family: cambria"><?php echo $dados['indicacao']; ?></p>
     </div>
+    <?php
+    } 
+    ?>
 
+    <?php
+    if ($dados['beneficio'] != null) {
+    ?>
     <div class="col s3">
     <p><h5><b>Benefícios: </b></h5></p>
     <p style="font-family: cambria"><?php echo $dados['beneficio']; ?></p>
     </div>
+    <?php
+    } 
+    ?>
 
+    <?php
+    if ($dados['modo'] != null) {
+    ?>
     <div class="col s3">
     <p><h5><b>Modo de uso: </b></h5></p>
     <p style="font-family: cambria"><?php echo $dados['modo']; ?></p>
     </div>
+    <?php
+    } 
+    ?>
 
+    <?php
+    if ($dados['recomendacao'] != null) {
+    ?>
     <div class="col s3">
     <p><h5><b>Recomendações: </b></h5></p>
     <p style="font-family: cambria"><?php echo $dados['recomendacao']; ?></p>
     </div>
+    <?php
+    }
+    ?>
     </div>
 </div>
 

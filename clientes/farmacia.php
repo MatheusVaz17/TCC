@@ -158,7 +158,7 @@ $resultFoto = $dados['foto'];
     <div class="owl-stage-outer">
       <div class="owl-stage">
 <?php
-$sql = "SELECT * FROM produto WHERE tipo = 'Medicamento' AND disponibilidade ='Disponivel'";
+$sql = "SELECT * FROM produto WHERE tipo = 'Medicamento' AND quantidade > 0";
         $resultado = mysqli_query($connect, $sql);
         if(mysqli_num_rows($resultado) > 0){ 
         while ($dados = mysqli_fetch_array($resultado)){
@@ -211,7 +211,7 @@ if (mysqli_num_rows($resultado) > 5) {
     <div class="owl-stage-outer">
       <div class="owl-stage">
 <?php
-$sql1 = "SELECT * FROM produto WHERE tipo = 'Higiene' AND disponibilidade ='Disponivel'";
+$sql1 = "SELECT * FROM produto WHERE tipo = 'Higiene' AND quantidade > 0";
         $resultado1 = mysqli_query($connect, $sql1);
         if(mysqli_num_rows($resultado1) > 0){
         while ($dados = mysqli_fetch_array($resultado1)){
@@ -266,7 +266,7 @@ if (mysqli_num_rows($resultado1) > 5) {
     <div class="owl-stage-outer">
       <div class="owl-stage">
 <?php
-$sql1 = "SELECT * FROM produto WHERE tipo = 'Dermocosmeticos' AND disponibilidade ='Disponivel'";
+$sql1 = "SELECT * FROM produto WHERE tipo = 'Dermocosmeticos' AND quantidade > 0";
         $resultado1 = mysqli_query($connect, $sql1);
         if(mysqli_num_rows($resultado1) > 0){
         while ($dados = mysqli_fetch_array($resultado1)){

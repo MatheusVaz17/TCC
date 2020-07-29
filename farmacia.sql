@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 16-Jul-2020 às 05:42
+-- Generation Time: 29-Jul-2020 às 08:24
 -- Versão do servidor: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `carrinho` (
   `valor` decimal(10,1) NOT NULL,
   `email` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=11 ;
 
 -- --------------------------------------------------------
 
@@ -49,13 +49,14 @@ CREATE TABLE IF NOT EXISTS `produto` (
   `valor` decimal(10,1) NOT NULL,
   `disponibilidade` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `foto` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
-  `informacao` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
-  `indicacao` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
-  `beneficio` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
-  `modo` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
-  `recomendacao` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
+  `informacao` text COLLATE utf8_unicode_ci NOT NULL,
+  `indicacao` text COLLATE utf8_unicode_ci NOT NULL,
+  `beneficio` text COLLATE utf8_unicode_ci NOT NULL,
+  `modo` text COLLATE utf8_unicode_ci NOT NULL,
+  `recomendacao` text COLLATE utf8_unicode_ci NOT NULL,
+  `quantidade` int(200) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=16 ;
 
 -- --------------------------------------------------------
 
@@ -76,14 +77,14 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `dataNascimento` date NOT NULL,
   `foto` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
 
 --
 -- Extraindo dados da tabela `usuarios`
 --
 
 INSERT INTO `usuarios` (`id`, `nome`, `sobrenome`, `email`, `cpf`, `celular`, `senha`, `sexo`, `cep`, `dataNascimento`, `foto`) VALUES
-(0, 'administrador', 'adm', 'farmacia@farmacia.com', '000.000.000-00', '(00)00000-0000', 'administrador00', 'masculino', '00000-000', '2020-06-30', '');
+(0, 'administrador', 'adm', 'farmacia@farmacia.com', '000.000.000-00', '(55)000000000', 'administrador00', '', '', '0000-00-00', '');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
