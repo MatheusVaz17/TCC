@@ -55,7 +55,6 @@ $resultFoto = $dados['foto'];
 
 ?>
 
-
 <!-- Navbar -->
 <div class="navbar-fixed">
   <nav>
@@ -63,20 +62,39 @@ $resultFoto = $dados['foto'];
       <div class="container">
       <a  class="brand-logo"><img src="../logo.png" align="center"></a>
       <ul class="right hide-on-med-and-down">
-        <!-- Search
-                <li>    
+        
+                <li>
+                  <form method="post" action="confirma.php">
                    <div class="center row">
                       <div class="col s12 " >
                         <div class="row" id="topbarsearch">
                           <div class="input-field col s6 s12 white-text">
                             <i class="white-text material-icons prefix">search</i>
-                            <input type="text" placeholder="Pesquisar" id="autocomplete-input" class="autocomplete white-text" >
+                            <?php
+                              $sql = "SELECT nome FROM produto";
+                              $result = mysqli_query($connect, $sql);
+                              if(mysqli_num_rows($result) > 0){ 
+                              while ($dados1 = mysqli_fetch_array($result)) { 
+                              $rows[] = $dados1;
+                              }
+                              }
+                              ?>
+
+                              <datalist id="produtos">
+                                <?php 
+                                 foreach ($rows as $dados1) {
+                                 echo '<option value='.$dados1['nome'].'>';
+                                  }
+                                  ?>
+                                </datalist>
+                            <input type="text" placeholder="Pesquisar" list="produtos" id="autocomplete-input" name="search" class="autocomplete white-text" >
                             </div>
                           </div>
                         </div>
-                      </div>          
+                      </div>
+                      </form>         
                   </li> 
-          -->            
+                      
         <li><a href="carrinho.php" class="#29b6f6 light-blue lighten-1">Carrinho: <?php echo mysqli_num_rows($resultado); ?> <i class="material-icons left">shopping_cart</i></a></li>
         <li><a href="#" data-target="slide-out" class="sidenav-trigger show-on-large #29b6f6 light-blue lighten-1"><i class="material-icons">menu</i></a></li>
       </ul>
@@ -346,7 +364,6 @@ if (mysqli_num_rows($resultado1) > 5) {
 </div>
 <?php } ?>
 
-
 <!-- Footer -->
 <footer class="page-footer #29b6f6 light-blue lighten-1">
           <div class="container">
@@ -411,7 +428,6 @@ function nav(){
     var instances = M.Sidenav.init(elems, options);
   });
 }
-
 
 $(document).ready(function(){
     $('.slider').slider({indicators: false});
