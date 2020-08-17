@@ -5,6 +5,7 @@
 	<meta charset="utf-8">
 	<script type= "text/javascript" src= "../jquery-3.4.1.js"></script>
 <script type= "text/javascript" src= "../jquery.mask.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link type="text/css" rel="stylesheet" href="../materialize/css/materialize.min.css"  media="screen,projection"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -13,6 +14,7 @@
 <link rel="stylesheet" href="../owl.carousel.min.css">
 <link rel="stylesheet" href="../owl.theme.default.min.css">
 <link rel="stylesheet" type="text/css" href="../estilo_botoes/estilo.css">
+<link rel="stylesheet" type="text/css" href="chat.css">
 </head>
 <body>
 <?php
@@ -364,12 +366,37 @@ if (mysqli_num_rows($resultado1) > 5) {
 </div>
 <?php } ?>
 
+<!-- Botão chat -->
+
+<div class="container">
+
+<div class="fixed-action-btn">
+  <a class="btn-floating btn-large red" id="iconchat" href="#messages">
+    <i class="large material-icons">chat</i>
+  </a>
+  <ul id="ulchat">
+   
+    <form>
+      <div id="messages" class="col s6 pull-s8">
+    <div id="messages"></div>
+  <input type="text" id="mensagem" value="Digite sua mensagem" name="message" placeholder="Digite sua mensagem">
+  <button type="submit" class="btn green"><i class="material-icons left">chat</i>Enviar</button>
+  <a class="btn red" id="chat">Fechar <i class="material-icons right">close</i></a>
+
+  </div>
+    </form>
+   
+  </ul>
+</div>
+
+</div>
+
 <!-- Footer -->
 <footer class="page-footer #29b6f6 light-blue lighten-1">
           <div class="container">
             <div class="row">
               <div class="col l6 s12">
-                <h5 class="white-text">Farmácia</h5>
+                <h5 class="white-text">Farmácia On-line</h5>
                 <p class="grey-text text-lighten-4">Aqui você encontra os melhores produtos pelos melhores preços.</p>
               </div>
               <div class="col l4 offset-l2 s12">
@@ -488,6 +515,18 @@ $(document).ready(function(){
     $('#proxim').on('click', function(){
       owl4.trigger('next.owl.carousel');
     })
+
+
+$('.fixed-action-btn').floatingActionButton({hoverEnabled: false});
+$("#iconchat").click(function(){
+    $("#iconchat").hide();
+    $("#ulchat").show();
+});
+
+$("#chat").click(function(){
+    $("#iconchat").show();
+    $("#ulchat").hide();
+});
 
 });
 

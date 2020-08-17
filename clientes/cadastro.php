@@ -20,7 +20,6 @@
   </div>
 </nav>
 
-
   <form method="post" action="valida.php" enctype="multipart/form-data">
 
   <div class="container">
@@ -102,6 +101,7 @@
 </div>
 
 </form>
+
 
 <script type="text/javascript">
   $("#cpf").mask("000.000.000-00");
