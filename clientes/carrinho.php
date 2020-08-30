@@ -17,6 +17,7 @@ $logado = $_SESSION['email'];
 <link type="text/css" rel="stylesheet" href="../materialize/css/materialize.min.css"  media="screen,projection"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <script type="text/javascript" src="../materialize/js/materialize.min.js"></script>
+<script type="text/javascript" src="refresh.js"></script>
 <script src="../owl.carousel.min.js"></script>
 <link rel="stylesheet" href="../owl.carousel.min.css">
 <link rel="stylesheet" href="../owl.theme.default.min.css">
@@ -39,6 +40,8 @@ $logado = $_SESSION['email'];
 
 <div class="container">
 
+<div id="resultado">
+
 <div class="row">
   <div class="col s12">
     <h3 class="light">Carrinho de compras <i class="material-icons">shopping_cart</i></h3>
@@ -50,6 +53,7 @@ $logado = $_SESSION['email'];
           <th>Preço Unitário:</th>
           <th>Quantidade:</th>
           <th>Valor Geral:</th>
+          <th>Excluir produto:</th>
         </tr>
       </thead>
       
@@ -76,13 +80,16 @@ $resultado = mysqli_query($connect, $sql);
 
           ?>
           <p align="center"><a class="waves-effect waves-light btn red z-depth-3"  href="farmacia.php"> <i class="material-icons left">keyboard_arrow_left
-</i> Voltar</a> <a class="waves-effect waves-light btn green z-depth-3" href="../lib/vendor/finaliza.php?quant=<?php echo $dadosSum[0]; ?>">Confirmar compra <i class="material-icons right">check</i></a></p>
+</i> Voltar</a> <a class="waves-effect waves-light btn green z-depth-3" href="../lib/vendor/finaliza.php?quant=<?php echo $dadosSum[0]; ?>">Confirmar compra <i class="material-icons right">check</i></a>
+<a class="waves-effect waves-light btn modal-trigger red" href="#modal1" id="btnDelete"><i class="material-icons left">delete</i> Excluir</a>
+</p>
           <p align="center">
             <h6 align="center"> Quantidade Total: <?php echo $dadosQuant[0]; ?> </h6>
             <h6 align="center"> Valor Total: R$<?php echo $dadosSum[0]; ?> </h6>
           </p>
           <?php
         while ($dados = mysqli_fetch_array($resultado)){
+          $id = $dados['id'];
 
 ?>
 		<tr>
@@ -90,10 +97,50 @@ $resultado = mysqli_query($connect, $sql);
 			<td>R$<?php echo $dados['preco']; ?></td>
 			<td><?php echo $dados['quantidade']; ?></td>
 			<td>R$<?php echo $dados['valor']; ?></td>
-			<td><a class="waves-effect waves-light btn-floating modal-trigger red" href="#modal1"><i class="material-icons">delete</i></a>
+			<td class="push-m2"><label>
+        <input type="checkbox" id="check<?php echo $dados['id']; ?>" name="deletar" value="<php echo $dados['id']; ?>" />
+        <span></span>
+      </label>
       </td>
+
+<!-- Modal Structure -->
+
+  <div id="modal1" class="modal">
+    <form id="form1" method="post" action="deletarCarrinho.php">
+    <div class="modal-content">
+      <h4>Excluir produto</h4>
+      <p>Você tem certeza que deseja excluir esse produto?</p>
+    </div>
+    <div class="modal-footer">
+      <a href="" class="modal-close waves-effect waves-green btn-flat blue" style="color: white">Cancelar</a>
+      <button type="submit" class="modal-close waves-effect waves-green btn-flat red white-text">Excluir</button> 
+    </div>
+    </form>
+  </div>
+
 		</tr>
 	</tbody>
+
+  <script type="text/javascript">
+  $(document).ready(function(){
+    $('.modal').modal();
+
+$("input[name=deletar]").change(function(){
+  // verifica se foi selecionado
+  if($(this).is(':checked')){
+    // sim: mostro o campo select
+    $("#btnDelete").show();
+  } else {
+    // não: não mostro o campo select
+    $("#btnDelete").hide();
+  }
+});
+
+
+  });
+
+
+</script>
 
 <?php
 }
@@ -113,6 +160,9 @@ $resultado = mysqli_query($connect, $sql);
 </div>
 
 </div>
+
+</div>
+
 
 <style type="text/css">
 

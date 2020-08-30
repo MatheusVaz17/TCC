@@ -6,6 +6,7 @@
 	<script type= "text/javascript" src= "../jquery-3.4.1.js"></script>
 <script type= "text/javascript" src= "../jquery.mask.min.js"></script>
 <link rel="icon" type="image/jpg" href="icon.jpg">
+<script type="text/javascript" src="../ckeditor/ckeditor.js"></script>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link type="text/css" rel="stylesheet" href="../materialize/css/materialize.min.css"  media="screen,projection"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -93,19 +94,19 @@ if((!isset ($_SESSION['email']) == 'farmacia@farmacia.com') and (!isset ($_SESSI
 
     <div class="col s6">
     <p><b>Informações sobre o produto: *</b></p>
-    <textarea required maxlength="1500" name="informacao" class="materialize-textarea" style="max-width: 70%"></textarea>
+    <textarea required maxlength="1500" name="informacao" id="editor" class="materialize-textarea" style="max-width: 70%"></textarea>
 
     <p><b>Indicação:</b></p>
-    <textarea maxlength="1500" class="materialize-textarea" name="indicacao" style="max-width: 70%"></textarea>  
+    <textarea maxlength="1500" class="materialize-textarea" id="editor2" name="indicacao" style="max-width: 70%"></textarea>  
 
     <p align="left"><b>Benefícios:</b></p>
-    <textarea  maxlength="1500" class="materialize-textarea" name="beneficio" style="max-width: 70%"></textarea>
+    <textarea  maxlength="1500" class="materialize-textarea" id="editor3" name="beneficio" style="max-width: 70%"></textarea>
 
     <p align="left"><b>Modo de usar:</b></p>
-    <textarea  maxlength="1500" class="materialize-textarea" name="modo" style="max-width: 70%"></textarea>
+    <textarea  maxlength="1500" class="materialize-textarea" id="editor4" name="modo" style="max-width: 70%"></textarea>
 
     <p align="left"><b>Recomendações gerais:</b></p>
-    <textarea  maxlength="1500" class="materialize-textarea" name="recomendacao" style="max-width: 70%"></textarea>  
+    <textarea  maxlength="1500" class="materialize-textarea" id="editor5" name="recomendacao" style="max-width: 70%"></textarea>  
   </div>
   
   </div>
@@ -201,6 +202,12 @@ width: 80%;
     $("#qtd").show();
   });
   });
+
+  CKEDITOR.replace('editor');
+  CKEDITOR.replace('editor2');
+  CKEDITOR.replace('editor3');
+  CKEDITOR.replace('editor4');
+  CKEDITOR.replace('editor5');
 </script>
 
 
