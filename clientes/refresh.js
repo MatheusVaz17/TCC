@@ -12,7 +12,7 @@ $(document).on('submit', '#form1', function(event){
       type: 'POST',
       dataType: 'html',
       data: dados,
-      sucess: function(data){
+      success: function(data){
         $('#resultado').empty().html(data);
       }
 

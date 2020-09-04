@@ -1,23 +1,16 @@
-<?php
-
-$login = $_COOKIE['login'];
-session_start();
-include "../bd/conexao.php";
-$logado = $_SESSION['email'];
-?>
 
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Farmácia</title>
-	<meta charset="utf-8">
-	<script type= "text/javascript" src= "../jquery-3.4.1.js"></script>
+  <title>Farmácia</title>
+  <meta charset="utf-8">
+  <script type= "text/javascript" src= "../jquery-3.4.1.js"></script>
 <script type= "text/javascript" src= "../jquery.mask.min.js"></script>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link type="text/css" rel="stylesheet" href="../materialize/css/materialize.min.css"  media="screen,projection"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <script type="text/javascript" src="../materialize/js/materialize.min.js"></script>
-<script type="text/javascript" src="refresh.js"></script>
+<script type="text/javascript" src="refresh.js"></script> 
 <script src="../owl.carousel.min.js"></script>
 <link rel="stylesheet" href="../owl.carousel.min.css">
 <link rel="stylesheet" href="../owl.theme.default.min.css">
@@ -30,141 +23,49 @@ $logado = $_SESSION['email'];
     <div class="nav-wrapper #29b6f6 light-blue lighten-1">
       <div class="container">
       <a class="brand-logo" href="farmacia.php"><img src="../logo.png" align="center"></a>
-      <ul class="right hide-on-med-and-down">
-        <li><i class="material-icons right">person_pin</i>Bem vindo(a) <?php echo $login;  ?></li>
-      </ul>
+      
     </div>
   </div>
   </nav>
 </div>
 
-<div class="container">
-
-<div id="resultado">
-
-<div class="row">
-  <div class="col s12">
-    <h3 class="light">Carrinho de compras <i class="material-icons">shopping_cart</i></h3>
-    <table class="striped">
-      <thead>
-        
-        <tr>
-          <th>Nome:</th>
-          <th>Preço Unitário:</th>
-          <th>Quantidade:</th>
-          <th>Valor Geral:</th>
-          <th>Excluir produto:</th>
-        </tr>
-      </thead>
-      
-      <tbody>
-
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+  <path fill="#0099ff" opacity="1" d="M0,192L48,165.3C96,139,192,85,288,101.3C384,117,480,203,576,197.3C672,192,768,96,864,69.3C960,43,1056,85,1152,112C1248,139,1344,149,1392,154.7L1440,160L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path>
+  <path fill="#0099ff" opacity="1" d="M0,0L48,37.3C96,75,192,149,288,181.3C384,213,480,203,576,181.3C672,160,768,128,864,144C960,160,1056,224,1152,245.3C1248,267,1344,245,1392,234.7L1440,224L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path>
+</svg>
 
 <?php
+include("exibicao.php");
 
-$sqlSum = "SELECT SUM(valor) FROM carrinho WHERE email = '$logado'";
-$resultadoSum = mysqli_query($connect, $sqlSum);
-if(mysqli_num_rows($resultadoSum) > 0){
-  $dadosSum = mysqli_fetch_array($resultadoSum);
-}
-
-$sqlQuant = "SELECT SUM(quantidade) FROM carrinho WHERE email = '$logado'";
-$resultadoQuant = mysqli_query($connect, $sqlQuant);
-if(mysqli_num_rows($resultadoQuant) > 0){
-  $dadosQuant = mysqli_fetch_array($resultadoQuant);
-}
-
-$sql = "SELECT * FROM carrinho WHERE email = '$logado'";
-$resultado = mysqli_query($connect, $sql);
-        if(mysqli_num_rows($resultado) > 0){ 
-
-          ?>
-          <p align="center"><a class="waves-effect waves-light btn red z-depth-3"  href="farmacia.php"> <i class="material-icons left">keyboard_arrow_left
-</i> Voltar</a> <a class="waves-effect waves-light btn green z-depth-3" href="../lib/vendor/finaliza.php?quant=<?php echo $dadosSum[0]; ?>">Confirmar compra <i class="material-icons right">check</i></a>
-<a class="waves-effect waves-light btn modal-trigger red" href="#modal1" id="btnDelete"><i class="material-icons left">delete</i> Excluir</a>
-</p>
-          <p align="center">
-            <h6 align="center"> Quantidade Total: <?php echo $dadosQuant[0]; ?> </h6>
-            <h6 align="center"> Valor Total: R$<?php echo $dadosSum[0]; ?> </h6>
-          </p>
-          <?php
-        while ($dados = mysqli_fetch_array($resultado)){
-          $id = $dados['id'];
 
 ?>
-		<tr>
-			<td><?php echo $dados['nome']; ?></td>
-			<td>R$<?php echo $dados['preco']; ?></td>
-			<td><?php echo $dados['quantidade']; ?></td>
-			<td>R$<?php echo $dados['valor']; ?></td>
-			<td class="push-m2"><label>
-        <input type="checkbox" id="check<?php echo $dados['id']; ?>" name="deletar" value="<php echo $dados['id']; ?>" />
-        <span></span>
-      </label>
-      </td>
+<header>
+<svg class="waves" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+  <path fill="#0099ff" opacity="1"  d="M0,256L48,229.3C96,203,192,149,288,154.7C384,160,480,224,576,218.7C672,213,768,139,864,128C960,117,1056,171,1152,197.3C1248,224,1344,224,1392,224L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+   <path fill="#0099ff" opacity="1"  d="M0,64L48,96C96,128,192,192,288,192C384,192,480,128,576,133.3C672,139,768,213,864,250.7C960,288,1056,288,1152,261.3C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+</svg>
 
-<!-- Modal Structure -->
-
-  <div id="modal1" class="modal">
-    <form id="form1" method="post" action="deletarCarrinho.php">
-    <div class="modal-content">
-      <h4>Excluir produto</h4>
-      <p>Você tem certeza que deseja excluir esse produto?</p>
-    </div>
-    <div class="modal-footer">
-      <a href="" class="modal-close waves-effect waves-green btn-flat blue" style="color: white">Cancelar</a>
-      <button type="submit" class="modal-close waves-effect waves-green btn-flat red white-text">Excluir</button> 
-    </div>
-    </form>
-  </div>
-
-		</tr>
-	</tbody>
-
-  <script type="text/javascript">
-  $(document).ready(function(){
-    $('.modal').modal();
-
-$("input[name=deletar]").change(function(){
-  // verifica se foi selecionado
-  if($(this).is(':checked')){
-    // sim: mostro o campo select
-    $("#btnDelete").show();
-  } else {
-    // não: não mostro o campo select
-    $("#btnDelete").hide();
-  }
-});
-
-
-  });
-
-
-</script>
-
-<?php
-}
-}else{
-?>
-<tr>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-</tr>
-<?php
-}
-?>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
+</header>
 
 
 <style type="text/css">
+
+header{
+    position: relative;
+    margin: 0px;
+    
+    
+  
+  width: 100%;
+    }
+
+    .waves{
+    position: relative;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 10px;
+    }
 
 .container {
   

@@ -19,7 +19,7 @@ include "bd/conexao.php";
 <link rel="stylesheet" href="owl.theme.default.min.css">
 <link rel="stylesheet" type="text/css" href="estilo_botoes/estilo.css">
 </head>
-<body>
+<body bgcolor="#a2d9ff">
 <!-- Navbar -->
 <div class="navbar-fixed">
   <nav>
@@ -64,6 +64,7 @@ include "bd/conexao.php";
 
 
 <!--Products-->
+<div class="section" style="background-color: rgb(255,255,255);">
 <div class="container">
 
   <h4>Medicamentos:</h4>
@@ -103,6 +104,27 @@ $sql = "SELECT * FROM produto WHERE tipo = 'Medicamento' AND quantidade > 0";
 </div>
 </div>
 </div>
+</div>
+</div>
+
+<div class="header">
+
+  <svg class="waves" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+
+  <path class="wave-1" fill="#204D6B"  d="M0,128L40,138.7C80,149,160,171,240,154.7C320,139,400,85,480,80C560,75,640,117,720,138.7C800,160,880,160,960,176C1040,192,1120,224,1200,245.3C1280,267,1360,277,1400,282.7L1440,288L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z"></path>
+
+
+  <path class="wave2" fill="#0099ff" fill-opacity="1" d="M0,256L48,229.3C96,203,192,149,288,154.7C384,160,480,224,576,218.7C672,213,768,139,864,128C960,117,1056,171,1152,197.3C1248,224,1344,224,1392,224L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+
+  <!--
+  <path class="wave-3" fill="#a2d9ff" fill-opacity="1" d="M0,160L48,144C96,128,192,96,288,85.3C384,75,480,85,576,112C672,139,768,181,864,208C960,235,1056,245,1152,218.7C1248,192,1344,128,1392,96L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path> -->
+
+  <path class="wave-3" fill="#a2d9ff" fill-opacity="3" d="M0,32L60,42.7C120,53,240,75,360,112C480,149,600,203,720,202.7C840,203,960,149,1080,149.3C1200,149,1320,203,1380,229.3L1440,256L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
+
+  
+
+</svg>
+  
 </div>
 
 <?php
@@ -340,6 +362,48 @@ width: 95%;
 }
 }
 
+
+.header{
+  position: relative;
+  
+  padding: 10px 50px;
+  margin: 0px;
+  width: 100%;
+}
+
+.waves{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.wave-1{
+  animation: moveWave1 1.5s ease-in-out infinite alternate;
+ 
+}
+
+@keyframes moveWave1{
+  from{
+    transform: translateX(50px);
+  }
+  to{
+    transform: translateX(200px);
+  }
+}
+
+.wave2{
+  animation: moveWavedois 3s 0.5s ease-in-out infinite alternate;
+ 
+}
+
+@keyframes moveWavedois{
+  from{
+    transform: translateX(150px);
+  }
+}
+
+
 </style>
 
 <!-- Jquery's and JS-->
@@ -351,7 +415,20 @@ $(document).ready(function(){
 
     var owl1 = $("#carousel1");
     owl1.owlCarousel({
-		items: 5
+		responsive: {
+  0:{
+    items: 1
+  },
+  600:{
+    items: 2
+  },
+  700:{
+    items: 3
+  },
+  1000: {
+    items: 5
+  }
+}
 	});
 
     $('#anterior').on('click', function(){
@@ -365,7 +442,20 @@ $(document).ready(function(){
 	var owl2 = $("#carousel2");
 
     owl2.owlCarousel({
-		items: 5
+		responsive: {
+  0:{
+    items: 1
+  },
+  600:{
+    items: 2
+  },
+  700:{
+    items: 3
+  },
+  1000: {
+    items: 5
+  }
+}
 	});
 
     $('#ant').on('click', function(){
@@ -380,7 +470,20 @@ $(document).ready(function(){
     var owl3 = $("#carousel3");
 
     owl3.owlCarousel({
+    responsive: {
+  0:{
+    items: 1
+  },
+  600:{
+    items: 2
+  },
+  700:{
+    items: 3
+  },
+  1000: {
     items: 5
+  }
+}
   });
 
     $('#ante').on('click', function(){
@@ -394,7 +497,20 @@ $(document).ready(function(){
     var owl4 = $("#carousel4");
 
     owl4.owlCarousel({
+    responsive: {
+  0:{
+    items: 1
+  },
+  600:{
+    items: 2
+  },
+  700:{
+    items: 3
+  },
+  1000: {
     items: 5
+  }
+}
   });
 
     $('#anter').on('click', function(){

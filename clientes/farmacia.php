@@ -58,20 +58,19 @@ $resultFoto = $dados['foto'];
 ?>
 
 <!-- Navbar -->
+<form method="post" action="confirma.php">
 <div class="navbar-fixed">
   <nav>
     <div class="nav-wrapper #29b6f6 light-blue lighten-1">
       <div class="container">
       <a  class="brand-logo"><img src="../logo.png" align="center"></a>
       <ul class="right hide-on-med-and-down">
-        
                 <li>
-                  <form method="post" action="confirma.php">
                    <div class="center row">
                       <div class="col s12 " >
                         <div class="row" id="topbarsearch">
                           <div class="input-field col s6 s12 white-text">
-                            <i class="white-text material-icons prefix">search</i>
+                            
                             <?php
                               $sql = "SELECT nome FROM produto";
                               $result = mysqli_query($connect, $sql);
@@ -93,17 +92,18 @@ $resultFoto = $dados['foto'];
                             </div>
                           </div>
                         </div>
-                      </div>
-                      </form>         
-                  </li> 
-                      
+                      </div>         
+                  </li>
+        <li><input id="search" type="image" name="search" list="produtos" value="submit" src="search.svg" width="30" height="60">
+        </li>      
         <li><a href="carrinho.php" class="#29b6f6 light-blue lighten-1">Carrinho: <?php echo mysqli_num_rows($resultado); ?> <i class="material-icons left">shopping_cart</i></a></li>
         <li><a href="#" data-target="slide-out" class="sidenav-trigger show-on-large #29b6f6 light-blue lighten-1"><i class="material-icons">menu</i></a></li>
       </ul>
       </div>
     </div>
+    </nav>
   </div>
-  </nav>
+  </form>
 </div>
 
 
@@ -521,6 +521,22 @@ section{
 }
 
 
+#search{
+  animation: search 1s 1.5s ease infinite;
+}
+
+@keyframes search{
+  0%{
+    transform: translateY(0px);
+  }
+  50%{
+    transform: translateY(-5px);
+  }
+  0%{
+    transform: translateY(0px);
+  }
+}
+
 
 </style>
 <!-- Jquery's and JS-->
@@ -541,6 +557,9 @@ $(document).ready(function(){
     owl1.owlCarousel({
 		responsive: {
   0:{
+    items: 1
+  },
+  300:{
     items: 1
   },
   600:{
@@ -574,7 +593,7 @@ $(document).ready(function(){
     items: 2
   },
   700:{
-    items: 3
+    items: 2
   },
   1000: {
     items: 5
