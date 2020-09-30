@@ -15,6 +15,8 @@
 <link rel="stylesheet" href="../owl.theme.default.min.css">
 <link rel="stylesheet" type="text/css" href="../estilo_botoes/estilo.css">
 <link rel="stylesheet" type="text/css" href="chat.css">
+<script type="text/javascript" src="personalizado.js"></script>
+<link rel="icon" href="../fav.png" />
 </head>
 <body bgcolor="#a2d9ff">
 <?php
@@ -58,7 +60,7 @@ $resultFoto = $dados['foto'];
 ?>
 
 <!-- Navbar -->
-<form method="post" action="confirma.php">
+<form method="POST" action=''>
 <div class="navbar-fixed">
   <nav>
     <div class="nav-wrapper #29b6f6 light-blue lighten-1">
@@ -71,30 +73,16 @@ $resultFoto = $dados['foto'];
                         <div class="row" id="topbarsearch">
                           <div class="input-field col s6 s12 white-text">
                             
-                            <?php
-                              $sql = "SELECT nome FROM produto";
-                              $result = mysqli_query($connect, $sql);
-                              if(mysqli_num_rows($result) > 0){ 
-                              while ($dados1 = mysqli_fetch_array($result)) { 
-                              $rows[] = $dados1;
-                              }
-                              }
-                              ?>
-
-                              <datalist id="produtos">
-                                <?php 
-                                 foreach ($rows as $dados1) {
-                                 echo '<option value='.$dados1['nome'].'>';
-                                  }
-                                  ?>
-                                </datalist>
-                            <input type="text" placeholder="Pesquisar" list="produtos" id="autocomplete-input" name="search" class="autocomplete white-text" >
+                            <input type="text" placeholder="Pesquisar" id="pesquisa" name="search" class="autocomplete white-text" size="30" >
+                            <ul class="resultado" style="background-color: white; color: black;">
+            
+                            </ul>
                             </div>
                           </div>
                         </div>
                       </div>         
                   </li>
-        <li><input id="search" type="image" name="search" list="produtos" value="submit" src="search.svg" width="30" height="60">
+        
         </li>      
         <li><a href="carrinho.php" class="#29b6f6 light-blue lighten-1">Carrinho: <?php echo mysqli_num_rows($resultado); ?> <i class="material-icons left">shopping_cart</i></a></li>
         <li><a href="#" data-target="slide-out" class="sidenav-trigger show-on-large #29b6f6 light-blue lighten-1"><i class="material-icons">menu</i></a></li>
@@ -103,7 +91,9 @@ $resultFoto = $dados['foto'];
     </div>
     </nav>
   </div>
+
   </form>
+  
 </div>
 
 
@@ -175,7 +165,7 @@ $sql = "SELECT * FROM produto WHERE tipo = 'Medicamento' AND quantidade > 0";
             <p><img height="120" src="../fotos/<?php echo $dados['foto'] ?>"></p>
             <div class="card-action">
               <p><h6 align="center"><?php echo "Preço: R$".$dados['valor']; ?></h6></p>
-            <p><a style="right: -10%" href="<?php echo'addprodutos.php?id='.$dados['id']; ?>" class="waves-effect waves-light btn z-depth-4"><i class="material-icons left">add_shopping_cart</i>Comprar</a></p>
+            <p><a style="right: -10%" href="<?php echo'addprodutos.php?id='.$dados['id'].'&comprar=1' ?>" class="waves-effect waves-light btn z-depth-4"><i class="material-icons left">add_shopping_cart</i>Comprar</a></p>
           </div>
           </div>
           </div>
@@ -246,7 +236,7 @@ $sql1 = "SELECT * FROM produto WHERE tipo = 'Higiene' AND quantidade > 0";
             <p><img height="120" src="../fotos/<?php echo $dados['foto'] ?>"></p>
             <div class="card-action">
               <p><h6 align="center"><?php echo "Preço: R$".$dados['valor']; ?></h6></p>
-            <p><a style="right: -10%" href="<?php echo'addprodutos.php?id='.$dados['id']; ?>" class="waves-effect waves-light btn z-depth-4"><i class="material-icons left">add_shopping_cart</i>Comprar</a></p>
+            <p><a style="right: -10%" href="<?php echo'addprodutos.php?id='.$dados['id'].'&comprar=1' ?>" class="waves-effect waves-light btn z-depth-4"><i class="material-icons left">add_shopping_cart</i>Comprar</a></p>
           </div>
           </div>
           </div>
@@ -303,7 +293,7 @@ $sql1 = "SELECT * FROM produto WHERE tipo = 'Dermocosmeticos' AND quantidade > 0
             <p><img height="120" src="../fotos/<?php echo $dados['foto'] ?>"></p>
             <div class="card-action">
               <p><h6 align="center"><?php echo "Preço: R$".$dados['valor']; ?></h6></p>
-            <p><a style="right: -10%" href="<?php echo'addprodutos.php?id='.$dados['id']; ?>" class="waves-effect waves-light btn z-depth-4"><i class="material-icons left">add_shopping_cart</i>Comprar</a></p>
+            <p><a style="right: -10%" href="<?php echo'addprodutos.php?id='.$dados['id'].'&comprar=1' ?>" class="waves-effect waves-light btn z-depth-4"><i class="material-icons left">add_shopping_cart</i>Comprar</a></p>
           </div>
           </div>
           </div>
@@ -360,7 +350,7 @@ $sql1 = "SELECT * FROM produto WHERE tipo = 'Suplementos' AND disponibilidade ='
             <p><img height="120" src="../fotos/<?php echo $dados['foto'] ?>"></p>
             <div class="card-action">
               <p><h6 align="center"><?php echo "Preço: R$".$dados['valor']; ?></h6></p>
-            <p><a style="right: -10%" href="<?php echo'addprodutos.php?id='.$dados['id']; ?>" class="waves-effect waves-light btn z-depth-4"><i class="material-icons left">add_shopping_cart</i>Comprar</a></p>
+            <p><a style="right: -10%" href="<?php echo'addprodutos.php?id='.$dados['id'].'&comprar=1' ?>" class="waves-effect waves-light btn z-depth-4"><i class="material-icons left">add_shopping_cart</i>Comprar</a></p>
           </div>
           </div>
           </div>

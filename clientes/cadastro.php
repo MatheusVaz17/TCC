@@ -14,7 +14,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-info">
   <div class="container">
   <a class="navbar-brand" href="#">
-    <img src="iconus.png" width="30" height="30" class="d-inline-block align-top" alt="">
+    <img src="iconus.png" width="30" height="30" class="d-inline-block align-top rounded-circle" alt="">
     Novo Usuário
   </a>
   </div>

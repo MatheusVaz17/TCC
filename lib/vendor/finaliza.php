@@ -3,7 +3,7 @@
 include("autoload.php");
 
 // Configura credenciais
-MercadoPago\SDK::setAccessToken('APP_USR-7768088922376725-080320-ad8ac8ba9a9c6e25daf24d2fc706f750-614375984');
+MercadoPago\SDK::setAccessToken('TEST-7768088922376725-080320-10c0a472c87d5c5761573e7b1a2455d0-614375984');
 
 // Cria um objeto de preferência
 
@@ -31,6 +31,7 @@ $preference->save();
 <link type="text/css" rel="stylesheet" href="../../materialize/css/materialize.min.css"  media="screen,projection"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <script type="text/javascript" src="../../materialize/js/materialize.min.js"></script>
+<link rel="icon" href="../../fav.png" />
 </head>
 <body>
 <div class="navbar-fixed">

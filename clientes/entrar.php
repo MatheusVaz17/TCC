@@ -9,6 +9,7 @@
 <link type="text/css" rel="stylesheet" href="../materialize/css/materialize.min.css"  media="screen,projection"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <script type="text/javascript" src="../materialize/js/materialize.min.js"></script>
+<link rel="icon" href="../fav.png" />
 </head>
 <body>
 <!-- Navbar -->

@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="../owl.carousel.min.css">
 <link rel="stylesheet" href="../owl.theme.default.min.css">
 <link rel="stylesheet" type="text/css" href="../estilo_botoes/estilo.css">
+<link rel="icon" href="../fav.png" />
 </head>
 <body>
 <!-- Navbar -->

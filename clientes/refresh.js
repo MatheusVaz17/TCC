@@ -22,3 +22,27 @@ $(document).on('submit', '#form1', function(event){
     });
 
 });
+
+$(document).ready(function(){
+$("#sendbox").on("submit", function(e){
+
+  e.preventDefault();
+
+  var formId = $(this).serialize();
+
+  $.ajax({
+    url: "pagamento.php",
+    type: "POST",
+    data: formId,
+    success: function(data){
+      alert("aee");
+    },
+    error: function(){
+      alert("error");
+    }
+
+  });
+
+  });
+});
+

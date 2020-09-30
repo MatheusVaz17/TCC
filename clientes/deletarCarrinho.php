@@ -1,6 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<script type= "text/javascript" src= "../jquery-3.4.1.js"></script>
+	<script type="text/javascript" src="../materialize/js/materialize.min.js"></script>
+	<link type="text/css" rel="stylesheet" href="../materialize/css/materialize.min.css"  media="screen,projection"/>
+</head>
+<body>
+
+<div id="modal1" class="modal">
+    
+    <div class="modal-content">
+      <h4>Excluir produto</h4>
+      <p>Você não selecionou nenhum produto para ser excluido!</p>
+    </div>
+    <div class="modal-footer">
+      <a href="carrinho.php" class="modal-close waves-effect waves-green btn-flat red white-text">ok</a> 
+    </div>
+    
+  </div>
+
 <?php
 
 require "../bd/conexao.php";
+
+if (empty($_POST['deletar'])) {
+?>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+    $('.modal').modal();
+    $('.modal').modal('open');
+  });
+</script>
+
+<?php
+die;
+}
 
 foreach ($_POST['deletar'] as $checkbox) {
 $sql1 = "SELECT quantidade, nome FROM carrinho WHERE id = '$checkbox'";
@@ -36,3 +73,5 @@ $resultado4 = mysqli_query($connect, $sql4);
 include("exibicao.php");
 
 ?>
+</body>
+</html>

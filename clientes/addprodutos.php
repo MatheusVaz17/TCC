@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="../owl.carousel.min.css">
 <link rel="stylesheet" href="../owl.theme.default.min.css">
 <link rel="stylesheet" type="text/css" href="../estilo_botoes/estilo.css">
+<link rel="icon" href="../fav.png" />
 </head>
 <body>
 <?php
@@ -26,6 +27,7 @@ if((!isset ($_SESSION['email']) == true) and (!isset ($_SESSION['senha']) == tru
   }
 include "../bd/conexao.php";
 $id = $_GET['id'];
+$comprar = $_GET['comprar'];
 $email = $_SESSION['email'];
 
 $sql1 = "SELECT cep FROM usuarios WHERE email = '$email'";
@@ -45,7 +47,13 @@ $resultado = mysqli_query($connect, $sql);
       <div class="container">
       <a class="brand-logo"><img align="center" src="../logo.png"></a>
       <ul class="right hide-on-med-and-down">
+        <?php
+        if ($comprar == 1) {
+        ?>
         <li><i class="material-icons right">person_pin</i>Bem vindo(a) <?php echo $login;  ?></li>
+        <?php
+        } 
+        ?>
       </ul>
     </div>
   </div>
@@ -57,7 +65,7 @@ $resultado = mysqli_query($connect, $sql);
     <form action="confirmaproduto.php" method="post">
         <div class="row">
             <div class="col s3">
-    	<p><h5><?php echo $dados['nome']; ?></h5></p><br>
+    	<p><h5><?php echo $dados['nome']." - ". $dados['tipo']; ?></h5></p><br>
         <p><h6><b>Informações sobre o produto:</b></h6></p>
         <p style="font-family: cambria"><?php echo $dados['informacao']; ?></p>
         <p><h6><a href="#descricao">Ler descrições</a></h6></p>
@@ -76,8 +84,33 @@ $resultado = mysqli_query($connect, $sql);
         <p><b><h6><div><?php echo "Preço: R$".$dados['valor']; ?></div></h6></b>
           <h6 ><b>Quantidade: <input value="1" type="number" name="quantidade"  style="max-width: 42%; border-radius: 4px; border-width: 1px; border-color: #29b6f6" min="1" max="<?php echo $dados['quantidade'] ?>" required></b></h6></p>
         <input type="hidden" name="id" value="<?php echo $id ?>">
+        <?php
+        if ($comprar == 1) {
+        ?>
         <a href="farmacia.php" class="modal-close waves-effect waves-green btn-flat red" ><div style="color: white">Cancelar</div></a>
-        <button class="btn green" type="submit"><div style="color: white">Confirmar</div></button> 
+        <?php
+        }
+
+        if ($comprar == 0) {
+        ?>
+        <a href="../index.php" class="modal-close waves-effect waves-green btn-flat red" ><div style="color: white">Cancelar</div></a>
+        <?php
+        }
+
+
+        if ($comprar == 1) {
+        ?>
+        <button class="btn green" type="submit"><div style="color: white">Confirmar</div></button>
+        <?php
+        }
+        if ($comprar == 0) {
+        ?>
+        <a class="btn green modal-trigger" href="#modal1"><div style="color: white">Confirmar</div></a>
+        <?php
+        }
+        ?>
+
+
         <p><h6>Preço para o cep: <b> <?php echo $dados1['cep']; ?> </b><i class="material-icons">location_on</i><br></p>
         <p><h6>Esse não é seu cep? Mude na pagina de usuário.</h6></p>
         </div>
@@ -146,6 +179,18 @@ $resultado = mysqli_query($connect, $sql);
 </form>
 
 </div>
+
+<!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>Comprar produto</h4>
+      <p>Para realizar a compra de produtos você deve estar logado no sistema!</p>
+    </div>
+    <div class="modal-footer">
+      <a href="entrar.php" class="modal-close waves-effect waves-green btn-flat # c62828 red darken-3" style="color: white">Login</a>
+      <a href="cadastro.php" class="modal-close waves-effect waves-green btn-flat #1e88e5 blue darken-1" style="color: white">Cadastre-se</a>
+    </div>
+  </div>
 
 <style>
 
@@ -225,6 +270,7 @@ width: 95%;
 <script type="text/javascript">
   $(document).ready(function(){
     $('.materialboxed').materialbox();
+    $('.modal').modal();
   });
 </script>
 </body>

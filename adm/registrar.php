@@ -53,16 +53,9 @@ if((!isset ($_SESSION['email']) == 'farmacia@farmacia.com') and (!isset ($_SESSI
     
 
 
-  <div class="col s6">
-    <p><b>Tipo do produto: *</b>
-    <div style="width: 40%"> 
-    <select name="tipo" required>
-    <option value="Medicamento">Medicamento</option>
-    <option value="Higiene">Higiene</option>
-    <option value="Dermocosmeticos">Dermocosméticos</option>
-    <option value="Suplementos">Suplementos</option>
-    </select>
-    </div>
+  <div class="col s4">
+    <p><b>Tipo do produto: *</b></p>
+    <input type="text" name="tipo" style="width: 40%" required><br>
     </p>
     <p><b>Nome: * </b><br> <input maxlength="11" type="text" name="nome" style="width: 40%" required></p>
     <p><b>Valor: *</b><br> <input type="text" name="valor" style="width: 40%" required min="1"></p>
@@ -92,7 +85,7 @@ if((!isset ($_SESSION['email']) == 'farmacia@farmacia.com') and (!isset ($_SESSI
   </div>
   
 
-    <div class="col s6">
+    <div class="col s4">
     <p><b>Informações sobre o produto: *</b></p>
     <textarea required maxlength="1500" name="informacao" id="editor" class="materialize-textarea" style="max-width: 70%"></textarea>
 
@@ -101,12 +94,14 @@ if((!isset ($_SESSION['email']) == 'farmacia@farmacia.com') and (!isset ($_SESSI
 
     <p align="left"><b>Benefícios:</b></p>
     <textarea  maxlength="1500" class="materialize-textarea" id="editor3" name="beneficio" style="max-width: 70%"></textarea>
-
+    </div> 
+    <div class="col s4">
     <p align="left"><b>Modo de usar:</b></p>
     <textarea  maxlength="1500" class="materialize-textarea" id="editor4" name="modo" style="max-width: 70%"></textarea>
 
     <p align="left"><b>Recomendações gerais:</b></p>
-    <textarea  maxlength="1500" class="materialize-textarea" id="editor5" name="recomendacao" style="max-width: 70%"></textarea>  
+    <textarea  maxlength="1500" class="materialize-textarea" id="editor5" name="recomendacao" style="max-width: 70%"></textarea>
+
   </div>
   
   </div>

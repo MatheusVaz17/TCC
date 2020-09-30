@@ -5,6 +5,7 @@
 	<meta charset="utf-8">
 	<script type= "text/javascript" src= "../jquery-3.4.1.js"></script>
 <script type= "text/javascript" src= "../jquery.mask.min.js"></script>
+<script type="text/javascript" src="../ckeditor/ckeditor.js"></script>
 <link rel="icon" type="image/jpg" href="../icon.jpg">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link type="text/css" rel="stylesheet" href="../materialize/css/materialize.min.css"  media="screen,projection"/>
@@ -58,17 +59,10 @@ $resultado = mysqli_query($connect, $sql);
   <form action="confirmedit.php?id=<?php echo $id; ?>" method="post" enctype="multipart/form-data">
   <div class="row">
   
-  <div class="col s6">
-    <p><b>Tipo do produto: *</b>
-    <div style="width: 40%"> 
-    <select name="tipo" required>
-    <option value="Medicamento">Medicamento</option>
-    <option value="Higiene">Higiene</option>
-    <option value="Dermocosmeticos">Dermocosméticos</option>
-    <option value="Suplementos">Suplementos</option>
-    </select>
-    </div>
-    </p>
+  <div class="col s4">
+    <p><b>Tipo do produto: *</b></p>
+    <input value="<?php echo $dados['tipo'];  ?>"  type="text" name="tipo" style="width: 40%" required><br>
+    
     <p><b>Nome: *</b><br> <input value="<?php echo $dados['nome'];  ?>"  type="text" name="nome" style="width: 40%" required></p>
     <p><b>Valor: *</b><br> <input value="<?php echo $dados['valor'];  ?>" type="text" name="valor" style="width: 40%" required min="1"></p>
     <p>
@@ -87,32 +81,35 @@ $resultado = mysqli_query($connect, $sql);
     <div class="file-field input-field">
       <div class="btn green">
         <span>Foto *</span>
-        <input required type="file" value="<?php echo $dados['foto'] ?>" name="arquivo">
+        <input required type="file"  name="arquivo">
       </div>
       <div class="file-path-wrapper">
-        <input class="file-path validate" type="text" style="width: 28%">
+        <input class="file-path validate"  type="text" style="width: 28%">
       </div>
     </div>
-    <p id="qtd"><b>Quantidade: *</b><br> <input type="number" name="qtd" value="1" style="width: 40%" required min="1"></p>
+    <p id="qtd"><b>Quantidade: *</b><br> <input type="number" name="qtd" value="<?php echo $dados['quantidade'];  ?>" style="width: 40%" required min="1"></p>
 
   </div>
   
 
-    <div class="col s6">
+    <div class="col s4">
     <p><b>Informações sobre o produto: *</b></p>
-    <textarea required maxlength="1500" class="materialize-textarea" name="informacao" style="max-width: 70%"><?php echo $dados['informacao'];  ?></textarea>
+    <textarea required maxlength="1500" id="editor" class="materialize-textarea" name="informacao" style="max-width: 70%"><?php echo $dados['informacao'];  ?></textarea>
 
     <p><b>Indicação:</b></p>
-    <textarea maxlength="1500" class="materialize-textarea" name="indicacao" style="max-width: 70%"><?php echo $dados['indicacao'];  ?></textarea>  
+    <textarea maxlength="1500" id="editor2" class="materialize-textarea" name="indicacao" style="max-width: 70%"><?php echo $dados['indicacao'];  ?></textarea>  
 
     <p align="left"><b>Benefícios:</b></p>
-    <textarea  maxlength="1500" class="materialize-textarea" name="beneficio" style="max-width: 70%"><?php echo $dados['beneficio'];  ?></textarea>
+    <textarea  maxlength="1500" id="editor3" class="materialize-textarea" name="beneficio" style="max-width: 70%"><?php echo $dados['beneficio'];  ?></textarea>
+    </div>
 
+
+    <div class="col s4">
     <p align="left"><b>Modo de usar:</b></p>
-    <textarea  maxlength="1500" class="materialize-textarea" name="modo" style="max-width: 70%"><?php echo $dados['modo'];  ?></textarea>
+    <textarea  maxlength="1500" id="editor4" class="materialize-textarea" name="modo" style="max-width: 70%"><?php echo $dados['modo'];  ?></textarea>
 
     <p align="left"><b>Recomendações gerais:</b></p>
-    <textarea  maxlength="1500" class="materialize-textarea" name="recomendacao" style="max-width: 70%"><?php echo $dados['recomendacao'];  ?></textarea>  
+    <textarea  maxlength="1500" id="editor5" class="materialize-textarea" name="recomendacao" style="max-width: 70%"><?php echo $dados['recomendacao'];  ?></textarea>  
   </div>
 
   </div>
@@ -212,6 +209,12 @@ width: 80%;
     $("#si").click(function(){
     $("#qtd").show();
   });
+
+  CKEDITOR.replace('editor');
+  CKEDITOR.replace('editor2');
+  CKEDITOR.replace('editor3');
+  CKEDITOR.replace('editor4');
+  CKEDITOR.replace('editor5');
   });
 </script>
 

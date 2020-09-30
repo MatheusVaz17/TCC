@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="../owl.carousel.min.css">
 <link rel="stylesheet" href="../owl.theme.default.min.css">
 <link rel="stylesheet" type="text/css" href="../estilo_botoes/estilo.css">
+<link rel="icon" href="../fav.png" />
 </head>
 <body>
 <?php
@@ -46,6 +47,7 @@ setTimeout(function() {
 
 ?>
 <!-- Navbar -->
+<form method="post" action="confirmaAdm.php">
 <div class="navbar-fixed">
   <nav>
     <div class="nav-wrapper #29b6f6 light-blue lighten-1">
@@ -53,12 +55,43 @@ setTimeout(function() {
       <a href="#!" class="brand-logo"><img src="../logo.png" align="center"></a>
       </div>
       <ul class="right hide-on-med-and-down">
-        <li><a href="sass.html"><i class="material-icons left">search</i>Procurar produtos</a></li>
+         <li>
+                   <div class="center row">
+                      <div class="col s12 " >
+                        <div class="row" id="topbarsearch">
+                          <div class="input-field col s6 s12 white-text">
+                            
+                            <?php
+                              $sql = "SELECT nome FROM produto";
+                              $result = mysqli_query($connect, $sql);
+                              if(mysqli_num_rows($result) > 0){ 
+                              while ($dados1 = mysqli_fetch_array($result)) { 
+                              $rows[] = $dados1;
+                              }
+                              }
+                              ?>
+
+                              <datalist id="produtos">
+                                <?php 
+                                 foreach ($rows as $dados1) {
+                                 echo '<option value='.$dados1['nome'].'>';
+                                  }
+                                  ?>
+                                </datalist>
+                            <input type="text" placeholder="Pesquisar" list="produtos" id="autocomplete-input" name="search" class="autocomplete white-text" >
+                            </div>
+                          </div>
+                        </div>
+                      </div>         
+                  </li>
+                  <li><input id="search" type="image" name="search" list="produtos" value="submit" src="../clientes/search.svg" width="30" height="60">
+        </li> 
         <li><a href="registrar.php"><i class="material-icons left">add</i>Adicionar produto</a></li>
         <li><a href="../sair.php"><i class="material-icons left">exit_to_app</i>Sair</a></li>
       </ul>
       </div>
     </div>
+  </form>
   </nav>
 
 <!-- Slider -->
@@ -348,6 +381,22 @@ width: 95%;
 width: 95%;
   
 }
+}
+
+#search{
+  animation: search 1s 1.5s ease infinite;
+}
+
+@keyframes search{
+  0%{
+    transform: translateY(0px);
+  }
+  50%{
+    transform: translateY(-5px);
+  }
+  0%{
+    transform: translateY(0px);
+  }
 }
 
 </style>

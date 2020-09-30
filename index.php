@@ -18,9 +18,13 @@ include "bd/conexao.php";
 <link rel="stylesheet" href="owl.carousel.min.css">
 <link rel="stylesheet" href="owl.theme.default.min.css">
 <link rel="stylesheet" type="text/css" href="estilo_botoes/estilo.css">
+<link rel="icon" href="fav.png" />
+<script type="text/javascript" src="consulta.js"></script>
 </head>
 <body bgcolor="#a2d9ff">
 <!-- Navbar -->
+
+<form method="POST" action=''>
 <div class="navbar-fixed">
   <nav>
     <div class="nav-wrapper #29b6f6 light-blue lighten-1">
@@ -28,13 +32,30 @@ include "bd/conexao.php";
       <a href="#!" class="brand-logo"><img src="logo.png" align="center"></a>
       </div>
       <ul class="right hide-on-med-and-down">
-        <li><a><i class="material-icons left">search</i>Procurar produtos</a></li>
+
+        <li>
+                   <div class="center row">
+                      <div class="col s12 " >
+                        <div class="row" id="topbarsearch">
+                          <div class="input-field col s6 s12 white-text">
+                            
+                            <input type="text" placeholder="Pesquisar" id="pesquisa" name="search" class="autocomplete white-text" size="30" >
+                            <ul class="resultado" style="background-color: white; color: black;">
+            
+                            </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>         
+                  </li>
         <li><a href="clientes/entrar.php"><i class="material-icons left">person_pin</i>Entrar</a></li>
       </ul>
 
     </div>
   </nav>
 </div>
+</form>
+
 
 <!-- Slider -->
   <div class="slider">
@@ -85,7 +106,7 @@ $sql = "SELECT * FROM produto WHERE tipo = 'Medicamento' AND quantidade > 0";
             <p><img height="120" src="fotos/<?php echo $dados['foto'] ?>"></p>
             <div class="card-action">
               <p><h6 align="center"><?php echo "Preço: R$".$dados['valor']; ?></h6></p>
-            <p><a style="right: -10%" href="#modal1" class="waves-effect waves-light btn modal-trigger z-depth-4"><i class="material-icons left">add_shopping_cart</i>Comprar</a></p>
+            <p><a style="right: -10%" href="<?php echo'clientes/addprodutos.php?id='.$dados['id'].'&comprar=0' ?>" class="waves-effect waves-light btn modal-trigger z-depth-4"><i class="material-icons left">add_shopping_cart</i>Comprar</a></p>
           </div>
           </div>
           </div>
@@ -158,7 +179,7 @@ $sql1 = "SELECT * FROM produto WHERE tipo = 'Higiene' AND quantidade > 0";
             <p><img height="120" src="fotos/<?php echo $dados['foto'] ?>"></p>
             <div class="card-action">
               <p><h6 align="center"><?php echo "Preço: R$".$dados['valor']; ?></h6></p>
-            <p><a style="right: -10%" href="#modal1" class="waves-effect waves-light btn modal-trigger z-depth-4"><i class="material-icons left">add_shopping_cart</i>Comprar</a></p>
+            <p><a style="right: -10%" href="<?php echo'clientes/addprodutos.php?id='.$dados['id'].'&comprar=0' ?>" class="waves-effect waves-light btn modal-trigger z-depth-4"><i class="material-icons left">add_shopping_cart</i>Comprar</a></p>
           </div>
           </div>
           </div>
@@ -210,7 +231,7 @@ $sql1 = "SELECT * FROM produto WHERE tipo = 'Dermocosmeticos' AND quantidade > 0
             <p><img height="120" src="fotos/<?php echo $dados['foto'] ?>"></p>
             <div class="card-action">
               <p><h6 align="center"><?php echo "Preço: R$".$dados['valor']; ?></h6></p>
-            <p><a style="right: -10%" href="#modal1" class="waves-effect waves-light btn modal-trigger z-depth-4"><i class="material-icons left">add_shopping_cart</i>Comprar</a></p>
+            <p><a style="right: -10%" href="<?php echo'clientes/addprodutos.php?id='.$dados['id'].'&comprar=0' ?>" class="waves-effect waves-light btn modal-trigger z-depth-4"><i class="material-icons left">add_shopping_cart</i>Comprar</a></p>
           </div>
           </div>
           </div>
@@ -262,7 +283,7 @@ $sql1 = "SELECT * FROM produto WHERE tipo = 'Suplementos' AND quantidade > 0";
             <p><img height="120" src="fotos/<?php echo $dados['foto'] ?>"></p>
             <div class="card-action">
               <p><h6 align="center"><?php echo "Preço: R$".$dados['valor']; ?></h6></p>
-            <p><a style="right: -10%" href="#modal1" class="waves-effect waves-light btn modal-trigger z-depth-4"><i class="material-icons left">add_shopping_cart</i>Comprar</a></p>
+            <p><a style="right: -10%" href="<?php echo'clientes/addprodutos.php?id='.$dados['id'].'&comprar=0' ?>" class="waves-effect waves-light btn modal-trigger z-depth-4"><i class="material-icons left">add_shopping_cart</i>Comprar</a></p>
           </div>
           </div>
           </div>
@@ -318,17 +339,7 @@ if (mysqli_num_rows($resultado1) > 5) {
           </div>
         </footer>
 
-<!-- Modal Structure -->
-  <div id="modal1" class="modal">
-    <div class="modal-content">
-      <h4>Comprar produto</h4>
-      <p>Para realizar a compra de produtos você deve estar logado no sistema!</p>
-    </div>
-    <div class="modal-footer">
-      <a href="clientes/entrar.php" class="modal-close waves-effect waves-green btn-flat # c62828 red darken-3" style="color: white">Login</a>
-      <a href="clientes/cadastro.php" class="modal-close waves-effect waves-green btn-flat #1e88e5 blue darken-1" style="color: white">Cadastre-se</a>
-    </div>
-  </div>
+
 
 
 <style>
