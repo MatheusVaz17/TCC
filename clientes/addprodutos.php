@@ -17,23 +17,28 @@
 <body>
 <?php
 session_start();
-$login = $_COOKIE['login'];
-if((!isset ($_SESSION['email']) == true) and (!isset ($_SESSION['senha']) == true))
-{
-  unset($_SESSION['email']);
-  unset($_SESSION['senha']);
-  echo"<script> alert('Você precisa estar logado para acessar essa página!');window.location
-        .href='entrar.php';</script>";
-  }
+
 include "../bd/conexao.php";
 $id = $_GET['id'];
 $comprar = $_GET['comprar'];
-$email = $_SESSION['email'];
 
+if ($comprar == 1) {
+  $login = $_COOKIE['login'];
+}
+
+if ($comprar == 1) {
+  $email = $_SESSION['email'];
+}
+
+
+if ($comprar == 1) {
 $sql1 = "SELECT cep FROM usuarios WHERE email = '$email'";
 $resultado1 = mysqli_query($connect, $sql1);
     if(mysqli_num_rows($resultado1) > 0){ 
-        while ($dados1 = mysqli_fetch_array($resultado1)){
+        $dados1 = mysqli_fetch_array($resultado1);
+}
+}
+
 
 $sql = "SELECT * FROM produto WHERE id = '$id'";
 $resultado = mysqli_query($connect, $sql);
@@ -110,9 +115,12 @@ $resultado = mysqli_query($connect, $sql);
         }
         ?>
 
-
+        <?php
+        if ($comprar == 1) {
+        ?>
         <p><h6>Preço para o cep: <b> <?php echo $dados1['cep']; ?> </b><i class="material-icons">location_on</i><br></p>
         <p><h6>Esse não é seu cep? Mude na pagina de usuário.</h6></p>
+        <?php } ?>
         </div>
             <?php
             }else{
@@ -120,7 +128,21 @@ $resultado = mysqli_query($connect, $sql);
             <div class="col s5 push-m1">
               <br><br><br>
               <p><b><h6>Produto indisponível para compra! <br> Em breve colocaremos no estoque.</h6></b></p>
+              <?php 
+              if ($comprar == 1) {
+              ?>
               <a href="farmacia.php" class="modal-close waves-effect waves-green btn-flat red" ><div style="color: white">Voltar</div></a>
+              <?php
+              }
+              
+              
+              if ($comprar == 0) {
+              ?>
+              <a href="../index.php" class="modal-close waves-effect waves-green btn-flat red" ><div style="color: white">Voltar</div></a>
+              <?php
+              }
+              ?>
+
             </div>
             <?php
             }
@@ -277,6 +299,6 @@ width: 95%;
 <?php
 }
 }
-}
-}
+
+
 ?>

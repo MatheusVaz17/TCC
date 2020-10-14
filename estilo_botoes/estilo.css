@@ -1,6 +1,6 @@
 #anterior, #proximo{
 	position: absolute;
-	top: 700px;
+	top: 760px;
 }
 
 #anterior{
@@ -12,7 +12,7 @@
 
 #ant, #prox{
 	position: absolute;
-	top: 1200px;
+	top: 1400px;
 }
 
 #ant{
@@ -25,7 +25,7 @@
 
 #ante, #proxi{
 	position: absolute;
-	top: 1700px;
+	top: 1950px;
 }
 
 #ante{
@@ -38,7 +38,7 @@
 
 #anter, #proxim{
 	position: absolute;
-	top: 2200px;
+	top: 2550px;
 }
 
 #anter{

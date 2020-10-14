@@ -20,6 +20,11 @@ include "bd/conexao.php";
 <link rel="stylesheet" type="text/css" href="estilo_botoes/estilo.css">
 <link rel="icon" href="fav.png" />
 <script type="text/javascript" src="consulta.js"></script>
+<style type="text/css">
+  .card-title{
+    font-size: 16px;
+  }
+</style>
 </head>
 <body bgcolor="#a2d9ff">
 <!-- Navbar -->
@@ -39,7 +44,7 @@ include "bd/conexao.php";
                         <div class="row" id="topbarsearch">
                           <div class="input-field col s6 s12 white-text">
                             
-                            <input type="text" placeholder="Pesquisar" id="pesquisa" name="search" class="autocomplete white-text" size="30" >
+                            <input type="text" placeholder="Pesquisar" id="pesquisa" name="search" class="autocomplete white-text" size="50" >
                             <ul class="resultado" style="background-color: white; color: black;">
             
                             </ul>
@@ -101,9 +106,12 @@ $sql = "SELECT * FROM produto WHERE tipo = 'Medicamento' AND quantidade > 0";
         ?>
         <div class="owl-item">
             <div class="col s12 m12">
-          <div class="card small hoverable z-depth-3">
-            <span class="card-title"><h5><blockquote><?php echo $dados['nome']; ?></blockquote></h5></span>
-            <p><img height="120" src="fotos/<?php echo $dados['foto'] ?>"></p>
+          <div class="card medium hoverable z-depth-3">
+           
+            <span class="card-title" style="font-size: 16px; font-weight: bold"><blockquote><?php echo $dados['nome']; ?></blockquote></span>
+             <div class="card-image">
+            <img class="responsive-img" src="fotos/<?php echo $dados['foto'] ?>">
+            </div>
             <div class="card-action">
               <p><h6 align="center"><?php echo "Preço: R$".$dados['valor']; ?></h6></p>
             <p><a style="right: -10%" href="<?php echo'clientes/addprodutos.php?id='.$dados['id'].'&comprar=0' ?>" class="waves-effect waves-light btn modal-trigger z-depth-4"><i class="material-icons left">add_shopping_cart</i>Comprar</a></p>
@@ -174,9 +182,11 @@ $sql1 = "SELECT * FROM produto WHERE tipo = 'Higiene' AND quantidade > 0";
         ?>
         <div class="owl-item">
             <div class="col s12 m12">
-          <div class="card small hoverable z-depth-3">
-            <span class="card-title"><h5><blockquote><?php echo $dados['nome']; ?></blockquote></h5></span>
-            <p><img height="120" src="fotos/<?php echo $dados['foto'] ?>"></p>
+          <div class="card medium hoverable z-depth-3">
+            <span class="card-title" style="font-size: 16px; font-weight: bold"><blockquote><?php echo $dados['nome']; ?></blockquote></span>
+            <div class="card-image">
+            <img class="responsive-img" src="fotos/<?php echo $dados['foto'] ?>">
+            </div>
             <div class="card-action">
               <p><h6 align="center"><?php echo "Preço: R$".$dados['valor']; ?></h6></p>
             <p><a style="right: -10%" href="<?php echo'clientes/addprodutos.php?id='.$dados['id'].'&comprar=0' ?>" class="waves-effect waves-light btn modal-trigger z-depth-4"><i class="material-icons left">add_shopping_cart</i>Comprar</a></p>
@@ -226,9 +236,11 @@ $sql1 = "SELECT * FROM produto WHERE tipo = 'Dermocosmeticos' AND quantidade > 0
         ?>
         <div class="owl-item">
             <div class="col s12 m12">
-          <div class="card small hoverable z-depth-3">
-            <span class="card-title"><h5><blockquote><?php echo $dados['nome']; ?></blockquote></h5></span>
-            <p><img height="120" src="fotos/<?php echo $dados['foto'] ?>"></p>
+          <div class="card medium hoverable z-depth-3">
+            <span class="card-title" style="font-size: 16px; font-weight: bold"><blockquote><?php echo $dados['nome']; ?></blockquote></span>
+            <div class="card-image">
+            <img class="responsive-img" src="fotos/<?php echo $dados['foto'] ?>">
+            </div>
             <div class="card-action">
               <p><h6 align="center"><?php echo "Preço: R$".$dados['valor']; ?></h6></p>
             <p><a style="right: -10%" href="<?php echo'clientes/addprodutos.php?id='.$dados['id'].'&comprar=0' ?>" class="waves-effect waves-light btn modal-trigger z-depth-4"><i class="material-icons left">add_shopping_cart</i>Comprar</a></p>
@@ -278,9 +290,11 @@ $sql1 = "SELECT * FROM produto WHERE tipo = 'Suplementos' AND quantidade > 0";
         ?>
         <div class="owl-item">
             <div class="col s12 m12">
-          <div class="card small hoverable z-depth-3">
-            <span class="card-title"><h5><blockquote><?php echo $dados['nome']; ?></blockquote></h5></span>
-            <p><img height="120" src="fotos/<?php echo $dados['foto'] ?>"></p>
+          <div class="card medium hoverable z-depth-3">
+            <span class="card-title" style="font-size: 16px; font-weight: bold"><blockquote><?php echo $dados['nome']; ?></blockquote></span>
+            <div class="card-image">
+            <img class="responsive-img" src="fotos/<?php echo $dados['foto'] ?>">
+            </div>
             <div class="card-action">
               <p><h6 align="center"><?php echo "Preço: R$".$dados['valor']; ?></h6></p>
             <p><a style="right: -10%" href="<?php echo'clientes/addprodutos.php?id='.$dados['id'].'&comprar=0' ?>" class="waves-effect waves-light btn modal-trigger z-depth-4"><i class="material-icons left">add_shopping_cart</i>Comprar</a></p>

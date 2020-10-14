@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="../owl.theme.default.min.css">
 <link rel="stylesheet" type="text/css" href="../estilo_botoes/estilo.css">
 <link rel="icon" href="../fav.png" />
+<script type="text/javascript" src="search.js"></script>
 </head>
 <body>
 <?php
@@ -47,7 +48,7 @@ setTimeout(function() {
 
 ?>
 <!-- Navbar -->
-<form method="post" action="confirmaAdm.php">
+<form method="POST" action=''>
 <div class="navbar-fixed">
   <nav>
     <div class="nav-wrapper #29b6f6 light-blue lighten-1">
@@ -61,31 +62,16 @@ setTimeout(function() {
                         <div class="row" id="topbarsearch">
                           <div class="input-field col s6 s12 white-text">
                             
-                            <?php
-                              $sql = "SELECT nome FROM produto";
-                              $result = mysqli_query($connect, $sql);
-                              if(mysqli_num_rows($result) > 0){ 
-                              while ($dados1 = mysqli_fetch_array($result)) { 
-                              $rows[] = $dados1;
-                              }
-                              }
-                              ?>
-
-                              <datalist id="produtos">
-                                <?php 
-                                 foreach ($rows as $dados1) {
-                                 echo '<option value='.$dados1['nome'].'>';
-                                  }
-                                  ?>
-                                </datalist>
-                            <input type="text" placeholder="Pesquisar" list="produtos" id="autocomplete-input" name="search" class="autocomplete white-text" >
+                            <input type="text" placeholder="Pesquisar" id="pesquisa" name="search" class="autocomplete white-text" size="50" >
+                            <ul class="resultado" style="background-color: white; color: black;">
+            
+                            </ul>
+                          
                             </div>
                           </div>
                         </div>
                       </div>         
                   </li>
-                  <li><input id="search" type="image" name="search" list="produtos" value="submit" src="../clientes/search.svg" width="30" height="60">
-        </li> 
         <li><a href="registrar.php"><i class="material-icons left">add</i>Adicionar produto</a></li>
         <li><a href="../sair.php"><i class="material-icons left">exit_to_app</i>Sair</a></li>
       </ul>
@@ -134,10 +120,12 @@ $sql = "SELECT * FROM produto WHERE tipo = 'Medicamento'";
         while ($dados = mysqli_fetch_array($resultado)){
         ?>
         <div class="owl-item">
-            <div class="col s12 m10">
-          <div class="card small hoverable z-depth-3">
-            <span class="card-title"><h5><blockquote><?php echo $dados['nome']; ?></blockquote></h5></span>
-            <p><img width="130" height="100" src="../fotos/<?php echo $dados['foto'] ?>"></p>
+            <div class="col s12 m12">
+          <div class="card medium hoverable z-depth-3">
+            <span class="card-title" style="font-size: 16px; font-weight: bold;"><blockquote><?php echo $dados['nome']; ?></blockquote></span>
+            <div class="card-image">
+            <img class="responsive-img" src="../fotos/<?php echo $dados['foto'] ?>">
+            </div>
             <div class="card-action">
               <p><h6><?php echo "Preço: R$".$dados['valor']; ?></h6></p>
             <p align="center"><a style="align-self: flex-end" href="../produtos/delete.php?id=<?php echo $dados['id'] ?>" class="waves-effect waves-light btn-floating #d32f2f red darken-2"><i class="material-icons left">delete</i></a> <a style="align-self: flex-end" href="../produtos/editar.php?id=<?php echo $dados['id'] ?>" class="waves-effect waves-light btn-floating #1e88e5 blue darken-1 "><i class="material-icons left">create</i></a></p>
@@ -186,9 +174,11 @@ $sql1 = "SELECT * FROM produto WHERE tipo = 'Higiene'";
         ?>
         <div class="owl-item">
             <div class="col s12 m10">
-          <div class="card small hoverable z-depth-3">
-            <span class="card-title"><h5><blockquote><?php echo $dados['nome']; ?></blockquote></h5></span>
-            <p><img width="130" height="100" src="../fotos/<?php echo $dados['foto'] ?>"></p>
+          <div class="card medium hoverable z-depth-3">
+            <span class="card-title" style="font-size: 16px; font-weight: bold;"><blockquote><?php echo $dados['nome']; ?></blockquote></span>
+            <div class="card-image">
+            <img class="responsive-img" src="../fotos/<?php echo $dados['foto'] ?>">
+            </div>
             <div class="card-action">
               <p><h6><?php echo "Preço: R$".$dados['valor']; ?></h6></p>
             <p align="center"><a style="align-self: flex-end" href="../produtos/delete.php?id=<?php echo $dados['id'] ?>" class="waves-effect waves-light btn-floating #d32f2f red darken-2"><i class="material-icons left">delete</i></a> <a style="align-self: flex-end" href="../produtos/editar.php?id=<?php echo $dados['id'] ?>" class="waves-effect waves-light btn-floating #1e88e5 blue darken-1 "><i class="material-icons left">create</i></a></p>
@@ -239,9 +229,11 @@ $sql1 = "SELECT * FROM produto WHERE tipo = 'Dermocosmeticos'";
         ?>
         <div class="owl-item">
             <div class="col s12 m12">
-          <div class="card small hoverable z-depth-3">
-            <span class="card-title"><h5><blockquote><?php echo $dados['nome']; ?></blockquote></h5></span>
-            <p><img height="120" src="../fotos/<?php echo $dados['foto'] ?>"></p>
+          <div class="card medium hoverable z-depth-3">
+            <span class="card-title" style="font-size: 16px; font-weight: bold;"><blockquote><?php echo $dados['nome']; ?></blockquote></span>
+            <div class="card-image">
+            <img class="responsive-img" src="../fotos/<?php echo $dados['foto'] ?>">
+            </div>
             <div class="card-action">
               <p><h6 align="center"><?php echo "Preço: R$".$dados['valor']; ?></h6></p>
             <p align="center"><a style="align-self: flex-end" href="../produtos/delete.php?id=<?php echo $dados['id'] ?>" class="waves-effect waves-light btn-floating #d32f2f red darken-2"><i class="material-icons left">delete</i></a> <a style="align-self: flex-end" href="../produtos/editar.php?id=<?php echo $dados['id'] ?>" class="waves-effect waves-light btn-floating #1e88e5 blue darken-1 "><i class="material-icons left">create</i></a></p>
@@ -291,9 +283,11 @@ $sql1 = "SELECT * FROM produto WHERE tipo = 'Suplementos'";
         ?>
         <div class="owl-item">
             <div class="col s12 m12">
-          <div class="card small hoverable z-depth-3">
-            <span class="card-title"><h5><blockquote><?php echo $dados['nome']; ?></blockquote></h5></span>
-            <p><img height="120" src="../fotos/<?php echo $dados['foto'] ?>"></p>
+          <div class="card medium hoverable z-depth-3">
+            <span class="card-title" style="font-size: 16px; font-weight: bold;"><blockquote><?php echo $dados['nome']; ?></blockquote></span>
+            <div class="card-image">
+            <img class="responsive-img" src="../fotos/<?php echo $dados['foto'] ?>">
+            </div>
             <div class="card-action">
               <p><h6 align="center"><?php echo "Preço: R$".$dados['valor']; ?></h6></p>
             <p align="center"><a style="align-self: flex-end" href="../produtos/delete.php?id=<?php echo $dados['id'] ?>" class="waves-effect waves-light btn-floating #d32f2f red darken-2"><i class="material-icons left">delete</i></a> <a style="align-self: flex-end" href="../produtos/editar.php?id=<?php echo $dados['id'] ?>" class="waves-effect waves-light btn-floating #1e88e5 blue darken-1 "><i class="material-icons left">create</i></a></p>

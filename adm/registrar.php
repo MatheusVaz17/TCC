@@ -57,7 +57,7 @@ if((!isset ($_SESSION['email']) == 'farmacia@farmacia.com') and (!isset ($_SESSI
     <p><b>Tipo do produto: *</b></p>
     <input type="text" name="tipo" style="width: 40%" required><br>
     </p>
-    <p><b>Nome: * </b><br> <input maxlength="11" type="text" name="nome" style="width: 40%" required></p>
+    <p><b>Nome: * </b><br> <input maxlength="23" type="text" name="nome" style="width: 40%" required></p>
     <p><b>Valor: *</b><br> <input type="text" name="valor" style="width: 40%" required min="1"></p>
     <p>
       <b>Disponibilidade: *</b>

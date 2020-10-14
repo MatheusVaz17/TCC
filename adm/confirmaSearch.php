@@ -1,6 +1,6 @@
 <?php
 
-        require "bd/conexao.php";
+        require "../bd/conexao.php";
 
         $nome = filter_input(INPUT_POST, 'palavra', FILTER_SANITIZE_STRING);
 
@@ -12,7 +12,10 @@
         if (mysqli_num_rows($resultado) > 0) {
             while ($dados = mysqli_fetch_array($resultado)) {
                 ?>
-                <a  href="clientes/addprodutos.php?id=<?php echo $dados['id']; ?>&comprar=0"> <li style=" margin: 0 20%;" class="black-text"> <?php echo $dados['nome']; ?><i class="material-icons right green-text"> arrow_forward</i></li></a><br>
+               <a  href="confirmaAdm.php?nome=<?php echo $dados['nome']; ?>"> <li style=" margin: 0 20%;" class="black-text"> <?php echo $dados['nome']; ?><i class="material-icons right green-text"> arrow_forward</i></li></a>
+
+                 
+                 <br>
                 <?php
             }
         }else{  

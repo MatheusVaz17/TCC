@@ -17,7 +17,7 @@
 <?php
 
 require "../bd/conexao.php";
-$nome = $_POST['search'];
+$nome = $_GET['nome'];
 
 $sql = "SELECT * FROM produto WHERE nome = '$nome'";
 $result = mysqli_query($connect, $sql);
