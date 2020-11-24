@@ -53,7 +53,7 @@ $resultado = mysqli_query($connect, $sql);
           ?>
           
           <p align="center"><a class="waves-effect waves-light btn red z-depth-3"  href="farmacia.php"> <i class="material-icons left">keyboard_arrow_left
-</i> Voltar</a> <a class="waves-effect waves-light btn green z-depth-3" href="../lib/vendor/finaliza.php?quant=<?php echo $dadosSum[0]; ?>">Confirmar compra <i class="material-icons right">check</i></a>
+</i> Voltar</a> <a class="waves-effect waves-light btn green z-depth-3" href="../apimercadopago/client/index.php?valor=<?php echo $dadosSum[0]; ?>&quant=<?php echo $dadosQuant[0]; ?>">Confirmar compra <i class="material-icons right">check</i></a>
 <a class="waves-effect waves-light btn modal-trigger red" href="#modal1" id="btnDelete"><i class="material-icons left">delete</i> Excluir</a>
 </p>
           <p align="center">
