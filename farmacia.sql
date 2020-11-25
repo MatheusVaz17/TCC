@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 29-Jul-2020 às 08:24
+-- Generation Time: 25-Nov-2020 às 06:44
 -- Versão do servidor: 5.6.17
--- PHP Version: 5.5.12
+-- PHP Version: 7.4.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -34,7 +34,23 @@ CREATE TABLE IF NOT EXISTS `carrinho` (
   `valor` decimal(10,1) NOT NULL,
   `email` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `pagamentos`
+--
+
+CREATE TABLE IF NOT EXISTS `pagamentos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `pedido` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `status` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `produtos` text COLLATE utf8_unicode_ci NOT NULL,
+  `quantidade` int(10) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
 -- --------------------------------------------------------
 
@@ -56,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `produto` (
   `recomendacao` text COLLATE utf8_unicode_ci NOT NULL,
   `quantidade` int(200) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=32 ;
 
 -- --------------------------------------------------------
 
@@ -78,13 +94,6 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `foto` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
-
---
--- Extraindo dados da tabela `usuarios`
---
-
-INSERT INTO `usuarios` (`id`, `nome`, `sobrenome`, `email`, `cpf`, `celular`, `senha`, `sexo`, `cep`, `dataNascimento`, `foto`) VALUES
-(0, 'administrador', 'adm', 'farmacia@farmacia.com', '000.000.000-00', '(55)000000000', 'administrador00', '', '', '0000-00-00', '');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
