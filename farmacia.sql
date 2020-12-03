@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 25-Nov-2020 às 06:44
+-- Generation Time: 03-Dez-2020 às 01:23
 -- Versão do servidor: 5.6.17
 -- PHP Version: 7.4.8
 
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `carrinho` (
   `valor` decimal(10,1) NOT NULL,
   `email` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=9 ;
 
 -- --------------------------------------------------------
 
@@ -49,8 +49,9 @@ CREATE TABLE IF NOT EXISTS `pagamentos` (
   `status` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `produtos` text COLLATE utf8_unicode_ci NOT NULL,
   `quantidade` int(10) NOT NULL,
+  `valor` decimal(10,0) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 -- --------------------------------------------------------
 
@@ -72,7 +73,30 @@ CREATE TABLE IF NOT EXISTS `produto` (
   `recomendacao` text COLLATE utf8_unicode_ci NOT NULL,
   `quantidade` int(200) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=32 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `tipo`
+--
+
+CREATE TABLE IF NOT EXISTS `tipo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
+
+--
+-- Extraindo dados da tabela `tipo`
+--
+
+INSERT INTO `tipo` (`id`, `nome`) VALUES
+(1, 'Medicamento'),
+(2, 'Higiene'),
+(3, 'Dermocosmeticos'),
+(4, 'Suplementos'),
+(5, 'Alimentos');
 
 -- --------------------------------------------------------
 
@@ -93,7 +117,14 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `dataNascimento` date NOT NULL,
   `foto` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+
+--
+-- Extraindo dados da tabela `usuarios`
+--
+
+INSERT INTO `usuarios` (`id`, `nome`, `sobrenome`, `email`, `cpf`, `celular`, `senha`, `sexo`, `cep`, `dataNascimento`, `foto`) VALUES
+(1, '', '', 'farmacia@farmacia.com', '', '', 'administrador00', '', '', '0000-00-00', '');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

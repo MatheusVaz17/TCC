@@ -24,6 +24,12 @@ if((!isset ($_SESSION['email']) == 'farmacia@farmacia.com') and (!isset ($_SESSI
   echo"<script> alert('Você precisa estar logado como administrador para acessar essa página!');window.location
         .href='../clientes/entrar.php';</script>";
   }
+
+include("../bd/conexao.php");
+
+$sql = "SELECT nome FROM tipo";
+$resultado = mysqli_query($connect, $sql);
+
 ?>
 
 <!-- Navbar -->
@@ -54,11 +60,38 @@ if((!isset ($_SESSION['email']) == 'farmacia@farmacia.com') and (!isset ($_SESSI
 
 
   <div class="col s4">
+
+    <div id="tipo">
     <p><b>Tipo do produto: *</b></p>
-    <input type="text" name="tipo" style="width: 40%" required><br>
+    <select name="tipo">
+        
+        <?php
+          while ($dados = mysqli_fetch_array($resultado)) {
+          ?>
+          <option value="<?php echo $dados['nome']; ?>"><?php echo $dados['nome']; ?></option>
+          <?php
+          }
+        ?>
+
+    </select>
     </p>
-    <p><b>Nome: * </b><br> <input maxlength="23" type="text" name="nome" style="width: 40%" required></p>
-    <p><b>Valor: *</b><br> <input type="text" name="valor" style="width: 40%" required min="1"></p>
+    </div>
+
+    <p>
+       <label>
+        <input id="check" onclick="esconde()" type="checkbox" />
+        <span style="color: black">Outro? Qual?</span>
+      </label>
+    </p>
+
+    <p>
+      <div id="outro">
+        <input type="text" placeholder="Digite aqui o tipo do produto" name="outro">
+      </div>
+    </p>
+
+    <p><b>Nome: * </b><br> <input maxlength="23" placeholder="Digite aqui o nome do produto" type="text" name="nome" required></p>
+    <p><b>Valor: *</b><br> <input placeholder="Digite aqui o valor do produto" type="text" name="valor"  required min="1"></p>
     <p>
       <b>Disponibilidade: *</b>
       <br>
@@ -78,10 +111,10 @@ if((!isset ($_SESSION['email']) == 'farmacia@farmacia.com') and (!isset ($_SESSI
         <input type="file" required name="arquivo">
       </div>
       <div class="file-path-wrapper">
-        <input class="file-path validate" type="text" style="width: 28%">
+        <input class="file-path validate" type="text" >
       </div>
     </div>
-    <p id="qtd"><b>Quantidade: *</b><br> <input type="number" name="qtd" value="1" style="width: 40%" required min="1"></p>
+    <p id="qtd"><b>Quantidade: *</b><br> <input type="number" name="qtd" value="1" required min="1"></p>
   </div>
   
 
@@ -196,6 +229,9 @@ width: 80%;
     $("#si").click(function(){
     $("#qtd").show();
   });
+    
+
+
   });
 
   CKEDITOR.replace('editor');
@@ -203,6 +239,19 @@ width: 80%;
   CKEDITOR.replace('editor3');
   CKEDITOR.replace('editor4');
   CKEDITOR.replace('editor5');
+
+ $("#outro").hide();
+
+function esconde(){
+  if($("#check").is(":checked")) {
+    $("#tipo").hide();
+    $("#outro").show();
+    }else{
+    $("#tipo").show();
+    $("#outro").hide();
+    }
+}
+
 </script>
 
 

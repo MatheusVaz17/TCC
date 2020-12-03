@@ -27,6 +27,9 @@ include "../bd/conexao.php";
 
 $id = $_GET['id'];
 
+$sql1 = "SELECT nome FROM tipo";
+$resultado1 = mysqli_query($connect, $sql1);
+
 $sql = "SELECT * FROM produto WHERE id = '$id'";
 $resultado = mysqli_query($connect, $sql);
         if(mysqli_num_rows($resultado) > 0){ 
@@ -60,8 +63,35 @@ $resultado = mysqli_query($connect, $sql);
   <div class="row">
   
   <div class="col s4">
+
+    <div id="tipo">
     <p><b>Tipo do produto: *</b></p>
-    <input value="<?php echo $dados['tipo'];  ?>"  type="text" name="tipo" style="width: 40%" required><br>
+    <select name="tipo">
+        
+        <?php
+          while ($dados1 = mysqli_fetch_array($resultado1)) {
+          ?>
+          <option value="<?php echo $dados1['nome']; ?>"><?php echo $dados1['nome']; ?></option>
+          <?php
+          }
+        ?>
+
+    </select>
+    </p>
+    </div>
+
+    <p>
+       <label>
+        <input id="check" onclick="esconde()" type="checkbox" />
+        <span style="color: black">Outro? Qual?</span>
+      </label>
+    </p>
+
+    <p>
+      <div id="outro">
+        <input type="text" placeholder="Digite aqui o tipo do produto" name="outro">
+      </div>
+    </p>
     
     <p><b>Nome: *</b><br> <input value="<?php echo $dados['nome'];  ?>"  type="text" name="nome" style="width: 40%" required></p>
     <p><b>Valor: *</b><br> <input value="<?php echo $dados['valor'];  ?>" type="text" name="valor" style="width: 40%" required min="1"></p>
@@ -216,6 +246,19 @@ width: 80%;
   CKEDITOR.replace('editor4');
   CKEDITOR.replace('editor5');
   });
+
+$("#outro").hide();
+
+function esconde(){
+  if($("#check").is(":checked")) {
+    $("#tipo").hide();
+    $("#outro").show();
+    }else{
+    $("#tipo").show();
+    $("#outro").hide();
+    }
+}
+
 </script>
 
 <style type="text/css">

@@ -105,7 +105,8 @@ $resultFoto = $dados['foto'];
     </div>
     <li><a><span class="black-text name"><blockquote><b><?php echo $login." ".$dados['sobrenome'];?></b></blockquote></span></a></li>
     <li><a><span class="black-text email"><b><?php echo $logado; ?></span></b></a></li>
-    <li><a href="#">Suas informações <i class="material-icons left">person_pin</i></a></li>
+    <li><a href="#">Minhas informações <i class="material-icons left">person_pin</i></a></li>
+    <li><a class="modal-trigger" href="#modalcompras">Minhas compras <i class="material-icons left">check</i></a></li>
     <li><div class="divider"></div></li>
     <li><a class="subheader">Sessão</a></li>
     <li><a href="../sair.php"><i class="material-icons left">exit_to_app</i>Sair</a></li>
@@ -392,6 +393,59 @@ if (mysqli_num_rows($resultado1) > 5) {
 </div>
 <?php } ?>
 
+<!-- Modal Structure -->
+  <div id="modalcompras" class="modal modal-fixed-footer">
+    <div class="modal-content">
+      <h4>Suas compras</h4>
+      <?php
+        $sqlpag = "SELECT * FROM pagamentos WHERE email = '$logado'";
+        $resultpag = mysqli_query($connect, $sqlpag);
+
+        if (mysqli_num_rows($resultpag) < 1) {
+        echo "Você ainda não possui compras, realize compras no site e você verá elas aqui!";
+        }else{
+        ?>
+
+         <table>
+        <thead>
+          <tr>
+              <th>Produtos</th>
+              <th>Pedido</th>
+              <th>Quantidade</th>
+              <th>Valor</th>
+              <th>Status</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          
+            <?php 
+            while($dadospag = mysqli_fetch_array($resultpag)){  
+            ?>
+            <tr>
+            <td><?php echo $dadospag['produtos']; ?></td>
+            <td><?php echo $dadospag['pedido']; ?></td>
+            <td><?php echo $dadospag['quantidade']; ?></td>
+            <td><?php echo "R$".$dadospag['valor']; ?></td>
+            <td><?php echo $dadospag['status']; ?></td>
+             </tr>
+            <?php
+            } 
+            ?>
+         
+        </tbody>
+
+        </table>
+
+        <?php
+        }
+      ?>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat green white-text">Ok</a>
+    </div>
+  </div>
+
 <!-- Botão chat 
 
 <div class="container">
@@ -552,7 +606,7 @@ function nav(){
 $(document).ready(function(){
     $('.slider').slider({indicators: false});
     $('.sidenav').sidenav({edge: 'right'});
-
+    $('.modal').modal();
 
     var owl1 = $("#carousel1");
     owl1.owlCarousel({

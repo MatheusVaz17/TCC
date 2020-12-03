@@ -26,6 +26,19 @@ if (isset($_POST['action'])) {
   $modo = $_POST['modo'];
   $recomendacao = $_POST['recomendacao'];
   $quantidade = $_POST['qtd'];
+  $outro = $_POST['outro'];
+
+  if ($tipo == $outro) {
+    $outro = '';
+  }
+
+  if (!empty($outro)) {
+    $tipo = $outro;
+
+    $sql1 = "INSERT INTO tipo(nome) VALUES ('$tipo')";
+    mysqli_query($connect, $sql1);
+
+  }
 
 	$extensao = strtolower(substr($_FILES['arquivo']['name'], -4));
 	$novo_nome = md5(time()).$extensao;

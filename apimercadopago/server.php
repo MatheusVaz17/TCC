@@ -1,3 +1,16 @@
+<head>
+    <title>Pagamento</title>
+    <meta charset="utf-8">
+    <script src="../jquery-3.4.1.js"></script>
+    <script src="../materialize/js/materialize.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="../materialize/css/materialize.min.css">
+    <script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script>
+    <script type="text/javascript" src="js/index.js" defer></script>
+  </head>
+<body>
+
+
 <?php
 
 require __DIR__  . '/vendor/autoload.php';
@@ -73,20 +86,56 @@ $path = $_SERVER['REQUEST_URI'];
               $dadosQuant = mysqli_fetch_array($resultadoQuant);
             }
 
+            $sqlValor = "SELECT SUM(valor) FROM carrinho WHERE email = '$logado'";
+            $resultadoValor = mysqli_query($connect, $sqlValor);
+            if(mysqli_num_rows($resultadoValor) > 0){
+              $dadosValor = mysqli_fetch_array($resultadoValor);
+            }
+
             $delete = "DELETE FROM carrinho WHERE email = '$logado'";
             $deletar = mysqli_query($connect, $delete);
 
-            $sql2 = "INSERT INTO pagamentos(email, pedido, status, produtos, quantidade) VALUES ('$logado', 'A encaminhar produto', 'Aprovado', '$string', $dadosQuant[0]) ";
+            $sql2 = "INSERT INTO pagamentos(email, pedido, status, produtos, quantidade, valor) VALUES ('$logado', 'A encaminhar produto', 'Aprovado', '$string', $dadosQuant[0], $dadosValor[0]) ";
             $resultado2 = mysqli_query($connect, $sql2);
 
             if ($resultado2) {
-                echo "<script> alert('Pagamento efetuado com sucesso!'); window.location.href='../clientes/farmacia.php'; </script>";
+            ?>
+            <!-- Modal Structure -->
+              <div id="modal1" class="modal">
+                <div class="modal-content">
+                  <h4>Status da compra</h4>
+                  <p>Sua compra foi aprovada!</p>
+                </div>
+                <div class="modal-footer">
+                  <a href="../clientes/farmacia.php" class="modal-close waves-effect waves-green btn-flat green white-text">Ok</a>
+                </div>
+              </div>
+            <?php
             }
             
+        }else{
+        ?>
+        <!-- Modal Structure -->
+              <div id="modal1" class="modal">
+                <div class="modal-content">
+                  <h4>Status da compra</h4>
+                  <p>Sua compra não foi aprovada!</p>
+                </div>
+                <div class="modal-footer">
+                  <a href="../clientes/farmacia.php" class="modal-close waves-effect waves-green btn-flat red white-text">Ok</a>
+                </div>
+              </div>
+        <?php
         }
 
-        echo json_encode($response);
         
     //Serve static resources
-    
+?>
+<script type="text/javascript">
+    $(document).ready(function(){
+      $('.modal').modal();
+      $('#modal1').modal('open');
+ });
+</script>
+</body>
 
