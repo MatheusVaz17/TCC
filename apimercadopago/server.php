@@ -95,7 +95,10 @@ $path = $_SERVER['REQUEST_URI'];
             $delete = "DELETE FROM carrinho WHERE email = '$logado'";
             $deletar = mysqli_query($connect, $delete);
 
-            $sql2 = "INSERT INTO pagamentos(email, pedido, status, produtos, quantidade, valor) VALUES ('$logado', 'A encaminhar produto', 'Aprovado', '$string', $dadosQuant[0], $dadosValor[0]) ";
+            date_default_timezone_set("America/Sao_Paulo");
+            $data = date("d-m-Y H:i");
+
+            $sql2 = "INSERT INTO pagamentos(email, pedido, data, produtos, quantidade, valor) VALUES ('$logado', 'A encaminhar produto', '$data', '$string', $dadosQuant[0], $dadosValor[0]) ";
             $resultado2 = mysqli_query($connect, $sql2);
 
             if ($resultado2) {

@@ -72,6 +72,8 @@ setTimeout(function() {
                         </div>
                       </div>         
                   </li>
+        <li><a href="compras.php"><i class="material-icons left">shopping_basket
+</i>Compras</a></li>
         <li><a href="registrar.php"><i class="material-icons left">add</i>Adicionar produto</a></li>
         <li><a href="../sair.php"><i class="material-icons left">exit_to_app</i>Sair</a></li>
       </ul>

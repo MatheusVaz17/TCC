@@ -396,13 +396,14 @@ if (mysqli_num_rows($resultado1) > 5) {
 <!-- Modal Structure -->
   <div id="modalcompras" class="modal modal-fixed-footer">
     <div class="modal-content">
-      <h4>Suas compras</h4>
+      <h4>Suas compras <i class="material-icons">shopping_cart</i></h4>
+      <h5>Produtos a encaminhar:</h5>
       <?php
-        $sqlpag = "SELECT * FROM pagamentos WHERE email = '$logado'";
+        $sqlpag = "SELECT * FROM pagamentos WHERE email = '$logado' AND pedido ='A encaminhar produto'";
         $resultpag = mysqli_query($connect, $sqlpag);
 
         if (mysqli_num_rows($resultpag) < 1) {
-        echo "Você ainda não possui compras, realize compras no site e você verá elas aqui!";
+        echo "Você não possui compras a encaminhar, realize compras no site e você verá elas aqui!";
         }else{
         ?>
 
@@ -410,10 +411,8 @@ if (mysqli_num_rows($resultado1) > 5) {
         <thead>
           <tr>
               <th>Produtos</th>
-              <th>Pedido</th>
               <th>Quantidade</th>
               <th>Valor</th>
-              <th>Status</th>
           </tr>
         </thead>
 
@@ -424,10 +423,52 @@ if (mysqli_num_rows($resultado1) > 5) {
             ?>
             <tr>
             <td><?php echo $dadospag['produtos']; ?></td>
-            <td><?php echo $dadospag['pedido']; ?></td>
             <td><?php echo $dadospag['quantidade']; ?></td>
             <td><?php echo "R$".$dadospag['valor']; ?></td>
-            <td><?php echo $dadospag['status']; ?></td>
+
+             </tr>
+            <?php
+            } 
+            ?>
+         
+        </tbody>
+
+        </table>
+
+        <?php
+        }
+        ?>
+
+        <h5>Produtos encaminhados:</h5>
+
+        <?php
+        $sqlpag = "SELECT * FROM pagamentos WHERE email = '$logado' AND pedido ='Encaminhado'";
+        $resultpag = mysqli_query($connect, $sqlpag);
+
+        if (mysqli_num_rows($resultpag) < 1) {
+        echo "Você ainda não possui compras encaminhadas";
+        }else{
+        ?>
+
+         <table>
+        <thead>
+          <tr>
+              <th>Produtos</th>
+              <th>Quantidade</th>
+              <th>Valor</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          
+            <?php 
+            while($dadospag = mysqli_fetch_array($resultpag)){  
+            ?>
+            <tr>
+            <td><?php echo $dadospag['produtos']; ?></td>
+            <td><?php echo $dadospag['quantidade']; ?></td>
+            <td><?php echo "R$".$dadospag['valor']; ?></td>
+
              </tr>
             <?php
             } 
