@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 11-Dez-2020 às 08:45
+-- Generation Time: 12-Dez-2020 às 08:05
 -- Versão do servidor: 5.6.17
 -- PHP Version: 7.4.8
 
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `carrinho` (
   `valor` decimal(10,1) NOT NULL,
   `email` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
 -- --------------------------------------------------------
 
@@ -116,15 +116,17 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `cep` varchar(9) COLLATE utf8_unicode_ci NOT NULL,
   `dataNascimento` date NOT NULL,
   `foto` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
+  `numcasa` varchar(5) COLLATE utf8_unicode_ci NOT NULL,
+  `endereco` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
 
 --
 -- Extraindo dados da tabela `usuarios`
 --
 
-INSERT INTO `usuarios` (`id`, `nome`, `sobrenome`, `email`, `cpf`, `celular`, `senha`, `sexo`, `cep`, `dataNascimento`, `foto`) VALUES
-(1, '', '', 'farmacia@farmacia.com', '', '', 'administrador00', '', '', '0000-00-00', '');
+INSERT INTO `usuarios` (`id`, `nome`, `sobrenome`, `email`, `cpf`, `celular`, `senha`, `sexo`, `cep`, `dataNascimento`, `foto`, `numcasa`, `endereco`) VALUES
+(1, '', '', 'farmacia@farmacia.com', '', '', 'administrador00', '', '', '0000-00-00', '', '', '');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

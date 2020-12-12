@@ -100,9 +100,21 @@ $resultFoto = $dados['foto'];
 
 
 <ul id="slide-out" class="sidenav">
+  <?php
+  if ($dados['foto'] != 'empty') {
+  ?>
     <li><div class="user-view">
       <a><img style="width: 100%" src="../fotos/clientes/<?php echo $dados['foto'] ?>"></a>
     </div>
+    <?php
+  }else{
+  ?>
+  <li><div class="user-view">
+      <a><img style="width: 100%" src="../defaultpic.jpg ?>"></a>
+    </div>
+  <?php
+  }
+    ?>
     <li><a><span class="black-text name"><blockquote><b><?php echo $login." ".$dados['sobrenome'];?></b></blockquote></span></a></li>
     <li><a><span class="black-text email"><b><?php echo $logado; ?></span></b></a></li>
     <li><a href="#">Minhas informações <i class="material-icons left">person_pin</i></a></li>
@@ -165,6 +177,7 @@ $sql = "SELECT * FROM produto WHERE tipo = 'Medicamento' AND quantidade > 0";
             <div class="col s12 m12">
           <div class="card medium hoverable z-depth-3">
             <span class="card-title" style="font-size: 16px; font-weight: bold"><blockquote><?php echo $dados['nome']; ?></blockquote></span>
+
             <div class="card-image">
             <img class="responsive-img" src="../fotos/<?php echo $dados['foto'] ?>">
             </div>

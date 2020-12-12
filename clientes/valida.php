@@ -31,11 +31,22 @@ $cep = $_POST['cep'];
 $dataNasc = $_POST['data'];
 
 
+if (isset($_FILES['foto'])) {
 $extensao = strtolower(substr($_FILES['foto']['name'], -4));
+if ($extensao) {
   $novo_nome = md5(time()).$extensao;
   $diretorio = "../fotos/clientes/";
 
   move_uploaded_file($_FILES['foto']['tmp_name'], $diretorio.$novo_nome);
+}else{
+  $novo_nome = 'empty';
+}
+  
+}
+
+$numcasa = $_POST['numcasa'];
+$endereco = $_POST['endereco'];
+
 
 $query_select = "SELECT email,cpf FROM usuarios WHERE email = '$email' or cpf = '$cpf'";
 $select = mysqli_query($connect, $query_select);
@@ -58,7 +69,7 @@ if(mysqli_num_rows($select) > 0){
   <?php
         die;
     }else{
-        $query = "INSERT INTO usuarios (nome,sobrenome,email,cpf,celular,senha,sexo,cep,dataNascimento, foto) VALUES ('$nome','$sobrenome','$email','$cpf','$celular','$senha','$sexo','$cep','$dataNasc', '$novo_nome')";
+        $query = "INSERT INTO usuarios (nome,sobrenome,email,cpf,celular,senha,sexo,cep,dataNascimento, foto, numcasa, endereco) VALUES ('$nome','$sobrenome','$email','$cpf','$celular','$senha','$sexo','$cep','$dataNasc', '$novo_nome', '$numcasa', '$endereco')";
         $insert = mysqli_query($connect,$query);
 
     if($insert){

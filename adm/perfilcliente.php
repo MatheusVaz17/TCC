@@ -78,9 +78,57 @@ $dados = mysqli_fetch_array($resultado);
 
 <div class="row">
     <div class="col s12 m10 push-m1">
-      <div class="card #e3f2fd blue lighten-5 large">
+      <div class="card #e3f2fd blue lighten-5" style="height: 650px">
 
-        
+         <div class="col s12 m6">
+           <?php
+           if ($dados['foto'] != 'empty') {
+              ?>
+              <p>
+                <img width="400" style="border: 2px solid black" height="360" src="../fotos/clientes/<?php echo $dados['foto']; ?>">
+              </p>
+              <?php
+            } else{
+            ?>
+            <p>
+               <img width="400" style="border: 2px solid black" height="360" src="../defaultpic.jpg">
+             </p>
+            <?php
+            }
+           ?>
+
+          <p>
+            <h5>Nome:</h5>
+            <div style="width: 400px; padding: 17px; background-color: white; border: 2px dashed black"><?php echo $dados['nome']." ".$dados['sobrenome']; ?></div>
+          </p>
+          <p>
+            <h5>Sexo:</h5>
+            <div style="width: 400px; padding: 17px; background-color: white; border: 2px dashed black"><?php echo $dados['sexo']; ?></div>
+          </p>
+         </div>
+
+          <div class="col s12 m6">
+            <p>
+            <h5>Email:</h5>
+            <div style="width: 400px; padding: 17px; background-color: white; border: 2px dashed black"><?php echo $dados['email']; ?></div>
+          </p>
+          <p>
+            <h5>CPF:</h5>
+            <div style="width: 400px; padding: 17px; background-color: white; border: 2px dashed black"><?php echo $dados['cpf']; ?></div>
+          </p>
+          <p>
+            <h5>Celular:</h5>
+            <div style="width: 400px; padding: 17px; background-color: white; border: 2px dashed black"><?php echo $dados['celular']; ?></div>
+          </p>
+          <p>
+            <h5>Data de Nascimento:</h5>
+            <div style="width: 400px; padding: 17px; background-color: white; border: 2px dashed black"><?php echo $dados['dataNascimento']; ?></div>
+          </p>
+          <p>
+            <h5>Endereço:</h5>
+            <div style="width: 400px; padding: 17px; background-color: white; border: 2px dashed black"><?php echo "CEP: ".$dados['cep']."<br> Número da casa: ".$dados['numcasa']."<br> Bairro: ".$dados['endereco']; ?></div>
+          </p>
+          </div>
 
         </div>
       </div>

@@ -62,11 +62,9 @@ setTimeout(function() {
   </nav>
   </div>
 
-<div class="row">
-    <div class="col s12 m10 push-m1">
-      <div class="card #e3f2fd blue lighten-5 large">
-        <div class="card-content black-text">
-          <span class="card-title">Compras realizadas:</span>
+<div class="container">
+
+<h5>Compras realizadas:</h5>
 
           <table>
             <thead>
@@ -113,11 +111,8 @@ setTimeout(function() {
             </tbody>
 
           </table>
-
-        </div>
-      </div>
-    </div>
-  </div>
+</div>
+       
 
 
 <style type="text/css">

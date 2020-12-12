@@ -79,16 +79,27 @@
     </div>
 
     <div class="col-md-4 mb-3">
+      <label>Foto</label>
   <div class="input-group mb-3">
   <div class="input-group-prepend">
     <span class="input-group-text" id="inputGroupFileAddon01">Foto</span>
   </div>
   <div class="custom-file">
-    <input type="file" name="foto" required class="custom-file-input" id="foto" aria-describedby="inputGroupFileAddon01">
+    <input type="file" name="foto" class="custom-file-input" id="foto" aria-describedby="inputGroupFileAddon01">
     <label class="custom-file-label" for="foto">Arquivo</label>
   </div>
 </div>
 </div>
+
+<div class="col-md-4 mb-3">
+      <label>Número da casa*</label>
+      <input type="text" class="form-control" maxlength="5" name="numcasa" placeholder="Digite aqui o número da sua casa" required>
+    </div>
+
+    <div class="col-md-4 mb-3">
+      <label>Bairro*</label>
+      <input type="text" class="form-control" maxlength="255" id="cep" name="endereco" placeholder="Digite aqui seu endereço" required>
+    </div>
 
   </div>
 
