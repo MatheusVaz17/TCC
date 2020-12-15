@@ -117,11 +117,92 @@ $resultFoto = $dados['foto'];
     ?>
     <li><a><span class="black-text name"><blockquote><b><?php echo $login." ".$dados['sobrenome'];?></b></blockquote></span></a></li>
     <li><a><span class="black-text email"><b><?php echo $logado; ?></span></b></a></li>
-    <li><a href="#">Minhas informações <i class="material-icons left">person_pin</i></a></li>
+    <li><a href="#" data-target="slide-out1" class="sidenav-trigger show-on-large">Minhas informações <i class="material-icons left">person_pin</i></a></li>
     <li><a class="modal-trigger" href="#modalcompras">Minhas compras <i class="material-icons left">check</i></a></li>
     <li><div class="divider"></div></li>
     <li><a class="subheader">Sessão</a></li>
     <li><a href="../sair.php"><i class="material-icons left">exit_to_app</i>Sair</a></li>
+  </ul>
+
+  <ul id="slide-out1" class="sidenav">
+    <div class="container">
+    <form method="post" action="updateinfo.php" enctype="multipart/form-data">
+      <li>
+        <?php
+        if ($dados['foto'] != 'empty') {
+        ?>
+      <div class="user-view">
+      <a><img style="width: 100%" src="../fotos/clientes/<?php echo $dados['foto'] ?>"></a>
+    </div>
+    <?php
+  }else{
+  ?>
+  <div class="user-view">
+      <a><img style="width: 100%" src="../defaultpic.jpg ?>"></a>
+    </div>
+  <?php
+  }
+    ?>
+  </li>
+
+          <li> <div class="file-field input-field">
+            <div class="btn">
+              <span>Alterar foto</span>
+                <input type="file" name="foto">
+            </div>
+          <div class="file-path-wrapper">
+            <input class="file-path validate" type="text" name="fototext">
+          </div>
+        </div> 
+      </li>
+
+      <li>
+        <div>
+        <p style="font-weight: bold">CEP:</p>
+        <input type="text" id="cep" required placeholder="Digite aqui seu CEP" name="cep" value="<?php echo $dados['cep']; ?>">
+        </div>
+      </li>
+
+      <li>
+        <div>
+        <p style="font-weight: bold">Bairro:</p>
+        <input type="text" required placeholder="Digite aqui seu bairro" name="endereco" value="<?php echo $dados['endereco']; ?>">
+        </div>
+      </li>
+
+      <li>
+        <div>
+        <p style="font-weight: bold">Número da casa:</p>
+        <input type="text" required placeholder="Digite aqui o número da sua casa" name="numcasa" value="<?php echo $dados['numcasa']; ?>">
+        </div>
+      </li>
+
+      <li>
+        <div>
+        <p style="font-weight: bold">Celular:</p>
+        <input type="text" required id="celular" placeholder="Digite aqui seu celular" name="celular" value="<?php echo $dados['celular']; ?>">
+        </div>
+      </li>
+      <input type="hidden" name="id" value="<?php echo $dados['id']; ?>">
+
+      <div align="center">
+        <a href="#modalconfirma" class="btn green white-text modal-trigger">Confirmar</a>
+        <a href="farmacia.php" class="btn red white-text">Cancelar</a>
+      </div>
+
+      <!-- Modal Structure -->
+  <div id="modalconfirma" class="modal">
+    <div class="modal-content">
+      <p>Tem certeza que deseja alterar seus dados?</p>
+    </div>
+    <div class="modal-footer">
+      <button class="modal-close waves-effect waves-green btn-flat green white-text" type="submit">Sim</button>
+      <a href="#" class="modal-close waves-effect waves-green btn-flat red white-text" type="submit">Não</a>
+    </div>
+  </div>
+
+    </form>
+  </div>
   </ul>
 
 <?php
@@ -426,6 +507,7 @@ if (mysqli_num_rows($resultado1) > 5) {
               <th>Produtos</th>
               <th>Quantidade</th>
               <th>Valor</th>
+              <th>Data da compra</th>
           </tr>
         </thead>
 
@@ -438,7 +520,8 @@ if (mysqli_num_rows($resultado1) > 5) {
             <td><?php echo $dadospag['produtos']; ?></td>
             <td><?php echo $dadospag['quantidade']; ?></td>
             <td><?php echo "R$".$dadospag['valor']; ?></td>
-
+            <td><?php echo $dadospag['data']; ?></td>
+            <td><button class="btn" disabled><i class="material-icons">local_taxi</i></button></td>
              </tr>
             <?php
             } 
@@ -469,6 +552,7 @@ if (mysqli_num_rows($resultado1) > 5) {
               <th>Produtos</th>
               <th>Quantidade</th>
               <th>Valor</th>
+              <th>Data da compra</th>
           </tr>
         </thead>
 
@@ -481,7 +565,8 @@ if (mysqli_num_rows($resultado1) > 5) {
             <td><?php echo $dadospag['produtos']; ?></td>
             <td><?php echo $dadospag['quantidade']; ?></td>
             <td><?php echo "R$".$dadospag['valor']; ?></td>
-
+            <td><?php echo $dadospag['data']; ?></td>
+             <td><button class="btn" disabled><i class="material-icons">beenhere</i></button>
              </tr>
             <?php
             } 
@@ -784,6 +869,8 @@ $("#chat").click(function(){
     $("#ulchat").hide();
 });
 
+  $("#celular").mask("(00) 00000-0000");
+  $("#cep").mask("00000-000");
 
 });
 

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Farmácia</title>
-	<meta charset="utf-8">
-	<script type= "text/javascript" src= "../jquery-3.4.1.js"></script>
+  <title>Farmácia</title>
+  <meta charset="utf-8">
+  <script type= "text/javascript" src= "../jquery-3.4.1.js"></script>
 <script type= "text/javascript" src= "../jquery.mask.min.js"></script>
 <link rel="icon" type="image/jpg" href="icon.jpg">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="../owl.theme.default.min.css">
 <link rel="stylesheet" type="text/css" href="../estilo_botoes/estilo.css">
 <link rel="icon" href="../fav.png" />
-<script type="text/javascript" src="search.js"></script>
+<script type="text/javascript" src="consulta.js"></script>
 </head>
 <body>
 <?php
@@ -63,26 +63,41 @@ setTimeout(function() {
   </div>
 
 <div class="container">
+  <form method="POST" action=''>
+
+    <div class="row" id="topbarsearch">
+       <div class="input-field col m4 s12 black-text">
+                            
+         <input type="text" placeholder="Pesquisar por email" id="pesquisa" name="search" class="autocomplete black-text" size="50" >
+          </div>
+          <table class="resultado">
+          </table>
+    </div>
+
+  </form>
+</div>  
+
+<div class="container">
 
 <h5>Compras realizadas:</h5>
 
-          <table>
+          <table class="responsive-table">
             <thead>
               <tr>
                 <th>Cliente:</th>
                 <th>Produtos:</th>
                 <th>Quantidade:</th>
                 <th>Valor:</th>
-                <th>Data:</th>
+                <th>Data da compra:</th>
               </tr>
             </thead>
 
             <tbody>
                 <?php
-                $sql = "SELECT * FROM pagamentos";
+                $sql = "SELECT * FROM pagamentos WHERE pedido = 'A encaminhar produto'";
                 $resultado = mysqli_query($connect, $sql);
-                if (mysqli_num_rows($resultado) > 0) {
-                while ($dados = mysqli_fetch_array($resultado)) {
+                if (mysqli_num_rows($resultado) > 0):
+                while ($dados = mysqli_fetch_array($resultado)):
                 ?>
                 <tr>
                   <td><?php echo $dados['email']; ?></td>
@@ -90,12 +105,25 @@ setTimeout(function() {
                   <td><?php echo $dados['quantidade']; ?></td>
                   <td>R$<?php echo $dados['valor']; ?></td>
                   <td><?php echo $dados['data']; ?></td>
-                  <td><a class="btn green white-text" href="confirmacompra.php?id=<?php echo $dados['id']; ?>"><i class="material-icons">check</i></a>
+                  <td><a class="btn green white-text buttonid" data-id="<?php echo $dados[0]; ?>"><i class="material-icons">check</i></a>
                   <a class="btn blue white-text" href="perfilcliente.php?email=<?php echo $dados['email']; ?>"><i class="material-icons">account_circle</i></a></td>
+
+                   <!-- Modal Structure -->
+                <div id="modal1" class="modal">
+                  <div class="modal-content">
+                    <h4>Confirmar encaminhamento</h4>
+                    <p>Você deseja confirmar o encaminhamento desse produto?</p>
+                  </div>
+                  <div class="modal-footer">
+                    <a href="#" type="button" class="modal-close waves-effect waves-green btn-flat green white-text delete-yes">Sim</a>
+                    <a href="#!" class="modal-close waves-effect waves-green btn-flat red white-text">Não</a>
+                  </div>
+                </div>
+
                 </tr>
                 <?php
-                }
-              }else{
+                endwhile;
+              else:
                 ?>
                 <tr>
                   <td>-</td>
@@ -106,13 +134,65 @@ setTimeout(function() {
                   <td>--</td>
                 </tr>
                 <?php
-              }
+              endif;
               ?>
             </tbody>
 
           </table>
 </div>
-       
+
+
+<div class="container">
+
+<h5>Compras Encaminhadas:</h5>
+
+          <table class="responsive-table">
+            <thead>
+              <tr>
+                <th>Cliente:</th>
+                <th>Produtos:</th>
+                <th>Quantidade:</th>
+                <th>Valor:</th>
+                <th>Data da compra:</th>
+              </tr>
+            </thead>
+
+            <tbody>
+                <?php
+                $sql = "SELECT * FROM pagamentos WHERE pedido ='Encaminhado'";
+                $resultado = mysqli_query($connect, $sql);
+                if (mysqli_num_rows($resultado) > 0):
+                while ($dados = mysqli_fetch_array($resultado)):
+                ?>
+                <tr>
+                  <td><?php echo $dados['email']; ?></td>
+                  <td><?php echo $dados['produtos']; ?></td>
+                  <td><?php echo $dados['quantidade']; ?></td>
+                  <td>R$<?php echo $dados['valor']; ?></td>
+                  <td><?php echo $dados['data']; ?></td>
+                  <td><button disabled class="btn green white-text"><i class="material-icons">check</i></button>
+                  <a class="btn blue white-text" href="perfilcliente.php?email=<?php echo $dados['email']; ?>"><i class="material-icons">account_circle</i></a></td>
+
+                </tr>
+                <?php
+                endwhile;
+              else:
+                ?>
+                <tr>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>-</td>
+                </tr>
+                <?php
+              endif;
+              ?>
+            </tbody>
+
+          </table>
+</div>
 
 
 <style type="text/css">
@@ -145,6 +225,17 @@ width: 95%;
 }
 }
 </style>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.modal').modal();
+    $('.buttonid').on('click', function(event){
+      var id = $(this).data('id');
+      $('a.delete-yes').attr('href', 'confirmacompra.php?id=' +id);
+      $('#modal1').modal('open');
+    });
+  });
+</script>
 
 </body>
 </html>

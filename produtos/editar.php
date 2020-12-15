@@ -93,8 +93,8 @@ $resultado = mysqli_query($connect, $sql);
       </div>
     </p>
     
-    <p><b>Nome: *</b><br> <input value="<?php echo $dados['nome'];  ?>"  type="text" name="nome" style="width: 40%" required></p>
-    <p><b>Valor: *</b><br> <input value="<?php echo $dados['valor'];  ?>" type="text" name="valor" style="width: 40%" required min="1"></p>
+    <p><b>Nome: *</b><br> <input value="<?php echo $dados['nome'];  ?>"  type="text" name="nome"  required></p>
+    <p><b>Valor: *</b><br> <input value="<?php echo $dados['valor'];  ?>" type="text" name="valor"  required min="1"></p>
     <p>
       <b>Disponibilidade: *</b>
       <br>
@@ -114,10 +114,10 @@ $resultado = mysqli_query($connect, $sql);
         <input required type="file"  name="arquivo">
       </div>
       <div class="file-path-wrapper">
-        <input class="file-path validate"  type="text" style="width: 28%">
+        <input class="file-path validate"  type="text" >
       </div>
     </div>
-    <p id="qtd"><b>Quantidade: *</b><br> <input type="number" name="qtd" value="<?php echo $dados['quantidade'];  ?>" style="width: 40%" required min="1"></p>
+    <p id="qtd"><b>Quantidade: *</b><br> <input type="number" name="qtd" value="<?php echo $dados['quantidade'];  ?>"  required min="1"></p>
 
   </div>
   
