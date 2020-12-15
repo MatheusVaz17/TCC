@@ -23,7 +23,7 @@
 <?php
 $login = $_COOKIE['login'];
 session_start();
-if((!isset ($_SESSION['email']) == true) and (!isset ($_SESSION['senha']) == true))
+if((!isset ($_SESSION['id']) == true))
 {
   unset($_SESSION['email']);
   unset($_SESSION['senha']);
@@ -32,25 +32,13 @@ if((!isset ($_SESSION['email']) == true) and (!isset ($_SESSION['senha']) == tru
         .href='entrar.php';</script>";
 }else {
 include "../bd/conexao.php";
-$logado = $_SESSION['email'];
 
-if($_SESSION['check'] == false) {
-?>
+$id = $_SESSION['id'];
 
-<script type="text/javascript">
-
-setTimeout(function() {
-    window.location.href = "../sair.php";
-}, 1800000);
-
-</script>
-<?php
-}
-
-$sql = "SELECT * FROM carrinho WHERE email = '$logado'";
+$sql = "SELECT * FROM carrinho WHERE idusuario = '$id'";
 $resultado = mysqli_query($connect, $sql);
 
-$sql = "SELECT * FROM usuarios WHERE email = '$logado'";
+$sql = "SELECT * FROM usuarios WHERE id = '$id'";
 $foto = mysqli_query($connect, $sql);
 if(mysqli_num_rows($foto) > 0){ 
 while ($dados = mysqli_fetch_array($foto)) { 
@@ -116,7 +104,7 @@ $resultFoto = $dados['foto'];
   }
     ?>
     <li><a><span class="black-text name"><blockquote><b><?php echo $login." ".$dados['sobrenome'];?></b></blockquote></span></a></li>
-    <li><a><span class="black-text email"><b><?php echo $logado; ?></span></b></a></li>
+    <li><a><span class="black-text email"><b><?php echo $dados['email']; ?></span></b></a></li>
     <li><a href="#" data-target="slide-out1" class="sidenav-trigger show-on-large">Minhas informações <i class="material-icons left">person_pin</i></a></li>
     <li><a class="modal-trigger" href="#modalcompras">Minhas compras <i class="material-icons left">check</i></a></li>
     <li><div class="divider"></div></li>
@@ -249,7 +237,7 @@ $resultFoto = $dados['foto'];
     <div class="owl-stage-outer">
       <div class="owl-stage">
 <?php
-$sql = "SELECT * FROM produto WHERE tipo = 'Medicamento' AND quantidade > 0";
+$sql = "SELECT * FROM produto WHERE idtipo = 1 AND quantidade > 0";
         $resultado = mysqli_query($connect, $sql);
         if(mysqli_num_rows($resultado) > 0){ 
         while ($dados = mysqli_fetch_array($resultado)){
@@ -323,7 +311,7 @@ if (mysqli_num_rows($resultado) > 5) {
     <div class="owl-stage-outer">
       <div class="owl-stage">
 <?php
-$sql1 = "SELECT * FROM produto WHERE tipo = 'Higiene' AND quantidade > 0";
+$sql1 = "SELECT * FROM produto WHERE idtipo = '2' AND quantidade > 0";
         $resultado1 = mysqli_query($connect, $sql1);
         if(mysqli_num_rows($resultado1) > 0){
         while ($dados = mysqli_fetch_array($resultado1)){
@@ -382,7 +370,7 @@ if (mysqli_num_rows($resultado1) > 5) {
     <div class="owl-stage-outer">
       <div class="owl-stage">
 <?php
-$sql1 = "SELECT * FROM produto WHERE tipo = 'Dermocosmeticos' AND quantidade > 0";
+$sql1 = "SELECT * FROM produto WHERE idtipo = '3' AND quantidade > 0";
         $resultado1 = mysqli_query($connect, $sql1);
         if(mysqli_num_rows($resultado1) > 0){
         while ($dados = mysqli_fetch_array($resultado1)){
@@ -441,7 +429,7 @@ if (mysqli_num_rows($resultado1) > 5) {
     <div class="owl-stage-outer">
       <div class="owl-stage">
 <?php
-$sql1 = "SELECT * FROM produto WHERE tipo = 'Suplementos' AND disponibilidade ='Disponivel'";
+$sql1 = "SELECT * FROM produto WHERE idtipo = '4' AND disponibilidade ='Disponivel'";
         $resultado1 = mysqli_query($connect, $sql1);
         if(mysqli_num_rows($resultado1) > 0){
         while ($dados = mysqli_fetch_array($resultado1)){
@@ -493,7 +481,7 @@ if (mysqli_num_rows($resultado1) > 5) {
       <h4>Suas compras <i class="material-icons">shopping_cart</i></h4>
       <h5>Produtos a encaminhar:</h5>
       <?php
-        $sqlpag = "SELECT * FROM pagamentos WHERE email = '$logado' AND pedido ='A encaminhar produto'";
+        $sqlpag = "SELECT * FROM pagamentos WHERE idusuario = '$id' AND pedido ='A encaminhar produto'";
         $resultpag = mysqli_query($connect, $sqlpag);
 
         if (mysqli_num_rows($resultpag) < 1) {
@@ -538,7 +526,7 @@ if (mysqli_num_rows($resultado1) > 5) {
         <h5>Produtos encaminhados:</h5>
 
         <?php
-        $sqlpag = "SELECT * FROM pagamentos WHERE email = '$logado' AND pedido ='Encaminhado'";
+        $sqlpag = "SELECT * FROM pagamentos WHERE idusuario = '$id' AND pedido ='Encaminhado'";
         $resultpag = mysqli_query($connect, $sqlpag);
 
         if (mysqli_num_rows($resultpag) < 1) {

@@ -50,7 +50,14 @@ if (isset($_POST['action'])) {
 
 	move_uploaded_file($_FILES['arquivo']['tmp_name'], $diretorio.$novo_nome);
 
-	$sql = "INSERT INTO produto (tipo, nome, valor, disponibilidade, foto, informacao, indicacao, beneficio, modo, recomendacao, quantidade) VALUES ('$tipo','$nome', $valor, '$disponibilidade', '$novo_nome', '$informacao', '$indicacao', '$beneficio', '$modo', '$recomendacao', '$quantidade')";
+$sql2 = "SELECT id FROM tipo WHERE nome = '$tipo'";
+$resultado2 = mysqli_query($connect, $sql2);
+$dados = mysqli_fetch_array($resultado2);
+
+$idtipo = $dados[0];
+
+
+	$sql = "INSERT INTO produto (idtipo, nome, valor, disponibilidade, foto, informacao, indicacao, beneficio, modo, recomendacao, quantidade) VALUES ('$idtipo','$nome', $valor, '$disponibilidade', '$novo_nome', '$informacao', '$indicacao', '$beneficio', '$modo', '$recomendacao', '$quantidade')";
 
     if (mysqli_query($connect,$sql)){
     ?>

@@ -21,7 +21,7 @@
 <?php
 
 session_start();
-if((!isset ($_SESSION['email']) == 'farmacia@farmacia.com') and (!isset ($_SESSION['senha']) == 'administrador00'))
+if((!isset ($_SESSION['id']) == true) or $_SESSION['id'] != 1)
 {
   unset($_SESSION['email']);
   unset($_SESSION['senha']);
@@ -31,20 +31,7 @@ if((!isset ($_SESSION['email']) == 'farmacia@farmacia.com') and (!isset ($_SESSI
   }
 
 include "../bd/conexao.php";
-$logado = $_SESSION['email'];
 
-if($_SESSION['check'] == false) {
-?>
-
-<script type="text/javascript">
-
-setTimeout(function() {
-    window.location.href = "../sair.php";
-}, 1800000);
-
-</script>
-<?php
-}
 
 ?>
 <!-- Navbar -->
@@ -116,7 +103,7 @@ setTimeout(function() {
     <div class="owl-stage-outer">
       <div class="owl-stage">
 <?php
-$sql = "SELECT * FROM produto WHERE tipo = 'Medicamento'";
+$sql = "SELECT * FROM produto WHERE idtipo = 1";
         $resultado = mysqli_query($connect, $sql);
         if(mysqli_num_rows($resultado) > 0){ 
         while ($dados = mysqli_fetch_array($resultado)){
@@ -169,7 +156,7 @@ if (mysqli_num_rows($resultado) > 5) {
     <div class="owl-stage-outer">
       <div class="owl-stage">
 <?php
-$sql1 = "SELECT * FROM produto WHERE tipo = 'Higiene'";
+$sql1 = "SELECT * FROM produto WHERE idtipo = 2";
         $resultado1 = mysqli_query($connect, $sql1);
         if(mysqli_num_rows($resultado1) > 0){
         while ($dados = mysqli_fetch_array($resultado1)){
@@ -224,7 +211,7 @@ if (mysqli_num_rows($resultado1) > 5) {
     <div class="owl-stage-outer">
       <div class="owl-stage">
 <?php
-$sql1 = "SELECT * FROM produto WHERE tipo = 'Dermocosmeticos'";
+$sql1 = "SELECT * FROM produto WHERE idtipo = 3";
         $resultado1 = mysqli_query($connect, $sql1);
         if(mysqli_num_rows($resultado1) > 0){
         while ($dados = mysqli_fetch_array($resultado1)){
@@ -278,7 +265,7 @@ if (mysqli_num_rows($resultado1) > 5) {
     <div class="owl-stage-outer">
       <div class="owl-stage">
 <?php
-$sql1 = "SELECT * FROM produto WHERE tipo = 'Suplementos'";
+$sql1 = "SELECT * FROM produto WHERE idtipo = 4";
         $resultado1 = mysqli_query($connect, $sql1);
         if(mysqli_num_rows($resultado1) > 0){
         while ($dados = mysqli_fetch_array($resultado1)){

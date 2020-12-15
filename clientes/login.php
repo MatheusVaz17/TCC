@@ -21,9 +21,9 @@ if (isset($_POST['sub'])) {
         $array = mysqli_fetch_array($verifica);
 
             $nome = $array['nome'];
+            $id = $array['id'];
             setcookie('login',$nome);
-            $_SESSION['email'] = $email;
-            $_SESSION['senha'] = $senha;
+            $_SESSION['id'] = $id;
             $_SESSION['check'] = $check;
 
             if ($array['email'] == 'farmacia@farmacia.com' and $array['senha'] == 'administrador00') {
@@ -33,8 +33,7 @@ if (isset($_POST['sub'])) {
             }
         
       }else{
-        unset ($_SESSION['email']);
-        unset ($_SESSION['senha']);
+        unset ($_SESSION['id']);
         unset ($_SESSION['cpf']);
         unset ($_SESSION['check']);
       	echo"<script> alert('Email e/ou senha incorretos');window.location

@@ -15,7 +15,7 @@
 <body>
 <?php
 session_start();
-if((!isset ($_SESSION['email']) == 'farmacia@farmacia.com') and (!isset ($_SESSION['senha']) == 'administrador00'))
+if((!isset ($_SESSION['id']) == true) or $_SESSION['id'] != 1)
 {
   unset($_SESSION['email']);
   unset($_SESSION['senha']);
@@ -27,7 +27,7 @@ include "../bd/conexao.php";
 
 $id = $_GET['id'];
 
-$sql1 = "SELECT nome FROM tipo";
+$sql1 = "SELECT * FROM tipo";
 $resultado1 = mysqli_query($connect, $sql1);
 
 $sql = "SELECT * FROM produto WHERE id = '$id'";
@@ -71,7 +71,7 @@ $resultado = mysqli_query($connect, $sql);
         <?php
           while ($dados1 = mysqli_fetch_array($resultado1)) {
           ?>
-          <option value="<?php echo $dados1['nome']; ?>"><?php echo $dados1['nome']; ?></option>
+          <option <?php if($dados1['id'] == $dados['idtipo']){ echo "selected"; } ?> value="<?php echo $dados1['id']; ?>"><?php echo $dados1['nome']; ?></option>
           <?php
           }
         ?>
@@ -82,7 +82,7 @@ $resultado = mysqli_query($connect, $sql);
 
     <p>
        <label>
-        <input id="check" onclick="esconde()" type="checkbox" />
+        <input id="check" onclick="esconde()" name="check" type="checkbox" />
         <span style="color: black">Outro? Qual?</span>
       </label>
     </p>

@@ -28,18 +28,15 @@ if (isset($_POST['action'])) {
   $recomendacao = $_POST['recomendacao'];
   $quantidade = $_POST['qtd'];
   $outro = $_POST['outro'];
+  $check = $_POST['check'];
 
-  if ($tipo == $outro) {
-    $outro = '';
-  }
-
-  if (!empty($outro)) {
-    $tipo = $outro;
-
-    $sql1 = "INSERT INTO tipo(nome) VALUES ('$tipo')";
+  
+  if ($check == 'on') {
+    $sql1 = "INSERT INTO tipo(nome) VALUES ('$outro')";
     mysqli_query($connect, $sql1);
-
+    $tipo = $outro;
   }
+
 
 
 	$extensao = strtolower(substr($_FILES['arquivo']['name'], -4));
@@ -52,7 +49,14 @@ if (isset($_POST['action'])) {
     $quantidade = 0;
   }
 
-	$sql = "UPDATE produto SET tipo='$tipo', nome='$nome', valor=$valor, disponibilidade='$disponibilidade', foto='$novo_nome', informacao = '$informacao', indicacao = '$indicacao', beneficio= '$beneficio', modo= '$modo', recomendacao='$recomendacao', quantidade='$quantidade' WHERE id = '$id'";
+
+$sql2 = "SELECT id FROM tipo WHERE nome = '$tipo'";
+$resultado2 = mysqli_query($connect, $sql2);
+$dados = mysqli_fetch_array($resultado2);
+
+$idtipo = $dados[0];
+
+	$sql = "UPDATE produto SET idtipo='$idtipo', nome='$nome', valor=$valor, disponibilidade='$disponibilidade', foto='$novo_nome', informacao = '$informacao', indicacao = '$indicacao', beneficio= '$beneficio', modo= '$modo', recomendacao='$recomendacao', quantidade='$quantidade' WHERE id = '$id'";
 
     if (mysqli_query($connect,$sql)){
     ?>
