@@ -24,7 +24,9 @@
     <div class="nav-wrapper #29b6f6 light-blue lighten-1">
       <div class="container">
       <a class="brand-logo" href="farmacia.php"><img src="../logo.png" align="center"></a>
-      
+      <ul class="right hide-on-med-and-down">
+        <li><a href="farmacia.php">Voltar</a></li>
+      </ul>
     </div>
   </div>
   </nav>

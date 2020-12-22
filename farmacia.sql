@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 15-Dez-2020 às 21:50
+-- Generation Time: 22-Dez-2020 às 10:02
 -- Versão do servidor: 5.6.17
 -- PHP Version: 7.4.8
 
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `carrinho` (
   `idusuario` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_usuario` (`idusuario`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=58 ;
 
 -- --------------------------------------------------------
 
@@ -46,11 +46,9 @@ CREATE TABLE IF NOT EXISTS `pagamentos` (
   `pedido` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `data` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `produtos` text COLLATE utf8_unicode_ci NOT NULL,
-  `quantidade` int(10) NOT NULL,
-  `valor` decimal(10,0) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_usuario_pagamento` (`idusuario`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 -- --------------------------------------------------------
 
@@ -73,7 +71,7 @@ CREATE TABLE IF NOT EXISTS `produto` (
   `quantidade` int(200) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_tipo` (`idtipo`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=9 ;
 
 -- --------------------------------------------------------
 
@@ -82,14 +80,14 @@ CREATE TABLE IF NOT EXISTS `produto` (
 --
 
 CREATE TABLE IF NOT EXISTS `produto_carrinho` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `idcarrinho` int(11) NOT NULL,
   `idproduto` int(11) NOT NULL,
   `quantidade` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_carrinho_has_produto_carrinho1` (`idcarrinho`),
   KEY `fk_carrinho_has_produto_produto1` (`idproduto`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=42 ;
 
 -- --------------------------------------------------------
 
@@ -98,15 +96,13 @@ CREATE TABLE IF NOT EXISTS `produto_carrinho` (
 --
 
 CREATE TABLE IF NOT EXISTS `produto_pedido` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `idpagamento` int(11) NOT NULL,
-  `idproduto` int(11) NOT NULL,
   `valor` decimal(10,2) DEFAULT NULL,
   `quantidade` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_pedido_has_produto_pedido1` (`idpagamento`),
-  KEY `fk_pedido_has_produto_produto1` (`idproduto`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  KEY `fk_pedido_has_produto_pedido1` (`idpagamento`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
 -- --------------------------------------------------------
 
@@ -118,7 +114,7 @@ CREATE TABLE IF NOT EXISTS `tipo` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=9 ;
 
 --
 -- Extraindo dados da tabela `tipo`
@@ -130,8 +126,7 @@ INSERT INTO `tipo` (`id`, `nome`) VALUES
 (3, 'Dermocosmeticos'),
 (4, 'Suplementos'),
 (5, 'Alimentos'),
-(6, 'outro'),
-(7, 'teste');
+(8, 'Higiene Bucal');
 
 -- --------------------------------------------------------
 
@@ -154,7 +149,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `numcasa` varchar(5) COLLATE utf8_unicode_ci NOT NULL,
   `endereco` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
 
 --
 -- Extraindo dados da tabela `usuarios`
@@ -196,8 +191,7 @@ ALTER TABLE `produto_carrinho`
 -- Limitadores para a tabela `produto_pedido`
 --
 ALTER TABLE `produto_pedido`
-  ADD CONSTRAINT `fk_pedido_has_produto_pedido1` FOREIGN KEY (`idpagamento`) REFERENCES `pagamentos` (`id`),
-  ADD CONSTRAINT `fk_pedido_has_produto_produto1` FOREIGN KEY (`idproduto`) REFERENCES `produto` (`id`);
+  ADD CONSTRAINT `fk_pedido_has_produto_pedido1` FOREIGN KEY (`idpagamento`) REFERENCES `pagamentos` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

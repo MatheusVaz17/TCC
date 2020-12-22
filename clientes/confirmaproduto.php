@@ -14,7 +14,7 @@
 <?php
 session_start();
 include "../bd/conexao.php";
-$logado = $_SESSION['email'];
+$idUsuario = $_SESSION['id'];
 $id = $_POST['id'];
 $quant = $_POST['quantidade'];
 $sql = "SELECT * FROM produto WHERE id = '$id'";
@@ -42,11 +42,21 @@ $sql3 = "UPDATE produto SET quantidade='$quantidadeFinal' WHERE id = '$id'";
 mysqli_query($connect,$sql3);
 
 
-$sql1 = "INSERT INTO carrinho (`nome`, preco, quantidade, valor, `email`) VALUES ('$nome', $preco, $quant, $valorTotal, '$logado')";
+$sql1 = "INSERT INTO carrinho (valor, idusuario) VALUES ($valorTotal, $idUsuario)";
 
 $resultado1 = mysqli_query($connect, $sql1);
 
-if ($resultado1) {
+$sql5 = "SELECT id from carrinho where idusuario = $idUsuario ORDER BY id DESC limit 1";
+$resultado5 = mysqli_query($connect, $sql5);
+$dados5 = mysqli_fetch_array($resultado5);
+
+$idcarrinho = $dados5['id'];
+
+$sql4 = "INSERT INTO produto_carrinho (idcarrinho, idproduto, quantidade) VALUES ($idcarrinho, $id, $quant)";
+
+$resultado4 = mysqli_query($connect, $sql4);
+
+if ($resultado1 and $resultado4) {
 ?>
 <!-- Modal Structure -->
   <div id="modal1" class="modal">
@@ -68,7 +78,7 @@ if ($resultado1) {
       <p>Erro ao adicionar produto!</p>
     </div>
     <div class="modal-footer" style="color: white">
-      	<a href="farmacia.php" class="modal-close waves-effect waves-green btn green">Confirmar</a>
+      	<a href="farmacia.php" class="modal-close waves-effect waves-green btn red">Confirmar</a>
     </div>
   </div>
 <?php

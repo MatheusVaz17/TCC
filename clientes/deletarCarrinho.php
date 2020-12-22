@@ -5,6 +5,7 @@
 	<meta charset="utf-8">
 	<script type= "text/javascript" src= "../jquery-3.4.1.js"></script>
 	<script type="text/javascript" src="../materialize/js/materialize.min.js"></script>
+  <script type="text/javascript" src="refresh.js"></script>
 	<link type="text/css" rel="stylesheet" href="../materialize/css/materialize.min.css"  media="screen,projection"/>
 </head>
 <body>
@@ -40,13 +41,12 @@ die;
 }
 
 foreach ($_POST['deletar'] as $checkbox) {
-$sql1 = "SELECT quantidade, nome FROM carrinho WHERE id = '$checkbox'";
+$sql1 = "SELECT produto_carrinho.quantidade, produto.nome, carrinho.id FROM produto_carrinho, produto, carrinho WHERE produto_carrinho.id = '$checkbox' and produto.id = produto_carrinho.idproduto";
 $resultado = mysqli_query($connect, $sql1);
 while($dados = mysqli_fetch_array($resultado)){ 
-
-$quantidade = $dados['quantidade'];
-$nome = $dados['nome'];
-
+$quantidade = $dados[0];
+$nome = $dados[1];
+$idcarrinho = $dados[2];
 }
 
 
@@ -64,7 +64,7 @@ $quantidadeTotal = $quantidade + $quantidade2;
 $sql3 = "UPDATE produto SET quantidade = $quantidadeTotal WHERE nome = '$nome'";
 $resultado3 = mysqli_query($connect, $sql3);
 
-$sql4 = "DELETE FROM carrinho WHERE id = '$checkbox'";
+$sql4 = "DELETE produto_carrinho, carrinho FROM carrinho INNER JOIN produto_carrinho ON produto_carrinho.idcarrinho = carrinho.id and produto_carrinho.id = '$checkbox'";
 $resultado4 = mysqli_query($connect, $sql4);
 
 

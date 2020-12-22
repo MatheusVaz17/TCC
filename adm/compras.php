@@ -21,30 +21,15 @@
 <?php
 
 session_start();
-if((!isset ($_SESSION['email']) == 'farmacia@farmacia.com') and (!isset ($_SESSION['senha']) == 'administrador00'))
+if((!isset ($_SESSION['id']) == '1'))
 {
-  unset($_SESSION['email']);
-  unset($_SESSION['senha']);
-  unset($_SESSION['check']);
+  unset($_SESSION['id']);
   echo"<script> alert('Você precisa estar logado como administrador para acessar essa página!');window.location
         .href='../clientes/entrar.php';</script>";
   }
 
 include "../bd/conexao.php";
-$logado = $_SESSION['email'];
-
-if($_SESSION['check'] == false) {
-?>
-
-<script type="text/javascript">
-
-setTimeout(function() {
-    window.location.href = "../sair.php";
-}, 1800000);
-
-</script>
-<?php
-}
+$idUsuario = $_SESSION['id'];
 
 ?>
 <!-- Navbar -->

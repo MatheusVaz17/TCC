@@ -18,9 +18,7 @@
 session_start();
 if((!isset ($_SESSION['id']) == true) or $_SESSION['id'] != 1)
 {
-  unset($_SESSION['email']);
-  unset($_SESSION['senha']);
-  unset($_SESSION['check']);
+  unset($_SESSION['id']);
   echo"<script> alert('Você precisa estar logado como administrador para acessar essa página!');window.location
         .href='../clientes/entrar.php';</script>";
 

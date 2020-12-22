@@ -14,7 +14,7 @@
     <?php
     
     session_start();
-    $logado = $_SESSION['email'];
+    $logado = $_SESSION['id'];
 
     if (!isset($logado)) {
       echo "<script> alert('Você precisa estar logado para acessar essa página'); window.location.href='../../index.php'; </script>";

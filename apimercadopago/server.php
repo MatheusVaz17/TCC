@@ -21,9 +21,9 @@ MercadoPago\SDK::setAccessToken("TEST-7768088922376725-080320-10c0a472c87d5c5761
 
 session_start();
 include "../bd/conexao.php";
-$logado = $_SESSION['email'];
+$idUsuario = $_SESSION['id'];
 
-if (!isset($logado)) {
+if (!isset($idUsuario)) {
       echo "<script> alert('Você precisa estar logado para acessar essa página'); window.location.href='../index.php'; </script>";
     }
 
@@ -62,7 +62,7 @@ $path = $_SERVER['REQUEST_URI'];
 
         if ($payment->status == 'approved') {
 
-            $sql = "SELECT nome FROM carrinho WHERE email = '$logado'";
+            $sql = "SELECT produto.nome FROM produto, carrinho, produto_carrinho WHERE carrinho.id = produto_carrinho.idcarrinho AND carrinho.idusuario = '$idUsuario' AND produto_carrinho.idproduto = produto.id";
             $result = mysqli_query($connect, $sql);
 
             $i = 0;
@@ -71,7 +71,7 @@ $path = $_SERVER['REQUEST_URI'];
 
             while($i < $num){
             while($dados = mysqli_fetch_array($result)){
-                $array[$i] = $dados['nome'];
+                $array[$i] = $dados[0];
                 $i++;
             }
             }
@@ -80,28 +80,40 @@ $path = $_SERVER['REQUEST_URI'];
 
             $string = implode(", ", $array);
 
-            $sqlQuant = "SELECT SUM(quantidade) FROM carrinho WHERE email = '$logado'";
+            $sqlQuant = "SELECT SUM(produto_carrinho.quantidade)FROM produto_carrinho, carrinho WHERE produto_carrinho.idcarrinho = carrinho.id and carrinho.idusuario = $idUsuario";
             $resultadoQuant = mysqli_query($connect, $sqlQuant);
             if(mysqli_num_rows($resultadoQuant) > 0){
               $dadosQuant = mysqli_fetch_array($resultadoQuant);
             }
 
-            $sqlValor = "SELECT SUM(valor) FROM carrinho WHERE email = '$logado'";
+            $sqlValor = "SELECT SUM(valor) FROM carrinho WHERE idusuario = $idUsuario";
             $resultadoValor = mysqli_query($connect, $sqlValor);
             if(mysqli_num_rows($resultadoValor) > 0){
               $dadosValor = mysqli_fetch_array($resultadoValor);
             }
 
-            $delete = "DELETE FROM carrinho WHERE email = '$logado'";
+            $deletetrue = "SET foreign_key_checks = 0";
+            mysqli_query($connect, $deletetrue);
+
+            $delete = "DELETE produto_carrinho, carrinho FROM carrinho INNER JOIN produto_carrinho ON produto_carrinho.idcarrinho = carrinho.id and carrinho.idusuario = $idUsuario";
             $deletar = mysqli_query($connect, $delete);
 
             date_default_timezone_set("America/Sao_Paulo");
-            $data = date("d-m-Y H:i");
+            $data = date("d/m/Y H:i");
 
-            $sql2 = "INSERT INTO pagamentos(email, pedido, data, produtos, quantidade, valor) VALUES ('$logado', 'A encaminhar produto', '$data', '$string', $dadosQuant[0], $dadosValor[0]) ";
+            $sql2 = "INSERT INTO pagamentos(idusuario, pedido, data, produtos) VALUES ($idUsuario, 'A encaminhar produto', '$data', '$string')";
             $resultado2 = mysqli_query($connect, $sql2);
 
-            if ($resultado2) {
+            $sql5 = "SELECT id from pagamentos where idusuario = $idUsuario ORDER BY id DESC limit 1";
+            $resultado5 = mysqli_query($connect, $sql5);
+            $dados5 = mysqli_fetch_array($resultado5);
+            $idpagamento = $dados5[0];
+
+
+            $sql4 = "INSERT INTO produto_pedido(idpagamento, valor, quantidade) VALUES ($idpagamento, $dadosValor[0], $dadosQuant[0])";
+            $resultado4 = mysqli_query($connect, $sql4);
+
+            if ($resultado2 and $resultado4) {
             ?>
             <!-- Modal Structure -->
               <div id="modal1" class="modal">
@@ -114,6 +126,8 @@ $path = $_SERVER['REQUEST_URI'];
                 </div>
               </div>
             <?php
+            $deletefalse = "SET foreign_key_checks = 1";
+            mysqli_query($connect, $deletefalse);
             }
             
         }else{

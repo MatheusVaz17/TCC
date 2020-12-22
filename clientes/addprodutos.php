@@ -27,20 +27,19 @@ if ($comprar == 1) {
 }
 
 if ($comprar == 1) {
-  $email = $_SESSION['email'];
+  $idUsuario = $_SESSION['id'];
 }
 
 
 if ($comprar == 1) {
-$sql1 = "SELECT cep FROM usuarios WHERE email = '$email'";
+$sql1 = "SELECT cep FROM usuarios WHERE id = '$idUsuario'";
 $resultado1 = mysqli_query($connect, $sql1);
     if(mysqli_num_rows($resultado1) > 0){ 
         $dados1 = mysqli_fetch_array($resultado1);
 }
 }
 
-
-$sql = "SELECT * FROM produto WHERE id = '$id'";
+$sql = "SELECT produto.nome, produto.valor, produto.disponibilidade, produto.foto, produto.informacao, produto.indicacao, produto.beneficio, produto.modo, produto.recomendacao, produto.quantidade, tipo.nome  FROM produto, tipo WHERE produto.idtipo = tipo.id AND produto.id = '$id'";
 $resultado = mysqli_query($connect, $sql);
         if(mysqli_num_rows($resultado) > 0){ 
         while ($dados = mysqli_fetch_array($resultado)){
@@ -70,7 +69,7 @@ $resultado = mysqli_query($connect, $sql);
     <form action="confirmaproduto.php" method="post">
         <div class="row">
             <div class="col s3">
-    	<p><h5><?php echo $dados['nome']." - ". $dados['tipo']; ?></h5></p><br>
+    	<p><h5><?php echo $dados[0]." - ". $dados[10]; ?></h5></p><br>
         <p><h6><b>Informações sobre o produto:</b></h6></p>
         <p style="font-family: cambria"><?php echo $dados['informacao']; ?></p>
         <p><h6><a href="#descricao">Ler descrições</a></h6></p>
@@ -86,7 +85,7 @@ $resultado = mysqli_query($connect, $sql);
               ?>
               <div class="col s5 push-m1">
               <br><br><br>
-        <p><b><h6><div><?php echo "Preço: R$".$dados['valor']; ?></div></h6></b>
+        <p><b><h6><div><?php echo "Preço: R$".preg_replace('/[^0-9]+/',',',$dados['valor']); ?></div></h6></b>
           <h6 ><b>Quantidade: <input value="1" type="number" name="quantidade"  style="max-width: 42%; border-radius: 4px; border-width: 1px; border-color: #29b6f6" min="1" max="<?php echo $dados['quantidade'] ?>" required></b></h6></p>
         <input type="hidden" name="id" value="<?php echo $id ?>">
         <?php

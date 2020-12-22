@@ -99,7 +99,7 @@ include "bd/conexao.php";
     <div class="owl-stage-outer">
       <div class="owl-stage">
 <?php
-$sql = "SELECT * FROM produto WHERE tipo = 'Medicamento' AND quantidade > 0";
+$sql = "SELECT * FROM produto WHERE idtipo = 1 AND quantidade > 0";
         $resultado = mysqli_query($connect, $sql);
         if(mysqli_num_rows($resultado) > 0){ 
         while ($dados = mysqli_fetch_array($resultado)){
@@ -113,7 +113,7 @@ $sql = "SELECT * FROM produto WHERE tipo = 'Medicamento' AND quantidade > 0";
             <img class="responsive-img" src="fotos/<?php echo $dados['foto'] ?>">
             </div>
             <div class="card-action">
-              <p><h6 align="center"><?php echo "Preço: R$".$dados['valor']; ?></h6></p>
+              <p><h6 align="center"><?php echo "Preço: R$".preg_replace('/[^0-9]+/',',',$dados['valor']); ?></h6></p>
             <p><a style="right: -10%" href="<?php echo'clientes/addprodutos.php?id='.$dados['id'].'&comprar=0' ?>" class="waves-effect waves-light btn modal-trigger z-depth-4"><i class="material-icons left">add_shopping_cart</i>Comprar</a></p>
           </div>
           </div>
@@ -175,7 +175,7 @@ if (mysqli_num_rows($resultado) > 5) {
     <div class="owl-stage-outer">
       <div class="owl-stage">
 <?php
-$sql1 = "SELECT * FROM produto WHERE tipo = 'Higiene' AND quantidade > 0";
+$sql1 = "SELECT * FROM produto WHERE idtipo = 2 AND quantidade > 0";
         $resultado1 = mysqli_query($connect, $sql1);
         if(mysqli_num_rows($resultado1) > 0){
         while ($dados = mysqli_fetch_array($resultado1)){
@@ -188,7 +188,7 @@ $sql1 = "SELECT * FROM produto WHERE tipo = 'Higiene' AND quantidade > 0";
             <img class="responsive-img" src="fotos/<?php echo $dados['foto'] ?>">
             </div>
             <div class="card-action">
-              <p><h6 align="center"><?php echo "Preço: R$".$dados['valor']; ?></h6></p>
+              <p><h6 align="center"><?php echo "Preço: R$".preg_replace('/[^0-9]+/',',',$dados['valor']); ?></h6></p>
             <p><a style="right: -10%" href="<?php echo'clientes/addprodutos.php?id='.$dados['id'].'&comprar=0' ?>" class="waves-effect waves-light btn modal-trigger z-depth-4"><i class="material-icons left">add_shopping_cart</i>Comprar</a></p>
           </div>
           </div>
@@ -229,7 +229,7 @@ if (mysqli_num_rows($resultado1) > 5) {
     <div class="owl-stage-outer">
       <div class="owl-stage">
 <?php
-$sql1 = "SELECT * FROM produto WHERE tipo = 'Dermocosmeticos' AND quantidade > 0";
+$sql1 = "SELECT * FROM produto WHERE idtipo = 3 AND quantidade > 0";
         $resultado1 = mysqli_query($connect, $sql1);
         if(mysqli_num_rows($resultado1) > 0){
         while ($dados = mysqli_fetch_array($resultado1)){
@@ -242,7 +242,7 @@ $sql1 = "SELECT * FROM produto WHERE tipo = 'Dermocosmeticos' AND quantidade > 0
             <img class="responsive-img" src="fotos/<?php echo $dados['foto'] ?>">
             </div>
             <div class="card-action">
-              <p><h6 align="center"><?php echo "Preço: R$".$dados['valor']; ?></h6></p>
+              <p><h6 align="center"><?php echo "Preço: R$".preg_replace('/[^0-9]+/',',',$dados['valor']); ?></h6></p>
             <p><a style="right: -10%" href="<?php echo'clientes/addprodutos.php?id='.$dados['id'].'&comprar=0' ?>" class="waves-effect waves-light btn modal-trigger z-depth-4"><i class="material-icons left">add_shopping_cart</i>Comprar</a></p>
           </div>
           </div>
@@ -283,7 +283,7 @@ if (mysqli_num_rows($resultado1) > 5) {
     <div class="owl-stage-outer">
       <div class="owl-stage">
 <?php
-$sql1 = "SELECT * FROM produto WHERE tipo = 'Suplementos' AND quantidade > 0";
+$sql1 = "SELECT * FROM produto WHERE idtipo = 4 AND quantidade > 0";
         $resultado1 = mysqli_query($connect, $sql1);
         if(mysqli_num_rows($resultado1) > 0){
         while ($dados = mysqli_fetch_array($resultado1)){
@@ -296,7 +296,7 @@ $sql1 = "SELECT * FROM produto WHERE tipo = 'Suplementos' AND quantidade > 0";
             <img class="responsive-img" src="fotos/<?php echo $dados['foto'] ?>">
             </div>
             <div class="card-action">
-              <p><h6 align="center"><?php echo "Preço: R$".$dados['valor']; ?></h6></p>
+              <p><h6 align="center"><?php echo "Preço: R$".preg_replace('/[^0-9]+/',',',$dados['valor']); ?></h6></p>
             <p><a style="right: -10%" href="<?php echo'clientes/addprodutos.php?id='.$dados['id'].'&comprar=0' ?>" class="waves-effect waves-light btn modal-trigger z-depth-4"><i class="material-icons left">add_shopping_cart</i>Comprar</a></p>
           </div>
           </div>
@@ -334,7 +334,7 @@ if (mysqli_num_rows($resultado1) > 5) {
           <div class="container">
             <div class="row">
               <div class="col l6 s12">
-                <h5 class="white-text">Farmácia</h5>
+                <h5 class="white-text">Farmácia On-line</h5>
                 <p class="grey-text text-lighten-4">Aqui você encontra os melhores produtos pelos melhores preços.</p>
               </div>
               <div class="col l4 offset-l2 s12">
