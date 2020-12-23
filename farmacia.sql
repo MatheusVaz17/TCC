@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 22-Dez-2020 às 10:02
+-- Generation Time: 23-Dez-2020 às 06:38
 -- Versão do servidor: 5.6.17
 -- PHP Version: 7.4.8
 
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `carrinho` (
   `idusuario` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_usuario` (`idusuario`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=58 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=14 ;
 
 -- --------------------------------------------------------
 
@@ -71,7 +71,7 @@ CREATE TABLE IF NOT EXISTS `produto` (
   `quantidade` int(200) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_tipo` (`idtipo`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
 -- --------------------------------------------------------
 
@@ -87,7 +87,7 @@ CREATE TABLE IF NOT EXISTS `produto_carrinho` (
   PRIMARY KEY (`id`),
   KEY `fk_carrinho_has_produto_carrinho1` (`idcarrinho`),
   KEY `fk_carrinho_has_produto_produto1` (`idproduto`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=42 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=14 ;
 
 -- --------------------------------------------------------
 
@@ -102,7 +102,7 @@ CREATE TABLE IF NOT EXISTS `produto_pedido` (
   `quantidade` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_pedido_has_produto_pedido1` (`idpagamento`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 -- --------------------------------------------------------
 
@@ -114,7 +114,7 @@ CREATE TABLE IF NOT EXISTS `tipo` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=10 ;
 
 --
 -- Extraindo dados da tabela `tipo`
@@ -125,8 +125,7 @@ INSERT INTO `tipo` (`id`, `nome`) VALUES
 (2, 'Higiene'),
 (3, 'Dermocosmeticos'),
 (4, 'Suplementos'),
-(5, 'Alimentos'),
-(8, 'Higiene Bucal');
+(5, 'Alimentos');
 
 -- --------------------------------------------------------
 

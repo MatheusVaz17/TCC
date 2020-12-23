@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Health Farm</title>
+	<title>Farmácia Online</title>
 	<meta charset="utf-8">
 	<script type= "text/javascript" src= "../jquery-3.4.1.js"></script>
 <script type= "text/javascript" src= "../jquery.mask.min.js"></script>
-<link rel="icon" type="../image/jpg" href="icon.jpg">
+<link rel="icon" href="../fav.png" />
 <link type="text/css" rel="stylesheet" href="../materialize/css/materialize.min.css"  media="screen,projection"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <script type="text/javascript" src="../materialize/js/materialize.min.js"></script>
+
 </head>
 <body>
 
@@ -28,13 +29,18 @@ if (isset($_POST['action'])) {
   $recomendacao = $_POST['recomendacao'];
   $quantidade = $_POST['qtd'];
   $outro = $_POST['outro'];
-  $check = $_POST['check'];
-
   
-  if ($check == 'on') {
-    $sql1 = "INSERT INTO tipo(nome) VALUES ('$outro')";
-    mysqli_query($connect, $sql1);
+
+  if ($tipo == $outro) {
+    $outro = '';
+  }
+  
+
+  if (!empty($outro)) {
     $tipo = $outro;
+
+    $sql1 = "INSERT INTO tipo(nome) VALUES ('$tipo')";
+    mysqli_query($connect, $sql1);
   }
 
 

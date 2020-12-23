@@ -5,7 +5,7 @@
         $email = filter_input(INPUT_POST, 'palavra', FILTER_SANITIZE_STRING);
 
         // Prepara o SQL e Consulta no banco
-        $sql = "SELECT * FROM pagamentos WHERE email LIKE '%$email%' LIMIT 5";
+        $sql = "SELECT * FROM pagamentos INNER JOIN usuarios ON pagamentos.idusuario = usuarios.id INNER JOIN produto_pedido ON produto_pedido.idpagamento = pagamentos.id WHERE email LIKE '%$email%' LIMIT 5";
         $resultado = mysqli_query($connect, $sql);
         
         

@@ -11,7 +11,7 @@ session_start();
 
 $email = $_POST['email'];
 $senha = $_POST['senha'];
-$check = $_POST['check'];
+
 
 $sql = "SELECT * FROM usuarios WHERE email = '$email' AND senha = '$senha'";
 
@@ -24,7 +24,7 @@ if (isset($_POST['sub'])) {
             $id = $array['id'];
             setcookie('login',$nome);
             $_SESSION['id'] = $id;
-            $_SESSION['check'] = $check;
+            
 
             if ($array['email'] == 'farmacia@farmacia.com' and $array['senha'] == 'administrador00') {
                 header("Location: ../adm/adm.php");
@@ -32,10 +32,7 @@ if (isset($_POST['sub'])) {
             header("Location: farmacia.php");
             }
         
-      }else{
-        unset ($_SESSION['id']);
-        unset ($_SESSION['cpf']);
-        unset ($_SESSION['check']);
+      }else{ 
       	echo"<script> alert('Email e/ou senha incorretos');window.location
         .href='entrar.php';</script>";
         die();

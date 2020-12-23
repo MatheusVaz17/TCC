@@ -25,9 +25,6 @@ $login = $_COOKIE['login'];
 session_start();
 if((!isset ($_SESSION['id']) == true))
 {
-  unset($_SESSION['email']);
-  unset($_SESSION['senha']);
-  unset($_SESSION['check']);
   echo"<script> alert('Você precisa estar logado para acessar essa página!');window.location
         .href='entrar.php';</script>";
 }else {
@@ -481,7 +478,7 @@ if (mysqli_num_rows($resultado1) > 5) {
       <h4>Suas compras <i class="material-icons">shopping_cart</i></h4>
       <h5>Produtos a encaminhar:</h5>
       <?php
-        $sqlpag = "SELECT pagamentos.produtos, produto_pedido.quantidade, produto_pedido.valor, pagamentos.data FROM pagamentos, produto_pedido WHERE idusuario = '$id' AND pedido ='A encaminhar produto'";
+        $sqlpag = "SELECT * FROM pagamentos INNER JOIN usuarios ON pagamentos.idusuario = usuarios.id INNER JOIN produto_pedido ON produto_pedido.idpagamento = pagamentos.id WHERE idusuario = '$id' AND pedido ='A encaminhar produto'";
         $resultpag = mysqli_query($connect, $sqlpag);
 
         if (mysqli_num_rows($resultpag) < 1) {
@@ -505,10 +502,10 @@ if (mysqli_num_rows($resultado1) > 5) {
             while($dadospag = mysqli_fetch_array($resultpag)){  
             ?>
             <tr>
-            <td><?php echo $dadospag[0]; ?></td>
-            <td><?php echo $dadospag[1]; ?></td>
-            <td><?php echo "R$".preg_replace('/[^0-9]+/',',',$dadospag[2]); ?></td>
-            <td><?php echo $dadospag[3]; ?></td>
+            <td><?php echo $dadospag['produtos']; ?></td>
+            <td><?php echo $dadospag['quantidade']; ?></td>
+            <td><?php echo "R$".preg_replace('/[^0-9]+/',',',$dadospag['valor']); ?></td>
+            <td><?php echo $dadospag['data']; ?></td>
             <td><button class="btn" disabled><i class="material-icons">local_taxi</i></button></td>
              </tr>
             <?php
@@ -526,7 +523,7 @@ if (mysqli_num_rows($resultado1) > 5) {
         <h5>Produtos encaminhados:</h5>
 
         <?php
-        $sqlpag = "SELECT * FROM pagamentos WHERE idusuario = '$id' AND pedido ='Encaminhado'";
+        $sqlpag = "SELECT * FROM pagamentos INNER JOIN usuarios ON pagamentos.idusuario = usuarios.id INNER JOIN produto_pedido ON produto_pedido.idpagamento = pagamentos.id WHERE idusuario = '$id' AND pedido ='Encaminhado'";
         $resultpag = mysqli_query($connect, $sqlpag);
 
         if (mysqli_num_rows($resultpag) < 1) {

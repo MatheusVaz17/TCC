@@ -6,7 +6,7 @@
 	<script type= "text/javascript" src= "../jquery-3.4.1.js"></script>
 <script type= "text/javascript" src= "../jquery.mask.min.js"></script>
 <script type="text/javascript" src="../ckeditor/ckeditor.js"></script>
-<link rel="icon" type="image/jpg" href="../icon.jpg">
+<link rel="icon" href="../fav.png" />
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link type="text/css" rel="stylesheet" href="../materialize/css/materialize.min.css"  media="screen,projection"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -15,10 +15,8 @@
 <body>
 <?php
 session_start();
-if((!isset ($_SESSION['id']) == true) or $_SESSION['id'] != 1)
+if($_SESSION['id'] != 1)
 {
-  unset($_SESSION['email']);
-  unset($_SESSION['senha']);
   echo"<script> alert('Você precisa estar logado como funcionário para acessar essa página!');window.location
         .href='../clientes/entrar.php';</script>";
 }else{ 
@@ -71,7 +69,7 @@ $resultado = mysqli_query($connect, $sql);
         <?php
           while ($dados1 = mysqli_fetch_array($resultado1)) {
           ?>
-          <option <?php if($dados1['id'] == $dados['idtipo']){ echo "selected"; } ?> value="<?php echo $dados1['id']; ?>"><?php echo $dados1['nome']; ?></option>
+          <option <?php if($dados1['id'] == $dados['idtipo']){ echo "selected"; } ?> value="<?php echo $dados1['nome']; ?>"><?php echo $dados1['nome']; ?></option>
           <?php
           }
         ?>
@@ -82,7 +80,7 @@ $resultado = mysqli_query($connect, $sql);
 
     <p>
        <label>
-        <input id="check" onclick="esconde()" name="check" type="checkbox" />
+        <input id="check" onclick="esconde()" type="checkbox" />
         <span style="color: black">Outro? Qual?</span>
       </label>
     </p>

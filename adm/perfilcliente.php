@@ -21,7 +21,7 @@
 <?php
 
 session_start();
-if((!isset ($_SESSION['email']) == 'farmacia@farmacia.com') and (!isset ($_SESSION['senha']) == 'administrador00'))
+if((!isset ($_SESSION['id']) == '1') or (!isset ($_SESSION['id'])))
 {
   unset($_SESSION['email']);
   unset($_SESSION['senha']);
@@ -31,21 +31,6 @@ if((!isset ($_SESSION['email']) == 'farmacia@farmacia.com') and (!isset ($_SESSI
   }
 
 include "../bd/conexao.php";
-$logado = $_SESSION['email'];
-
-if($_SESSION['check'] == false) {
-?>
-
-<script type="text/javascript">
-
-setTimeout(function() {
-    window.location.href = "../sair.php";
-}, 1800000);
-
-</script>
-<?php
-}
-
 if (isset($_GET['email'])){
   $email = $_GET['email'];
 }else{

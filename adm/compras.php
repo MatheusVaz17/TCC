@@ -21,7 +21,7 @@
 <?php
 
 session_start();
-if((!isset ($_SESSION['id']) == '1'))
+if((!isset ($_SESSION['id']) == '1') or (!isset ($_SESSION['id'])))
 {
   unset($_SESSION['id']);
   echo"<script> alert('Você precisa estar logado como administrador para acessar essa página!');window.location
@@ -79,7 +79,7 @@ $idUsuario = $_SESSION['id'];
 
             <tbody>
                 <?php
-                $sql = "SELECT * FROM pagamentos WHERE pedido = 'A encaminhar produto'";
+                $sql = "SELECT * FROM pagamentos INNER JOIN usuarios ON pagamentos.idusuario = usuarios.id INNER JOIN produto_pedido ON produto_pedido.idpagamento = pagamentos.id WHERE pedido = 'A encaminhar produto'";
                 $resultado = mysqli_query($connect, $sql);
                 if (mysqli_num_rows($resultado) > 0):
                 while ($dados = mysqli_fetch_array($resultado)):
@@ -144,7 +144,7 @@ $idUsuario = $_SESSION['id'];
 
             <tbody>
                 <?php
-                $sql = "SELECT * FROM pagamentos WHERE pedido ='Encaminhado'";
+                $sql = "SELECT * FROM pagamentos INNER JOIN usuarios ON pagamentos.idusuario = usuarios.id INNER JOIN produto_pedido ON produto_pedido.idpagamento = pagamentos.id WHERE pedido ='Encaminhado'";
                 $resultado = mysqli_query($connect, $sql);
                 if (mysqli_num_rows($resultado) > 0):
                 while ($dados = mysqli_fetch_array($resultado)):

@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="../materialize/css/materialize.min.css">
     <script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script>
     <script type="text/javascript" src="js/index.js" defer></script>
+    <link rel="icon" href="../fav.png" />
   </head>
 <body>
 
@@ -62,7 +63,7 @@ $path = $_SERVER['REQUEST_URI'];
 
         if ($payment->status == 'approved') {
 
-            $sql = "SELECT produto.nome FROM produto, carrinho, produto_carrinho WHERE carrinho.id = produto_carrinho.idcarrinho AND carrinho.idusuario = '$idUsuario' AND produto_carrinho.idproduto = produto.id";
+            $sql = "SELECT DISTINCT produto.nome FROM produto, carrinho, produto_carrinho WHERE carrinho.id = produto_carrinho.idcarrinho AND carrinho.idusuario = '$idUsuario' AND produto_carrinho.idproduto = produto.id";
             $result = mysqli_query($connect, $sql);
 
             $i = 0;

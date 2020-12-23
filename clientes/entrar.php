@@ -107,10 +107,6 @@
           </div>
           <div class="input-field col s12">
           <p>Senha: <input id="password" placeholder="Digite sua senha" type="password" class="validate" name="senha" style="background-color: white; border-radius: 8px;" required></p>
-          <p><label>
-          <input type="checkbox" name="check" class="filled-in"/>
-          <span style="color: white">Mantenha-me conectado</span>
-          </label></p>
           </div>
           
           <button class="btn waves-effect waves-light" type="submit" name="sub">Entrar

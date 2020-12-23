@@ -9,6 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script>
     <script type="text/javascript" src="js/index.js" defer></script>
+    <link rel="icon" href="../../fav.png" />
   </head>
   <body>
     <?php
@@ -104,7 +105,7 @@
                   <div class="row">
                     <div class="form-group col-sm-8">
                       <label for="cardholderName">Nome do cartão</label>
-                      <input required id="cardholderName" data-checkout="cardholderName" type="text" class="form-control">
+                      <input required id="cardholderName" placeholder="Digite aqui o nome do cartão" data-checkout="cardholderName" type="text" class="form-control">
                     </div>
                     <div class="form-group col-sm-4">
                       <label for="">Data de vencimento</label>
@@ -118,12 +119,12 @@
                     </div>
                     <div class="form-group col-sm-8">
                       <label for="cardNumber">Número do cartão</label>
-                      <input required type="text" class="form-control input-background" id="cardNumber" data-checkout="cardNumber"
+                      <input required type="text" placeholder="Número sem espaçamento" class="form-control input-background" id="cardNumber" data-checkout="cardNumber"
                         onselectstart="return false"  onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false" autocomplete=off>
                     </div>
                     <div class="form-group col-sm-4">
                       <label for="securityCode">Código de segurança</label>
-                      <input required id="securityCode" data-checkout="securityCode" type="text" class="form-control"
+                      <input required  id="securityCode" data-checkout="securityCode" type="text" class="form-control"
                         onselectstart="return false" onpaste="return false" onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false" autocomplete=off>
                     </div>
                     <div id="issuerInput" class="form-group col-sm-12 hidden">
