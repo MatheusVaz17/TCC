@@ -172,7 +172,8 @@ $resultFoto = $dados['foto'];
 
       <div align="center">
         <a href="#modalconfirma" class="btn green white-text modal-trigger">Confirmar</a>
-        <a href="farmacia.php" class="btn red white-text">Cancelar</a>
+        <a href="farmacia.php" class="btn blue white-text">Cancelar</a><br><br><br>
+        <a class="btn red white-text" onclick="deletarConta(<?php echo $id; ?>)">Deletar conta </a>
       </div>
 
       <!-- Modal Structure -->
@@ -859,6 +860,12 @@ $("#chat").click(function(){
 
 });
 
+function deletarConta(id){
+  var confirmdelete = confirm("tem certeza que deseja deletar sua conta?");
+  if(confirmdelete == true){
+    window.location.href='delete.php?id='+id;
+  }
+}
      
 </script>
 

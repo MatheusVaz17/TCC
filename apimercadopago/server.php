@@ -16,8 +16,12 @@
 
 require __DIR__  . '/vendor/autoload.php';
 
-//REPLACE WITH YOUR ACCESS TOKEN AVAILABLE IN: https://developers.mercadopago.com/panel/credentials
-MercadoPago\SDK::setAccessToken("TEST-7768088922376725-080320-10c0a472c87d5c5761573e7b1a2455d0-614375984");
+//Cole seu ACESS TOKEN de: https://developers.mercadopago.com/panel/credentials
+
+ /*
+ O Acess Token se consegue no site do mercadopago, precisa dela para poder utilizar a api do mercadopago 
+ */
+MercadoPago\SDK::setAccessToken("");
 
 
 session_start();

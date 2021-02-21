@@ -1,5 +1,9 @@
- //REPLACE WITH YOUR PUBLIC KEY AVAILABLE IN: https://developers.mercadopago.com/panel/credentials
-window.Mercadopago.setPublishableKey("TEST-23bf4540-117c-49dc-a3ec-fe230910bfb3");
+ //Cole sua PUBLIC de: https://developers.mercadopago.com/panel/credentials
+
+ /*
+ A public Key se consegue no site do mercadopago, precisa dela para poder utilizar a api do mercadopago 
+ */
+window.Mercadopago.setPublishableKey("");
 
 window.Mercadopago.getIdentificationTypes();
   
